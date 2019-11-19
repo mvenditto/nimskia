@@ -32,3 +32,6 @@ cd nimskia
 nimgen nimgen.cfg
 ```
 
+### TODO list
+- [ ] refactor nimgen.cfg, its actually a mess
+- [ ] rewrite and expand the readme
