@@ -35,6 +35,44 @@ nimgen nimgen.cfg
 ```
 
 ## Examples
+snippet of the "high-level" api build upon the raw bindings (wip)
+```nim
+
+proc draw(canvas: SKCanvas) =
+  let paint = newPaint(color = Blue)
+  defer: paint.dispose()
+  canvas.drawPaint(paint)
+
+  paint.color = newColorARGB(255, 0, 255, 255) # Cyan
+  let rect = newRect(100.float, 100, 540, 380)
+  canvas.drawRect(rect, paint)
+
+  paint.color = newColorARGB(0x80, 0x00, 0xFF, 0x00)
+  let bounds = newRect(120.0, 120.0, 520.0, 360.0)
+  canvas.drawOval(bounds, paint)
+
+proc emitPng(path: string; surface: SKSurface) =
+  var image = surface.snapshot()
+  defer: image.dispose()
+  
+  var data = image.encode()
+  defer: data.dispose()
+
+  var f = open(path, fmWrite)
+  var dataBuff = data.data
+  var dataLen = len(data)
+  discard f.writeBuffer(dataBuff, dataLen)
+  f.close()
+
+proc main() =
+  var cs = newSrgbColorSpace()
+  var info = newImageInfo(640, 480, Rgba_8888, Premul, cs)
+  var surface = newRasterSurface(info)
+  draw(surface.canvas)
+  emitPng("out.png", surface);
+```
+nimskia + glfw (nimgl)
+
 <img src="https://github.com/mvenditto/nimskia/blob/master/nimskia/docs/images/nimskia_glfw.png" 
 width="320" height="240" />
 
