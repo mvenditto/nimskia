@@ -1,9 +1,9 @@
 import nimgl/[glfw, opengl]
-import ../sk_gpu
-import ../sk_surface
-import ../sk_canvas
-import ../sk_types
-import ../sk_paint
+import ../wrapper/sk_gpu
+import ../wrapper/sk_surface
+import ../wrapper/sk_canvas
+import ../wrapper/sk_types
+import ../wrapper/sk_paint
 
 import common
 
@@ -21,7 +21,7 @@ proc main() =
   glfwWindowHint(GLFWOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(GLFWResizable, GLFW_FALSE)
 
-  let w: GLFWWindow = glfwCreateWindow(640, 480, "NimGL")
+  let w: GLFWWindow = glfwCreateWindow(640, 480, "NimSkia")
   if w == nil:
     quit(-1)
 

@@ -1,8 +1,8 @@
-import ../sk_types
-import ../sk_imageinfo
-import ../sk_image
-import ../sk_data
-import ../sk_surface
+import ../wrapper/sk_types
+import ../wrapper/sk_imageinfo
+import ../wrapper/sk_image
+import ../wrapper/sk_data
+import ../wrapper/sk_surface
 
 import common
 

@@ -1,7 +1,7 @@
-import ../sk_types
-import ../sk_paint
-import ../sk_canvas
-import ../sk_path
+import ../wrapper/sk_types
+import ../wrapper/sk_paint
+import ../wrapper/sk_canvas
+import ../wrapper/sk_path
 
 # assumes a 640x480 surface
 proc test_draw*(canvas: ptr sk_canvas_t) =
