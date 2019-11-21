@@ -1,6 +1,5 @@
 import ../nimskia/sk
 
-import common
 import ../nimskia/skcolors
 
 proc draw(canvas: SKCanvas) =
@@ -38,6 +37,6 @@ proc main() =
 
   draw(surface.canvas)
 
-  emit_png("out.png", surface);
+  emitPng("out2.png", surface);
 
 main()
