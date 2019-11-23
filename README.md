@@ -122,11 +122,7 @@ proc main() =
 
   var canvas = surface.canvas
   assert not isNil canvas
-
-  var fill = newPaint(BlueViolet)
-  assert not isNil fill
-  canvas.drawPaint(fill)
- 
+  
   while not w.windowShouldClose:
     glfwPollEvents()
     test_draw(canvas.native)
@@ -137,7 +133,6 @@ proc main() =
   glfwTerminate()
 
   grContext.abandonContext(true)
-  fill.dispose()
   surface.dispose()
   info.dispose()
 
