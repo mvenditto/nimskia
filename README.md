@@ -77,5 +77,6 @@ nimskia + glfw (nimgl)
 width="320" height="240" />
 
 ### TODO list
+- [ ] switch to mono/skia?
 - [ ] refactor nimgen.cfg, its actually a mess
 - [ ] rewrite and expand the readme
