@@ -42,7 +42,7 @@ proc emitPng(path: string; surface: SKSurface) =
 proc main() =
   var cs = newSrgbColorSpace()
   var info = newImageInfo(640, 480, Rgba_8888, Premul, cs)
-  var surface = newRasterSurface(info)
+  var surface = newSurface(info)
   assert not isNil surface
 
   draw(surface.canvas)
