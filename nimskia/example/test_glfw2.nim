@@ -2,13 +2,7 @@ import nimgl/[glfw, opengl]
 import ../nimskia/[
   sk_canvas, 
   sk_paint, 
-  sk_color, 
-  sk_rect, 
-  sk_image, 
-  sk_data, 
   sk_surface, 
-  sk_colorspace, 
-  sk_imageinfo, 
   sk_enums,
   sk_colors,
   gr_context
@@ -44,7 +38,8 @@ proc main() =
   assert not isNil info
 
   var target = createBackendRenderTarget(640, 480, 0, 0, info)
-
+  assert not isNil target
+ 
   var surface = newSurface(
     grContext,
     target,
@@ -53,7 +48,6 @@ proc main() =
     nil,
     nil
   )
-  
   assert not isNil surface
 
   var canvas = surface.canvas
@@ -61,7 +55,6 @@ proc main() =
 
   var fill = newPaint(BlueViolet)
   assert not isNil fill
-  
   canvas.drawPaint(fill)
  
   while not w.windowShouldClose:
@@ -72,5 +65,11 @@ proc main() =
 
   w.destroyWindow()
   glfwTerminate()
+
+  grContext.abandonContext(true)
+  fill.dispose()
+  surface.dispose()
+  info.dispose()
+
 
 main()
