@@ -1,6 +1,16 @@
-import ../nimskia/sk
-
-import ../nimskia/skcolors
+import ../nimskia/[
+  sk_canvas, 
+  sk_paint, 
+  sk_color, 
+  sk_rect, 
+  sk_image, 
+  sk_data, 
+  sk_surface, 
+  sk_colorspace, 
+  sk_imageinfo, 
+  sk_enums,
+  sk_colors
+]
 
 proc draw(canvas: SKCanvas) =
   let paint = newPaint(color = Blue)
@@ -37,6 +47,6 @@ proc main() =
 
   draw(surface.canvas)
 
-  emitPng("out2.png", surface);
+  emitPng("out3.png", surface);
 
 main()
