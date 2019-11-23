@@ -1,6 +1,5 @@
 import ../wrapper/sk_types
 import ../wrapper/sk_surface
-import ../wrapper/sk_imageinfo
 import ../wrapper/sk_image
 import ../wrapper/sk_colorspace
 import ../wrapper/sk_data
@@ -21,7 +20,7 @@ type
     pixelGeometry*: SKPixelGeometry
 
   SKImageInfo* = ref object
-    native*: ptr sk_imageinfo_t
+    native*: sk_imageinfo_t
     colorspace*: SKColorSpace
 
   SKImage* = ref object 
@@ -53,12 +52,16 @@ type
 
   SKColorType* = enum
     UnknownColorType = UNKNOWN_SK_COLORTYPE, 
-    Rgba_8888 = RGBA_8888_SK_COLORTYPE, 
-    Bgra_8888 = BGRA_8888_SK_COLORTYPE,
-    Alpha_8 = ALPHA_8_SK_COLORTYPE, 
-    Gray_8 = GRAY_8_SK_COLORTYPE, 
-    Rgba_F16 =RGBA_F16_SK_COLORTYPE,
-    Rgba_F32 = RGBA_F32_SK_COLORTYPE
+    Alpha8 = ALPHA_8_SK_COLORTYPE, 
+    Rgb565 = RGB_565_SK_COLORTYPE,
+    Argb4444 = ARGB_4444_SK_COLORTYPE, 
+    Rgba8888 = RGBA_8888_SK_COLORTYPE, 
+    Rgb888X = RGB_888X_SK_COLORTYPE,
+    Bgra8888 = BGRA_8888_SK_COLORTYPE, 
+    Rgba1010102 = RGBA_1010102_SK_COLORTYPE, 
+    Rgb101010X = RGB_101010X_SK_COLORTYPE,
+    Gray8 = GRAY_8_SK_COLORTYPE, 
+    RgbaF16 = RGBA_F16_SK_COLORTYPE
   
   SKAlphaType* = enum
     Opaque = OPAQUE_SK_ALPHATYPE, 
@@ -136,30 +139,28 @@ template colorType*(this: SKImageInfo): SKColorType = sk_imageinfo_get_colortype
 
 template alphaType*(this: SKImageInfo): SKAlphaType = sk_imageinfo_get_alphatype.SKAlphaType
 
-proc dispose*(this: SKImageInfo) = sk_imageinfo_delete(this.native)
-
 proc newImageInfo*(width: int, heigth: int, colorType: SKColorType , alphaType: SKAlphaType, colorspace: SKColorSpace): SKImageInfo =
-  let imageInfo = sk_imageinfo_new(
-    width.cint, 
-    heigth.cint, 
-    colorType.sk_colortype_t, 
-    alphaType.sk_alphatype_t, 
-    colorspace.native)
+  var imageInfo: sk_imageinfo_t
+  imageInfo.colorspace = colorspace.native
+  imageInfo.width = width.cint
+  imageInfo.height = heigth.cint
+  imageInfo.colorType = colorType.sk_colortype_t
+  imageInfo.alphaType = alphaType.sk_alphatype_t
   SKImageInfo(native: imageInfo, colorspace: colorspace)
 
 ### SKSurfaceProps
 
 proc newSurfaceProps*(pixelGeometry: SKPixelGeometry): SKSurfaceProps =
-  var x: sk_surfaceprops_t
-  x.pixelGeometry = (sk_pixelgeometry_t) pixelGeometry  
+  var x: sk_surfaceprops_t 
   SKSurfaceProps(native: x.addr, pixelGeometry: pixelGeometry)
 
 ### SKSurface
 
-proc newRasterSurface*(info: SKImageInfo, props: SKSurfacePRops): SKSUrface =
+proc newRasterSurface*(info: SKImageInfo, rowBytes: int, props: SKSurfacePRops): SKSUrface =
   # props bugged
   var surf = sk_surface_new_raster(
-    info.native, 
+    info.native.addr,
+    rowBytes, 
     if isNil props: nil else: props.native
   )
   var nativeCanvas = sk_surface_get_canvas(surf)
@@ -171,7 +172,7 @@ proc newRasterSurface*(info: SKImageInfo, props: SKSurfacePRops): SKSUrface =
   )
 
 proc newRasterSurface*(info: SKImageInfo): SKSurface =
-  return newRasterSurface(info, nil)
+  return newRasterSurface(info, 0, nil)
 
 proc dispose*(this: SKSurface) = sk_surface_unref(this.native)
 
@@ -186,9 +187,6 @@ proc newEmptyData*(): SKData =
 
 proc newDataWithCopy*(src: pointer, size: int): SKData = 
   SKData(native: sk_data_new_with_copy(src, size))
-
-proc newDataFromMalloc*(memory: pointer, length: int): SKData =
-  SKData(native: sk_data_new_from_malloc(memory, length))
 
 proc newDataSubset*(data: SKData, offset: int, length: int): SKData =
   SKData(native: sk_data_new_subset(data.native, offset, length))
