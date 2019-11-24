@@ -39,6 +39,19 @@ type
   SKClipOp* {.pure.} = enum
     Difference = DIFFERENCE_SK_CLIPOP
     Intersect = INTERSECT_SK_CLIPOP
+
+  SKPathArcSize* {.pure.} = enum
+    Small = SMALL_SK_PATH_ARC_SIZE
+    Large = LARGE_SK_PATH_ARC_SIZE
+  
+  SKPathDirection* = enum
+    Clockwise = CW_SK_PATH_DIRECTION
+    CounterClockwise = CCW_SK_PATH_DIRECTION
+
+  SKPaintStyle* = enum
+    Fill = FILL_SK_PAINT_STYLE
+    Stroke = STROKE_SK_PAINT_STYLE
+    StrokeAndFill = STROKE_AND_FILL_SK_PAINT_STYLE
   
   SKBlendMode* = enum
     Clear = CLEAR_SK_BLENDMODE

@@ -44,9 +44,6 @@ proc newRect*(topLeft: (int32, int32), bottomRight: (int32, int32)): SKRectI =
 proc newRect*(topLeft: (int32, int32), width, heigth: int32): SKRectI =
   newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + heigth)
 
-### SKColor
-
-template r*(color: SKColor): byte = sk_color_get_r(color)
-template g*(color: SKColor): byte = sk_color_get_g(color)
-template b*(color: SKColor): byte = sk_color_get_b(color)
-template a*(color: SKColor): byte = sk_color_get_a(color)
+converter tupleToRectF*(rect: (float,float,float,float)): SKRect =
+  let(left,top,right,bottom) = rect
+  result = newRect(left, top, right, bottom)

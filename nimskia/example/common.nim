@@ -3,7 +3,6 @@ import ../wrapper/sk_paint
 import ../wrapper/sk_canvas
 import ../wrapper/sk_path
 
-# assumes a 640x480 surface
 proc test_draw*(canvas: ptr sk_canvas_t) =
     var fill = sk_paint_new();
     sk_paint_set_color(fill, sk_color_set_argb(0xFF, 0x00, 0x00, 0xFF))

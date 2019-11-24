@@ -20,10 +20,20 @@ template color*(this: SKPaint): SKColor = sk_paint_get_color(this)
 proc `color=`*(this: SKPaint, color: SKColor) =
   sk_paint_set_color(this.native, color.sk_color_t) 
 
+proc `color=`*(this: SKPaint, argb: (byte,byte,byte,byte)) =
+  var(a,r,g,b) = argb
+  sk_paint_set_color(this.native, newColorARGB(a,r,g,b)) 
+
 template isStroke*(this: SKPaint): bool = sk_paint_is_stroke(this.native)
 
 template `stroke=`*(this: SKPaint, stroke: bool) = 
   sk_paint_set_stroke(this.native, enabled)
+
+template style*(this: SKPaint): SKPaintStyle = 
+  sk_paint_get_style(this.native).SKPaintStyle
+
+template `style=`*(this: SKPaint, style: SKPaintStyle) = 
+  sk_paint_set_style(this.native, cast[sk_paint_style_t](style))
 
 template strokeWidth*(this: SKPaint): float = sk_paint_get_stroke_width(this)
 
@@ -50,3 +60,7 @@ proc newPaint*(): SKPaint = SKPaint(native: sk_paint_new())
 proc newPaint*(color: SKColor): SKPaint = 
   result = newPaint()
   result.color = color
+
+proc newPaint*(a,r,g,b: byte): SKPaint = 
+  result = newPaint()
+  result.color = newColorARGB(a,r,g,b)

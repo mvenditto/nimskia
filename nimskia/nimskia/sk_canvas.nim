@@ -5,6 +5,7 @@ import sk_rect
 import sk_image
 import sk_color
 import sk_enums
+import sk_path
 
 type
   SKCanvas* = ref object
@@ -40,6 +41,9 @@ proc drawImage*(this: SKCanvas, image: SKImage, cx: float, cy:float, paint: SKPa
 proc drawColor*(this: SKCanvas, color: SKColor, mode: SKBlendMode) =
   sk_canvas_draw_color(this.native, color.sk_color_t, mode.sk_blendmode_t)
 
+proc drawPath*(this: SKCanvas, path: SKPath, paint: SKPaint) =
+  sk_canvas_draw_path(this.native, path.native, paint.native)
+
 proc dispose*(this: SKCanvas) =
   sk_canvas_destroy(this.native)
 
@@ -57,3 +61,4 @@ proc clear*(this: SKCanvas, color: SKColor) =
 
 proc clip*(this: SKCanvas, bounds: SKRect, clipop: SKClipOp, doAA: bool) =
   sk_canvas_clip_rect_with_operation(this.native, bounds.native.addr, clipop.sk_clipop_t, doAA)
+

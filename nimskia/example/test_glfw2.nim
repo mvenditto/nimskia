@@ -7,7 +7,7 @@ import ../nimskia/[
   sk_colors,
   gr_context
 ]
-import common
+import common_api
 
 proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
              action: int32, mods: int32): void {.cdecl.} =
@@ -59,7 +59,7 @@ proc main() =
  
   while not w.windowShouldClose:
     glfwPollEvents()
-    test_draw(canvas.native)
+    testDraw(canvas)
     grContext.flush()
     w.swapBuffers()
 
