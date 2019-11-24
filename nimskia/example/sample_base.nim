@@ -4,18 +4,27 @@ import ../nimskia/[
   sk_canvas, 
   gr_context,
   sk_surface,
-  sk_enums
+  sk_enums,
+  sk_matrix
 ]
+
+import common_api
 
 type Sample* = ref object
   title*: string
   w*, h*: int32
   update*: proc(canvas: SKCanvas, dt: float)
+  surface*: SKSurface
+
+var
+  surface: SKSurface = nil
 
 proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
              action: int32, mods: int32): void {.cdecl.} =
   if key == GLFWKey.ESCAPE and action == GLFWPress:
     window.setWindowShouldClose(true)
+  if key == GLFWKey.S and action == GLFWPress:
+    emitPng("snapshot.png", surface)
 
 proc start*(this: Sample) =
   assert glfwInit()
@@ -41,7 +50,7 @@ proc start*(this: Sample) =
   var target = createBackendRenderTarget(this.w, this.h, 0, 0, info)
   assert not isNil target
 
-  var surface = newSurface(
+  surface = newSurface(
       grContext,
       target,
       TopLeft,
@@ -50,6 +59,15 @@ proc start*(this: Sample) =
       nil
   )
   assert not isNil surface
+  this.surface = surface
+
+  discard """
+  var flipMatrix: SKMatrix = (
+   -1.0, 0.0, 0.0, 
+    0.0,-1.0, 0.0, 
+    0.0, 0.0, 1.0
+  )
+  """
 
   var latest = glfwGetTime()
   while not w.windowShouldClose:

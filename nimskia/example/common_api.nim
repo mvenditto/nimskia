@@ -5,8 +5,24 @@ import ../nimskia/[
   sk_colors,
   sk_enums,
   sk_rect,
-  sk_path
+  sk_path,
+  sk_surface,
+  sk_image,
+  sk_data
 ]
+
+proc emitPng*(path: string; surface: SKSurface) =
+  var image = surface.snapshot()
+  defer: image.dispose()
+  
+  var data = image.encode()
+  defer: data.dispose()
+
+  var f = open(path, fmWrite)
+  var dataBuff = data.data
+  var dataLen = len(data)
+  discard f.writeBuffer(dataBuff, dataLen)
+  f.close()
 
 # assumes a 640x480 surface
 proc testDraw*(canvas: SKCanvas) =

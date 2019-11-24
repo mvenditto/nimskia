@@ -8,13 +8,41 @@ type
       native*: sk_imageinfo_t
       colorspace*: SKColorSpace
 
-template width*(this: SKImageInfo): int32 = sk_imageinfo_get_width(this.native)
+template width*(this: SKImageInfo): int32 = this.native.width
 
-template heigth*(this: SKImageInfo): int32 = sk_imageinfo_get_heigth(this.native)
+template heigth*(this: SKImageInfo): int32 = this.native.height
 
-template colorType*(this: SKImageInfo): SKColorType = sk_imageinfo_get_colortype.SKColorType
+template colorType*(this: SKImageInfo): SKColorType = this.native.colorType.SKColorType
 
-template alphaType*(this: SKImageInfo): SKAlphaType = sk_imageinfo_get_alphatype.SKAlphaType
+template alphaType*(this: SKImageInfo): SKAlphaType = this.native.alphaType.SKAlphaType
+
+proc `alphaType=`*(this: SKImageInfo, alphaType: SKAlphaType) =
+  this.native.alphaType = alphaType.sk_alphatype_t
+
+proc `colorspace=`*(this: SKImageInfo, colorSpace: SKColorSpace) =
+  this.native.colorspace = colorSpace.native
+
+proc bytesPerPixel*(this: SKImageInfo): int =
+  let colorType = this.colorType
+  case colorType:
+    of UnknownColorType:
+      return 0
+    of Alpha8, Gray8:
+      return 1
+    of Rgb565, Argb4444:
+      return 2
+    of SKColorType.Bgra8888,
+      SKColorType.Rgba8888,
+      SKColorType.Rgb888x,
+      SKColorType.Rgba1010102,
+      SKColorType.Rgb101010x:
+      return 4;
+    of SKColorType.RgbaF16:
+      return 8;
+  assert(false, "out of range: " & $colorType)
+
+proc rowBytes*(this: SKImageInfo): int =
+  this.bytesPerPixel() * this.width
 
 proc newImageInfo*(width: int, heigth: int, colorType: SKColorType , alphaType: SKAlphaType, colorspace: SKColorSpace): SKImageInfo =
   var imageInfo: sk_imageinfo_t
@@ -25,3 +53,5 @@ proc newImageInfo*(width: int, heigth: int, colorType: SKColorType , alphaType: 
   imageInfo.alphaType = alphaType.sk_alphatype_t
   SKImageInfo(native: imageInfo, colorspace: colorspace)
 
+proc dispose*(this: SKImageInfo) =
+  dealloc(this.native.addr)

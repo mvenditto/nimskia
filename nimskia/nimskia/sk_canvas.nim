@@ -6,6 +6,8 @@ import sk_image
 import sk_color
 import sk_enums
 import sk_path
+import sk_bitmap
+import sk_matrix
 
 type
   SKCanvas* = ref object
@@ -16,6 +18,11 @@ proc translate*(this: SKCanvas, cx, cy: float) =
 
 proc scale*(this: SKCanvas, sx, sy: float) = 
   sk_canvas_scale(this.native, sx, sy)
+
+proc scale*(this: SKCanvas, sx, sy, px, py: float) =
+  sk_canvas_translate(this.native, px, py)
+  sk_canvas_scale(this.native, sx, sy) 
+  sk_canvas_translate(this.native, -px, -py)
 
 proc rotateDegrees*(this: SKCanvas, degrees: float) = 
   sk_canvas_rotate_degrees(this.native, degrees)
@@ -44,6 +51,25 @@ proc drawColor*(this: SKCanvas, color: SKColor, mode: SKBlendMode) =
 proc drawPath*(this: SKCanvas, path: SKPath, paint: SKPaint) =
   sk_canvas_draw_path(this.native, path.native, paint.native)
 
+proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap, left: float, top: float, paint: SKPaint) =
+  sk_canvas_draw_bitmap(
+    this.native,
+    bitmap.native,
+    left,
+    top,
+    paint.native
+  )
+
+proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap, left: float, top: float) =
+  var paint = newPaint()
+  drawBitmap(this, bitmap, left, top, paint)
+  paint.dispose()
+
+proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap) =
+  var paint = newPaint()
+  drawBitmap(this, bitmap, 0, 0, paint)
+  paint.dispose()
+
 proc dispose*(this: SKCanvas) =
   sk_canvas_destroy(this.native)
 
@@ -65,3 +91,11 @@ proc clip*(this: SKCanvas, bounds: SKRect, clipop: SKClipOp, doAA: bool) =
 proc flush*(this: SKCanvas) =
   sk_canvas_flush(this.native)
 
+proc resetMatrix*(this: SKCanvas) =
+  sk_canvas_reset_matrix(this.native)
+
+proc setMatrix*(this: SKCanvas, matrix: SKMatrix) =
+  sk_canvas_set_matrix(this.native, matrix.native)
+
+proc concatMatrix*(this: SKCanvas, matrix: SKMatrix) =
+  sk_canvas_concat(this.native, matrix.native)

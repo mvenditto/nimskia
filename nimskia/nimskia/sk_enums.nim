@@ -53,6 +53,22 @@ type
     Stroke = STROKE_SK_PAINT_STYLE
     StrokeAndFill = STROKE_AND_FILL_SK_PAINT_STYLE
   
+  SKZeroInitialized* = enum
+    Yes = YES_SK_CODEC_ZERO_INITIALIZED
+    No = NO_SK_CODEC_ZERO_INITIALIZED
+
+  SkCodecResult* = enum
+    Success = SUCCESS_SK_CODEC_RESULT
+    IncompleteInput = INCOMPLETE_INPUT_SK_CODEC_RESULT
+    ErrorInInput = ERROR_IN_INPUT_SK_CODEC_RESULT
+    InvalidConversion = INVALID_CONVERSION_SK_CODEC_RESULT
+    InvalidScale = INVALID_SCALE_SK_CODEC_RESULT 
+    InvalidParameters = INVALID_PARAMETERS_SK_CODEC_RESULT
+    InvalidInput = INVALID_INPUT_SK_CODEC_RESULT
+    CouldNotRewind = COULD_NOT_REWIND_SK_CODEC_RESULT
+    InternalError = INTERNAL_ERROR_SK_CODEC_RESULT
+    Unimplemented = UNIMPLEMENTED_SK_CODEC_RESULT
+
   SKBlendMode* = enum
     Clear = CLEAR_SK_BLENDMODE
     Src = SRC_SK_BLENDMODE
