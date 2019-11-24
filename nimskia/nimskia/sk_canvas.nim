@@ -62,3 +62,6 @@ proc clear*(this: SKCanvas, color: SKColor) =
 proc clip*(this: SKCanvas, bounds: SKRect, clipop: SKClipOp, doAA: bool) =
   sk_canvas_clip_rect_with_operation(this.native, bounds.native.addr, clipop.sk_clipop_t, doAA)
 
+proc flush*(this: SKCanvas) =
+  sk_canvas_flush(this.native)
+

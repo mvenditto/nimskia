@@ -15,12 +15,13 @@ template isAntialias*(this: SKPaint): bool = sk_paint_is_antialias(this.native)
 proc `antialias=`*(this: SKPaint, enabled: bool) = 
   sk_paint_set_antialias(this.native, enabled)
 
-template color*(this: SKPaint): SKColor = sk_paint_get_color(this)
+template color*(this: SKPaint): SKColor = 
+  sk_paint_get_color(this.native).SKColor
 
 proc `color=`*(this: SKPaint, color: SKColor) =
-  sk_paint_set_color(this.native, color.sk_color_t) 
+  sk_paint_set_color(this.native, color.sk_color_t)
 
-proc `color=`*(this: SKPaint, argb: (byte,byte,byte,byte)) =
+proc `color=`*(this: SKPaint, argb: (int,int,int,int)) =
   var(a,r,g,b) = argb
   sk_paint_set_color(this.native, newColorARGB(a,r,g,b)) 
 
@@ -61,6 +62,6 @@ proc newPaint*(color: SKColor): SKPaint =
   result = newPaint()
   result.color = color
 
-proc newPaint*(a,r,g,b: byte): SKPaint = 
+proc newPaint*(a,r,g,b: int): SKPaint = 
   result = newPaint()
   result.color = newColorARGB(a,r,g,b)
