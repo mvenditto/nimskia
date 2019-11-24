@@ -35,3 +35,43 @@ type
     MitelJoint = MITER_SK_STROKE_JOIN, 
     RoundJoint = ROUND_SK_STROKE_JOIN, 
     BevelJoint = BEVEL_SK_STROKE_JOIN
+  
+  SKClipOp* {.pure.} = enum
+    Difference = DIFFERENCE_SK_CLIPOP
+    Intersect = INTERSECT_SK_CLIPOP
+  
+  SKBlendMode* = enum
+    Clear = CLEAR_SK_BLENDMODE
+    Src = SRC_SK_BLENDMODE
+    Dst = DST_SK_BLENDMODE
+    SrcOver = SRCOVER_SK_BLENDMODE
+    DstOver = DSTOVER_SK_BLENDMODE
+    SrcIn = SRCIN_SK_BLENDMODE
+    DstIn = DSTIN_SK_BLENDMODE
+    SrcOut = SRCOUT_SK_BLENDMODE
+    DstOut = DSTOUT_SK_BLENDMODE
+    SrcATop = SRCATOP_SK_BLENDMODE
+    DstATop = DSTATOP_SK_BLENDMODE
+    Xor = XOR_SK_BLENDMODE
+    Plus = PLUS_SK_BLENDMODE
+    Modulate = MODULATE_SK_BLENDMODE
+    Screen = SCREEN_SK_BLENDMODE
+    Overlay = OVERLAY_SK_BLENDMODE
+    Darken = DARKEN_SK_BLENDMODE
+    Lighten = LIGHTEN_SK_BLENDMODE
+    ColorDodge = COLORDODGE_SK_BLENDMODE
+    ColorBurn = COLORBURN_SK_BLENDMODE
+    HardLight = HARDLIGHT_SK_BLENDMODE
+    SoftLight = SOFTLIGHT_SK_BLENDMODE
+    Difference = DIFFERENCE_SK_BLENDMODE
+    Exclusion = EXCLUSION_SK_BLENDMODE
+    Multiply = MULTIPLY_SK_BLENDMODE
+    Hue = HUE_SK_BLENDMODE
+    Saturation = SATURATION_SK_BLENDMODE
+    Color = COLOR_SK_BLENDMODE
+    Luminosity LUMINOSITY_SK_BLENDMODE
+  
+const
+  LastSeparableMode* = Multiply
+  LastCoeffMode* = Screen
+  LastMode* = Luminosity

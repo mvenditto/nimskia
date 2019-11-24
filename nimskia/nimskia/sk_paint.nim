@@ -8,7 +8,6 @@ type
   SKPaint* = ref object
     native*: ptr sk_paint_t
 
-
 proc dispose*(this: SKPaint) = sk_paint_delete(this.native)
 
 template isAntialias*(this: SKPaint): bool = sk_paint_is_antialias(this.native)
@@ -45,7 +44,6 @@ template joinCap*(this: SKPaint): SKStrokeJoin = sk_paint_get_stroke_join(this)
 
 proc `joinCap=`*(this: SKPaint, jointType: SKStrokeJoin) =
   sk_paint_set_stroke_join(this.native, jointType.sk_stroke_join_t) 
-
 
 proc newPaint*(): SKPaint = SKPaint(native: sk_paint_new())
 
