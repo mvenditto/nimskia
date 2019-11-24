@@ -35,22 +35,22 @@ template style*(this: SKPaint): SKPaintStyle =
 template `style=`*(this: SKPaint, style: SKPaintStyle) = 
   sk_paint_set_style(this.native, cast[sk_paint_style_t](style))
 
-template strokeWidth*(this: SKPaint): float = sk_paint_get_stroke_width(this)
+template strokeWidth*(this: SKPaint): float = sk_paint_get_stroke_width(this.native)
 
 proc `strokeWidth=`*(this: SKPaint, strokeWidth: float) =
   sk_paint_set_stroke_width(this.native, strokeWidth) 
 
-template miterWidth*(this: SKPaint): float = sk_paint_get_stroke_miter(this)
+template miterWidth*(this: SKPaint): float = sk_paint_get_stroke_miter(this.native)
 
 proc `miterWidth=`*(this: SKPaint, miterWidth: float) =
   sk_paint_set_stroke_miter(this.native, miterWidth) 
 
-template strokeCap*(this: SKPaint): SKStrokeCap = sk_paint_get_stroke_cap(this)
+template strokeCap*(this: SKPaint): SKStrokeCap = sk_paint_get_stroke_cap(this.native)
 
 proc `strokeCap=`*(this: SKPaint, capType: SKStrokeCap) =
   sk_paint_set_stroke_cap(this.native, capType.sk_stroke_cap_t) 
 
-template joinCap*(this: SKPaint): SKStrokeJoin = sk_paint_get_stroke_join(this)
+template joinCap*(this: SKPaint): SKStrokeJoin = sk_paint_get_stroke_join(this.native)
 
 proc `joinCap=`*(this: SKPaint, jointType: SKStrokeJoin) =
   sk_paint_set_stroke_join(this.native, jointType.sk_stroke_join_t) 
