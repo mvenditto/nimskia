@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_maskfilter_ref*(a1: ptr sk_maskfilter_t) {.cdecl,
     importc: "sk_maskfilter_ref", dynlib: dynlibsk_maskfilter.}
 proc sk_maskfilter_unref*(a1: ptr sk_maskfilter_t) {.cdecl,

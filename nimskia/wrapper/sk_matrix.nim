@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_matrix_try_invert*(matrix: ptr sk_matrix_t; result: ptr sk_matrix_t): bool {.
     cdecl, importc: "sk_matrix_try_invert", dynlib: dynlibsk_matrix.}
 proc sk_matrix_concat*(result: ptr sk_matrix_t; first: ptr sk_matrix_t;

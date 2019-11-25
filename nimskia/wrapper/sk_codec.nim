@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_codec_min_buffered_bytes_needed*(): csize {.cdecl,
     importc: "sk_codec_min_buffered_bytes_needed", dynlib: dynlibsk_codec.}
 proc sk_codec_new_from_stream*(stream: ptr sk_stream_t;

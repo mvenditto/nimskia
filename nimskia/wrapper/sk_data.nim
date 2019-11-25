@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_data_new_empty*(): ptr sk_data_t {.cdecl, importc: "sk_data_new_empty",
                                        dynlib: dynlibsk_data.}
 proc sk_data_new_with_copy*(src: pointer; length: csize): ptr sk_data_t {.cdecl,

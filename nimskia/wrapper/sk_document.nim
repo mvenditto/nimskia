@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_document_unref*(document: ptr sk_document_t) {.cdecl,
     importc: "sk_document_unref", dynlib: dynlibsk_document.}
 proc sk_document_create_pdf_from_stream*(stream: ptr sk_wstream_t): ptr sk_document_t {.

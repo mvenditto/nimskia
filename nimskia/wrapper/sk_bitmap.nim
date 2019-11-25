@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_bitmap_destructor*(cbitmap: ptr sk_bitmap_t) {.cdecl,
     importc: "sk_bitmap_destructor", dynlib: dynlibsk_bitmap.}
 proc sk_bitmap_new*(): ptr sk_bitmap_t {.cdecl, importc: "sk_bitmap_new",

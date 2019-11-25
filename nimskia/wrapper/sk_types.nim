@@ -14,6 +14,7 @@ template sk_color_get_b*(c: untyped): untyped =
   (((c) shr 0) and 0x000000FF)\n
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 type
   sk_refcnt_t* {.bycopy.} = object
 

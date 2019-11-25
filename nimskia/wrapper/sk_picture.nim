@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_picture_recorder_new*(): ptr sk_picture_recorder_t {.cdecl,
     importc: "sk_picture_recorder_new", dynlib: dynlibsk_picture.}
 proc sk_picture_recorder_delete*(a1: ptr sk_picture_recorder_t) {.cdecl,

@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_refcnt_unique*(refcnt: ptr sk_refcnt_t): bool {.cdecl,
     importc: "sk_refcnt_unique", dynlib: dynlibsk_general.}
 proc sk_refcnt_get_ref_count*(refcnt: ptr sk_refcnt_t): cint {.cdecl,

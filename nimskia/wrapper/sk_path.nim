@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_path_new*(): ptr sk_path_t {.cdecl, importc: "sk_path_new",
                                  dynlib: dynlibsk_path.}
 proc sk_path_delete*(a1: ptr sk_path_t) {.cdecl, importc: "sk_path_delete",

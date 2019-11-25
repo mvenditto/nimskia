@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc gr_context_make_gl*(glInterface: ptr gr_glinterface_t): ptr gr_context_t {.cdecl,
     importc: "gr_context_make_gl", dynlib: dynlibgr_context.}
 proc gr_context_unref*(context: ptr gr_context_t) {.cdecl,

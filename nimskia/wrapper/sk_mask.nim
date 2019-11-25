@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_mask_alloc_image*(bytes: csize): ptr uint8 {.cdecl,
     importc: "sk_mask_alloc_image", dynlib: dynlibsk_mask.}
 proc sk_mask_free_image*(image: pointer) {.cdecl, importc: "sk_mask_free_image",

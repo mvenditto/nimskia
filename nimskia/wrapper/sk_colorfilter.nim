@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_colorfilter_unref*(filter: ptr sk_colorfilter_t) {.cdecl,
     importc: "sk_colorfilter_unref", dynlib: dynlibsk_colorfilter.}
 proc sk_colorfilter_new_mode*(c: sk_color_t; mode: sk_blendmode_t): ptr sk_colorfilter_t {.

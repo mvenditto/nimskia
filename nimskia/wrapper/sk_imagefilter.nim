@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_imagefilter_croprect_new*(): ptr sk_imagefilter_croprect_t {.cdecl,
     importc: "sk_imagefilter_croprect_new", dynlib: dynlibsk_imagefilter.}
 proc sk_imagefilter_croprect_new_with_rect*(rect: ptr sk_rect_t; flags: uint32): ptr sk_imagefilter_croprect_t {.

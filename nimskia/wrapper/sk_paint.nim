@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_paint_new*(): ptr sk_paint_t {.cdecl, importc: "sk_paint_new",
                                    dynlib: dynlibsk_paint.}
 proc sk_paint_clone*(a1: ptr sk_paint_t): ptr sk_paint_t {.cdecl,

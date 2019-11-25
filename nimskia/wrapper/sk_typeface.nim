@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_typeface_create_default*(): ptr sk_typeface_t {.cdecl,
     importc: "sk_typeface_create_default", dynlib: dynlibsk_typeface.}
 proc sk_typeface_ref_default*(): ptr sk_typeface_t {.cdecl,

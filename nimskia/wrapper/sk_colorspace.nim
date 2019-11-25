@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_colorspace_unref*(cColorSpace: ptr sk_colorspace_t) {.cdecl,
     importc: "sk_colorspace_unref", dynlib: dynlibsk_colorspace.}
 proc sk_colorspace_new_srgb*(): ptr sk_colorspace_t {.cdecl,

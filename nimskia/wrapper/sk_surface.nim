@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_surface_new_null*(width: cint; height: cint): ptr sk_surface_t {.cdecl,
     importc: "sk_surface_new_null", dynlib: dynlibsk_surface.}
 proc sk_surface_new_raster*(a1: ptr sk_imageinfo_t; rowBytes: csize;

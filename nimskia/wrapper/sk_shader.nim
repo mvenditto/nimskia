@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_shader_ref*(a1: ptr sk_shader_t) {.cdecl, importc: "sk_shader_ref",
                                        dynlib: dynlibsk_shader.}
 proc sk_shader_unref*(a1: ptr sk_shader_t) {.cdecl, importc: "sk_shader_unref",

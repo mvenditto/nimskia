@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_canvas_destroy*(a1: ptr sk_canvas_t) {.cdecl, importc: "sk_canvas_destroy",
     dynlib: dynlibsk_canvas.}
 proc sk_canvas_save*(a1: ptr sk_canvas_t): cint {.cdecl, importc: "sk_canvas_save",

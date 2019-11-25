@@ -5,6 +5,7 @@ import strutils
 import sk_types
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
+{.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}
 proc sk_region_new*(): ptr sk_region_t {.cdecl, importc: "sk_region_new",
                                      dynlib: dynlibsk_region.}
 proc sk_region_new2*(region: ptr sk_region_t): ptr sk_region_t {.cdecl,
