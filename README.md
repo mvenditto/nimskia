@@ -7,7 +7,7 @@ tested on mono/skia v1.60.1
 ```shell
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 cd skia
-git checkout xamarin-mobile-bindings
+git checkout xamarin-mobile-bindings -b v1.60.1
 ./tools/git-sync-deps
 ./bin/gn gen 'out/linux/x64' --args='
     is_official_build=true skia_enable_tools=false
