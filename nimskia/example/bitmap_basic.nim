@@ -4,7 +4,9 @@ import ../nimskia/[
   sk_bitmap,
   sk_imageinfo,
   sk_data,
-  sk_codec
+  sk_codec,
+  sk_stream,
+  sk_enums
 ]
 import sample_base
 import streams
@@ -15,7 +17,8 @@ const
   h = 480
   title = "sample: bitmap basics"
 
-proc readBitmap(file: File): SKBitmap =
+proc readBitmapData(path: string): SKBitmap =
+  var file = open(path, fmRead)
   let length = file.getFileSize()
   let buff = alloc(length)
   var s = newFileStream(file)
@@ -24,10 +27,17 @@ proc readBitmap(file: File): SKBitmap =
   result = decodeBitmap(newCodec(data))
   s.close()
 
+proc readBitmapStream(path: string): SKBitmap =
+  echo "read bitmap from stream"
+  var fs = newSKFileStream(path)
+  assert fs.isValid
+  var(res,codec) = newCodec(fs)
+  assert res == Success
+  result = decodeBitmap(codec)
+
 proc main() =
-  var bitmap = readBitmap(
-    open("../docs/images/skia.png", fmRead)
-  )
+
+  var bitmap = readBitmapStream("../docs/images/skia.png")
 
   let imageHeigth = bitmap.info.heigth
   echo &"bitmap: {bitmap.info.width}x{bitmap.info.heigth}"

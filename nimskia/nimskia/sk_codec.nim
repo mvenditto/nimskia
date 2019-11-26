@@ -4,6 +4,7 @@ import ../wrapper/sk_codec
 import sk_data
 import sk_imageinfo
 import sk_enums
+import sk_stream
 
 
 type
@@ -12,6 +13,11 @@ type
 
 proc newCodec*(data: SKData): SKCodec =
   SKCodec(native: sk_codec_new_from_data(data.native))
+
+proc newCodec*(stream: SKStream): (SKCodecResult, SKCodec) =
+  var res: sk_codec_result_t
+  var codec = SkCodec(native: sk_codec_new_from_stream(stream.native, res.addr))
+  return (res.SkCodecResult, codec)
 
 proc dispose*(this: SkCodec) =
   sk_codec_destroy(this.native)

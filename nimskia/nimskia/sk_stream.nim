@@ -25,18 +25,6 @@ proc getPosition*(s: SKStreamSeekable): int32 =
 proc getLength*(s: SKStreamAsset): int32 =
   sk_stream_get_length(cast[ptr sk_stream_t](s.native)).int32
 
-proc newSKFileStream*(path: string): SKFileStream =
-  new(result)
-  result.native = cast[ptr sk_stream_t](sk_filestream_new(path))
-
-proc dispose*(s: SKFileStream) =
-  sk_filestream_destroy(
-    cast[ptr sk_stream_filestream_t](s.native))
-  
-proc isValid*(s: SKFileStream): bool =
-  sk_filestream_is_valid(
-    cast[ptr sk_stream_filestream_t](s.native))
-
 proc readByte*(s: SKStream, buffer: var int8): bool =
   sk_stream_read_s8(cast[ptr sk_stream_t](s.native), buffer.addr)
   
@@ -63,8 +51,6 @@ proc readUInt32*(s: SKStream, buffer: var uint32): bool =
 proc readBool*(s: SKStream, buffer: var bool): bool = 
   sk_stream_read_bool(
     cast[ptr sk_stream_t](s.native), buffer.addr)
-
-###
 
 proc readByte*(s: SKStream): int8 =
   result = default int8
@@ -132,12 +118,17 @@ proc dispose*(s: SKStream) =
   sk_stream_destroy(
       cast[ptr sk_stream_t](s.native))
 
-proc test() =
-  var fs = newSKFileStream("../docs/images/skia.png")
-  echo $fs.isValid
-  echo $fs.getLength
+proc newSKFileStream*(path: string): SKFileStream =
+  new(result)
+  result.native = cast[ptr sk_stream_t](sk_filestream_new(path))
 
-test()
+proc dispose*(s: SKFileStream) =
+  sk_filestream_destroy(
+    cast[ptr sk_stream_filestream_t](s.native))
+  
+proc isValid*(s: SKFileStream): bool =
+  sk_filestream_is_valid(
+    cast[ptr sk_stream_filestream_t](s.native))
 
 
 
