@@ -4,61 +4,25 @@ import internals/native
 
 type
   # still not good enough, more work needed here
-  
   SKStream* = ref object of SKObject[sk_stream_t]
-    isAtEndImpl*: proc(s: SKStream): bool {.nimcall.}
-    readImpl*: proc(s: SKStream, buffer: pointer, size: int32): int {.nimcall.}
-    peekImpl*: proc(s: SKStream, buffer: pointer, size: int32): int {.nimcall.}
-    skipImpl*: proc(s: SKStream, size: int32): int32 {.nimcall.}
-    readBoolImpl*: proc(s: SKStream): bool {.nimcall.}
-    readByteImpl*: proc(s: SKStream): int8 {.nimcall.}
-    readInt16Impl*: proc(s: SKStream): int16 {.nimcall.}
-    readInt32Impl*: proc(s: SKStream): int32 {.nimcall.}
-    readUByteImpl*: proc(s: SKStream): uint8 {.nimcall.}
-    readUInt16Impl*: proc(s: SKStream): uint16 {.nimcall.}
-    readUInt32Impl*: proc(s: SKStream): uint32 {.nimcall.}
-  
   SKStreamRewindable* = ref object of SKStream
-    rewindImpl*: proc(s: SKStream) {.nimcall.}
-    duplicateImpl*: proc(s: SKStream): SKStreamRewindable {.nimcall.}
-  
   SKStreamSeekable* = ref object of SKStreamRewindable
-    seekImpl*: proc(s: SKStream, position: int32): int32 {.nimcall.}
-    moveImpl*: proc(s: SKStream) {.nimcall.}
-    forkImpl*: proc(s: SKStream): SKStreamSeekable {.nimcall.}
-    hasPositionImpl*: proc(s: SKStream): bool {.nimcall.}
-    getPositionImpl*: proc(s: SKStream): int32 {.nimcall.}
-  
   SKStreamAsset* = ref object of SKStreamSeekable
-    hasLengthImpl*: proc(s: SKStream): bool {.nimcall.}
-    getLengthImpl*: proc(s: SKStream): int32 {.nimcall.}
-
   SKFileStream* = ref object of SKStreamAsset
 
-
 proc isAtEnd*(s: SKStream): bool =
-  if not isNil s.isAtEndImpl: 
-    return s.isAtEndImpl(s) 
   sk_stream_is_at_end(cast[ptr sk_stream_t](s.native))
 
 proc hasPosition*(s: SKStreamSeekable): bool =
-  if not isNil s.hasPositionImpl: 
-    return s.hasPositionImpl(s)
   sk_stream_has_position(cast[ptr sk_stream_t](s.native))
 
 proc hasLength*(s: SKStreamAsset): bool =
-  if not isNil s.hasLengthImpl:
-    return s.hasLengthImpl(s)
   sk_stream_has_length(cast[ptr sk_stream_t](s.native))
 
 proc getPosition*(s: SKStreamSeekable): int32 =
-  if not isNil s.getPositionImpl:
-    return s.getPositionImpl(s)
   sk_stream_get_position(cast[ptr sk_stream_t](s.native)).int32
 
 proc getLength*(s: SKStreamAsset): int32 =
-  if not isNil s.getLengthImpl:
-    return s.getLengthImpl(s)
   sk_stream_get_length(cast[ptr sk_stream_t](s.native)).int32
 
 proc newSKFileStream*(path: string): SKFileStream =
@@ -73,15 +37,6 @@ proc isValid*(s: SKFileStream): bool =
   sk_filestream_is_valid(
     cast[ptr sk_stream_filestream_t](s.native))
 
-proc test() =
-  var fs = newSKFileStream("../docs/images/skia.png")
-  echo $fs.isValid
-  echo $fs.getLength
-
-test()
-
-
-discard """
 proc readByte*(s: SKStream, buffer: var int8): bool =
   sk_stream_read_s8(cast[ptr sk_stream_t](s.native), buffer.addr)
   
@@ -151,36 +106,39 @@ proc skip*(s: SKStream, size: int32): int =
   sk_stream_skip(
     cast[ptr sk_stream_t](s.native), size)
 
-proc rewind*(s: SKStream): bool =
+proc rewind*(s: SKStreamRewindable): bool =
   sk_stream_rewind(
     cast[ptr sk_stream_t](s.native))
 
-proc seek*(s: SKStream, position: int32): bool =
+proc seek*(s: SKStreamSeekable, position: int32): bool =
   sk_stream_seek(
     cast[ptr sk_stream_t](s.native), position)
 
-proc move*(s: SKStream, offset: int32): bool =
+proc move*(s: SKStreamSeekable, offset: int32): bool =
   sk_stream_move(
     cast[ptr sk_stream_t](s.native), offset)
 
-proc memoryBase*(s: SKStream): pointer =
-  sk_stream_get_memory_base(
-    cast[ptr sk_stream_t](s.native))
-
-proc fork*(s: SKStream): SKStream =
+proc fork*(s: SKStreamSeekable): SKStream =
   new(result)
   result.native = sk_stream_fork(
     cast[ptr sk_stream_t](s.native))
 
-proc duplicate*(s: SKStream): SKStream =
+proc duplicate*(s: SKStreamRewindable): SKStreamRewindable =
   new(result)
   result.native = sk_stream_duplicate(
     cast[ptr sk_stream_t](s.native)) 
 
-proc dispose*(s: SKStream) =
+proc dispose*(s: SKStream) = 
   sk_stream_destroy(
-    cast[ptr sk_stream_t](s.native))
-"""
+      cast[ptr sk_stream_t](s.native))
+
+proc test() =
+  var fs = newSKFileStream("../docs/images/skia.png")
+  echo $fs.isValid
+  echo $fs.getLength
+
+test()
+
 
 
 
