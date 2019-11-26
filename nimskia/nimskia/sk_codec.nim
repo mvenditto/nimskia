@@ -6,10 +6,11 @@ import sk_imageinfo
 import sk_enums
 import sk_stream
 
+import internals/native
+
 
 type
-  SkCodec* = ref object
-    native*: ptr sk_codec_t
+  SkCodec* = ref object of SKObject[sk_codec_t]
 
 proc newCodec*(data: SKData): SKCodec =
   SKCodec(native: sk_codec_new_from_data(data.native))
