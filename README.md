@@ -162,5 +162,6 @@ width="320" height="240" />
 
 ### TODO list
 - [x] switch to mono/skia?
+- [ ] implements streams preserving the skia hierarchy
 - [ ] refactor nimgen.cfg, its actually a mess
 - [ ] rewrite and expand the readme
