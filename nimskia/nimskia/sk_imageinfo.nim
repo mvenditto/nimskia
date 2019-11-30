@@ -46,7 +46,7 @@ proc rowBytes*(this: SKImageInfo): int =
 
 proc newImageInfo*(width: int, heigth: int, colorType: SKColorType , alphaType: SKAlphaType, colorspace: SKColorSpace): SKImageInfo =
   var imageInfo: sk_imageinfo_t
-  imageInfo.colorspace = colorspace.native
+  imageInfo.colorspace = if not isNil colorspace: colorspace.native else: nil
   imageInfo.width = width.cint
   imageInfo.height = heigth.cint
   imageInfo.colorType = colorType.sk_colortype_t

@@ -13,6 +13,9 @@ type
   SKCanvas* = ref object
     native*: ptr sk_canvas_t
 
+proc newCanvas*(bitmap: SKBitmap): SKCanvas =
+  SKCanvas(native: sk_canvas_new_from_bitmap(bitmap.native))
+
 proc translate*(this: SKCanvas, cx, cy: float) = 
   sk_canvas_translate(this.native, cx, cy)
 
@@ -35,6 +38,10 @@ proc drawPaint*(this: SKCanvas, paint: SKPaint) =
 
 proc drawRect*(this: SKCanvas, rect: SKRect, paint: SKPaint) =
   sk_canvas_draw_rect(this.native, rect.native.addr, paint.native)
+
+proc drawRect*(this: SKCanvas, rect: SKRectI, paint: SKPaint) =
+  # TODO: fixme
+  sk_canvas_draw_rect(this.native, cast[ptr sk_rect_t](rect.native.addr), paint.native)
 
 proc drawCircle*(this: SKCanvas, cx, cy, radius: float, paint: SKPaint) =
   sk_canvas_draw_circle(this.native, cx, cy, radius, paint.native)
