@@ -53,7 +53,7 @@ proc start*(this: Sample) =
   surface = newSurface(
       grContext,
       target,
-      TopLeft,
+      BottomLeft,
       Rgba8888,
       nil,
       nil

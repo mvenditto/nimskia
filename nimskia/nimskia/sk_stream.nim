@@ -145,7 +145,6 @@ proc isValid*(s: SKFileStream): bool =
     cast[ptr sk_stream_filestream_t](s.native))
 
 proc newSKFileStream*(path: string): SKFileStream =
-  echo "new file stream created: " & path
   new(result)
   result.native = cast[ptr sk_stream_t](sk_filestream_new(path))
 

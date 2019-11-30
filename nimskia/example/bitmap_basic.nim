@@ -44,13 +44,13 @@ proc main() =
 
   proc update(canvas: SKCanvas, dt: float) =
     canvas.clear(DarkBlue)
-    discard canvas.save()
+    #discard canvas.save()
     # flip vertically to adjust coords
-    canvas.scale(
-      1.0, -1.0,  0, imageHeigth.float / 2.0
-    );
+    #canvas.scale(
+    #  1.0, -1.0,  0, imageHeigth.float / 2.0
+    #);
     canvas.drawBitmap(bitmap,0,0)
-    canvas.restore()
+    #canvas.restore()
 
   let sample = Sample(
     title: title,

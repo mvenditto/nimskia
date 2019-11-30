@@ -14,3 +14,5 @@ template newColorARGB*(a, r, g, b: int): SKColor =
 converter tupleToColorARGB*(t: (int,int,int,int)): SKColor =
   let(a,r,g,b) = t
   newColorARGB(a,r,g,b)
+
+

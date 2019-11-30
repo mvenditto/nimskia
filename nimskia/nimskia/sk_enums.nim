@@ -99,6 +99,11 @@ type
     Saturation = SATURATION_SK_BLENDMODE
     Color = COLOR_SK_BLENDMODE
     Luminosity LUMINOSITY_SK_BLENDMODE
+
+  SKShaderTileMode* = enum
+    Clamp = CLAMP_SK_SHADER_TILEMODE
+    Repeat = REPEAT_SK_SHADER_TILEMODE
+    Mirror = MIRROR_SK_SHADER_TILEMODE
   
 const
   LastSeparableMode* = Multiply

@@ -3,6 +3,7 @@ import ../wrapper/sk_paint
 
 import sk_color
 import sk_enums
+import sk_shader
 
 type
   SKPaint* = ref object
@@ -25,18 +26,26 @@ proc `color=`*(this: SKPaint, argb: (int,int,int,int)) =
   var(a,r,g,b) = argb
   sk_paint_set_color(this.native, newColorARGB(a,r,g,b)) 
 
-template isStroke*(this: SKPaint): bool = sk_paint_is_stroke(this.native)
-
-template `stroke=`*(this: SKPaint, stroke: bool) = 
-  sk_paint_set_stroke(this.native, enabled)
-
 template style*(this: SKPaint): SKPaintStyle = 
   sk_paint_get_style(this.native).SKPaintStyle
 
-template `style=`*(this: SKPaint, style: SKPaintStyle) = 
+proc `style=`*(this: SKPaint, style: SKPaintStyle) = 
   sk_paint_set_style(this.native, cast[sk_paint_style_t](style))
 
-template strokeWidth*(this: SKPaint): float = sk_paint_get_stroke_width(this.native)
+proc isStroke*(this: SKPaint): bool = 
+  this.style == Stroke
+
+proc `shader=`*(this: SKPaint, shader: SKShader) =
+  sk_paint_set_shader(
+    this.native, 
+    if not isNil shader: shader.native else: nil
+  )
+
+proc shader*(this: SKPaint): SKShader = 
+  SKShader(native: sk_paint_get_shader(this.native))
+
+template strokeWidth*(this: SKPaint): float = 
+  sk_paint_get_stroke_width(this.native).float
 
 proc `strokeWidth=`*(this: SKPaint, strokeWidth: float) =
   sk_paint_set_stroke_width(this.native, strokeWidth) 
@@ -46,12 +55,14 @@ template miterWidth*(this: SKPaint): float = sk_paint_get_stroke_miter(this.nati
 proc `miterWidth=`*(this: SKPaint, miterWidth: float) =
   sk_paint_set_stroke_miter(this.native, miterWidth) 
 
-template strokeCap*(this: SKPaint): SKStrokeCap = sk_paint_get_stroke_cap(this.native)
+template strokeCap*(this: SKPaint): SKStrokeCap = 
+  sk_paint_get_stroke_cap(this.native).SKStrokeCap
 
 proc `strokeCap=`*(this: SKPaint, capType: SKStrokeCap) =
   sk_paint_set_stroke_cap(this.native, capType.sk_stroke_cap_t) 
 
-template joinCap*(this: SKPaint): SKStrokeJoin = sk_paint_get_stroke_join(this.native)
+template joinCap*(this: SKPaint): SKStrokeJoin = 
+  sk_paint_get_stroke_join(this.native).SKStrokeJoin
 
 proc `joinCap=`*(this: SKPaint, jointType: SKStrokeJoin) =
   sk_paint_set_stroke_join(this.native, jointType.sk_stroke_join_t) 
