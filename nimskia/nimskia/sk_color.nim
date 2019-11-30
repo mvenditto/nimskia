@@ -15,4 +15,7 @@ converter tupleToColorARGB*(t: (int,int,int,int)): SKColor =
   let(a,r,g,b) = t
   newColorARGB(a,r,g,b)
 
+converter tupleToColorRGB*(t: (int,int,int)): SKColor =
+  let(r,g,b) = t
+  newColorARGB(255,r,g,b)
 

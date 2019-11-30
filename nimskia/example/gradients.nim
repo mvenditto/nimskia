@@ -2,6 +2,7 @@ import ../nimskia/[
   sk_canvas, 
   sk_paint, 
   sk_colors,
+  sk_color,
   sk_shader,
   sk_point,
   sk_rect,
@@ -19,7 +20,10 @@ const
 
 proc main() =
 
-  var colors = [Blue, Green]
+  var colors = [
+    (0, 0, 255).SKColor, 
+    (0, 255, 0).SKColor
+  ]
   let linearGrad = newLinearGradient(
     (0, 0),
     (rw, rh),
