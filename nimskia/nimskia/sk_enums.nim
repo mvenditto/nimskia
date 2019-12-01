@@ -105,6 +105,11 @@ type
     Repeat = REPEAT_SK_SHADER_TILEMODE
     Mirror = MIRROR_SK_SHADER_TILEMODE
   
+  SKTextAlign* = enum
+    Left = LEFT_SK_TEXT_ALIGN
+    Center = CENTER_SK_TEXT_ALIGN
+    Right = RIGHT_SK_TEXT_ALIGN
+  
 const
   LastSeparableMode* = Multiply
   LastCoeffMode* = Screen

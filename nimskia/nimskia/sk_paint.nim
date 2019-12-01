@@ -106,6 +106,12 @@ proc `textSize=`*(this: SKPaint, textSize: float) =
 template textSize*(this: SKPaint): float =
   sk_paint_get_textsize(this.native).float
 
+template fontSpacing*(this: SKPaint): float =
+  sk_paint_get_fontmetrics(this.native, nil, 0)
+
+proc `textAlign=`*(this: SKPaint, align: SKTextAlign) =
+  sk_paint_set_text_align(this.native, align.sk_text_align_t)
+
 proc newPaint*(): SKPaint = SKPaint(native: sk_paint_new())
 
 proc newPaint*(color: SKColor): SKPaint = 

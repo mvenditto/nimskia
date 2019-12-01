@@ -64,6 +64,9 @@ proc drawColor*(this: SKCanvas, color: SKColor, mode: SKBlendMode) =
 proc drawPath*(this: SKCanvas, path: SKPath, paint: SKPaint) =
   sk_canvas_draw_path(this.native, path.native, paint.native)
 
+proc drawLine*(this: SKCanvas, x1: float, y1: float, x2: float, y2: float, paint: SKPaint) =
+  sk_canvas_draw_line(this.native, x1, y1, x2, y2, paint.native)
+
 proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap, left: float, top: float, paint: SKPaint) =
   sk_canvas_draw_bitmap(
     this.native,
