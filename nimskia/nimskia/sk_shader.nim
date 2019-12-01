@@ -91,6 +91,24 @@ proc newSweepGradient*(
     )
   )
 
+proc newSweepGradient*(
+  center: SKPoint, 
+  radius: float,
+  colors: openArray[SKColor],
+  tileMode: SKShaderTileMode,
+  startAngle, endAngle: float
+): SKShader =
+  SKShader(native: sk_shader_new_sweep_gradient(
+      center[].addr,
+      cast[ptr sk_color_t](colors[0].unsafeAddr),
+      nil,
+      len(colors).cint,
+      tileMode.sk_shader_tilemode_t,
+      startAngle, endAngle,
+      nil
+    )
+  )
+
 proc newTwoPointConicalGradient*(
   start: SKPoint, startRadius: float,
   `end`: SKPoint, endRadius: float,
@@ -108,5 +126,71 @@ proc newTwoPointConicalGradient*(
       len(colors).cint,
       tileMode.sk_shader_tilemode_t,
       nil
+    )
+  )
+
+proc newPerlinNoiseFractal*(
+  baseFrequencyX, baseFrequencyY: float,
+  numOctaves: int, 
+  seed: float,
+  tileSize: SKPointI
+): SKShader =
+  SKShader(native: sk_shader_new_perlin_noise_fractal_noise(
+      baseFrequencyX, baseFrequencyY,
+      numOctaves.cint,
+      seed.cfloat,
+      cast[ptr sk_isize_t](tileSize.unsafeAddr)
+    )
+  )
+
+proc newPerlinNoiseFractal*(
+  baseFrequencyX, baseFrequencyY: float,
+  numOctaves: int, 
+  seed: float,
+): SKShader =
+  SKShader(native: sk_shader_new_perlin_noise_fractal_noise(
+      baseFrequencyX, baseFrequencyY,
+      numOctaves.cint,
+      seed.cfloat,
+      nil
+    )
+  )
+
+proc newPerlinNoiseTurbolence*(
+  baseFrequencyX, baseFrequencyY: float,
+  numOctaves: int, 
+  seed: float,
+  tileSize: SKPointI
+): SKShader =
+  SKShader(native: sk_shader_new_perlin_noise_turbulence(
+      baseFrequencyX, baseFrequencyY,
+      numOctaves.cint,
+      seed.cfloat,
+      cast[ptr sk_isize_t](tileSize.unsafeAddr)
+    )
+  )
+
+proc newPerlinNoiseTurbolence*(
+  baseFrequencyX, baseFrequencyY: float,
+  numOctaves: int, 
+  seed: float,
+): SKShader =
+  SKShader(native: sk_shader_new_perlin_noise_turbulence(
+      baseFrequencyX, baseFrequencyY,
+      numOctaves.cint,
+      seed.cfloat,
+      nil
+    )
+  )
+
+proc compose*(a,b: SKShader): SKShader =
+  SKShader(native: sk_shader_new_compose(
+      a.native, b.native
+    )
+  )
+
+proc compose*(a,b: SKShader, mode: SKBlendMode): SKShader =
+  SKShader(native: sk_shader_new_compose_with_mode(
+      a.native, b.native, mode.sk_blendmode_t
     )
   )

@@ -25,7 +25,7 @@ proc main() =
     (0, 255, 0).SKColor
   ]
   let linearGrad = newLinearGradient(
-    (0, 0),
+    (0.0, 0.0),
     (rw, rh),
     colors,
     Clamp
@@ -52,9 +52,42 @@ proc main() =
   )
   defer: tcpGrad.dispose()
 
+  let sweepColors = [
+    (0, 255, 255).SKColor,
+    (255, 0, 255).SKColor,
+    (255, 255, 0).SKColor,
+    (0, 255, 255).SKColor
+  ]
+  let sweepGrad = newSweepGradient(
+    (rw * 0.5, rh * 1.5),
+    rw * 0.5,
+    sweepColors,
+    Clamp,
+    0.0,
+    360.0
+  )
+  defer: sweepGrad.dispose()
+
+  let perlinNoise = newPerlinNoiseFractal(
+    0.5, 0.5, 4, 0
+  )
+  defer: perlinNoise.dispose()
+
+  let perlinNoiseT = newPerlinNoiseTurbolence(
+    0.05, 0.05, 4, 0
+  )
+  defer: perlinNoiseT.dispose()
+  
+  let composed = compose(sweepGrad, perlinNoiseT, SrcOver)
+  defer: composed.dispose()
+
   var r0: SKRect = newRect(0f, 0f, rw, rh)
   var r1: SKRect = newRect(rw, 0f, rw+rw, rh)
   var r2: SKRect = newRect(2*rw, 0f, rw*3, rh)
+  var r3: SKRect = newRect(0f, rh, rw, rh * 2)
+  var r4: SKRect = newRect(rw, rh, rw+rw, rh * 2)
+  var r5: SKRect = newRect(2*rw, rh, rw*3, rh * 2)
+  var r6: SKRect = newRect(0f, 2*rh, rw, rh * 3)
 
   let paint = newPaint()
   defer: paint.dispose()
@@ -79,6 +112,22 @@ proc main() =
     paint.shader = tcpGrad
     canvas.drawRect(r2, paint)
     canvas.drawRect(r2, stroke)
+
+    paint.shader = sweepGrad
+    canvas.drawRect(r3, paint)
+    canvas.drawRect(r3, stroke)
+
+    paint.shader = perlinNoise
+    canvas.drawRect(r4, paint)
+    canvas.drawRect(r4, stroke)
+
+    paint.shader = perlinNoiseT
+    canvas.drawRect(r5, paint)
+    canvas.drawRect(r5, stroke)
+
+    paint.shader = composed
+    canvas.drawRect(r6, paint)
+    canvas.drawRect(r6, stroke)
 
   let sample = Sample(
     title: title,
