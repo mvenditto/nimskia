@@ -1,5 +1,6 @@
 import ../wrapper/sk_types
 import ../wrapper/sk_canvas
+
 import sk_paint
 import sk_rect
 import sk_image
@@ -8,6 +9,8 @@ import sk_enums
 import sk_path
 import sk_bitmap
 import sk_matrix
+
+import macros
 
 type
   SKCanvas* = ref object
@@ -106,3 +109,8 @@ proc setMatrix*(this: SKCanvas, matrix: SKMatrix) =
 
 proc concatMatrix*(this: SKCanvas, matrix: SKMatrix) =
   sk_canvas_concat(this.native, matrix.native)
+
+template autoRestore*(canvas: SKCanvas, ops: untyped): untyped =
+  discard canvas.save()
+  ops
+  canvas.restore()
