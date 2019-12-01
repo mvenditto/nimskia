@@ -13,7 +13,7 @@ import strformat
 const
   w = 640
   h = 480
-  title = "sample: line and stroke caps"
+  title = "sample: path basics"
 
 
 proc main() =
