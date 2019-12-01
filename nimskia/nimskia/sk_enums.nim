@@ -109,7 +109,13 @@ type
     Left = LEFT_SK_TEXT_ALIGN
     Center = CENTER_SK_TEXT_ALIGN
     Right = RIGHT_SK_TEXT_ALIGN
-  
+
+  SKPathFillType* = enum
+    Winding = WINDING_SK_PATH_FILLTYPE, 
+    EvenOdd = EVENODD_SK_PATH_FILLTYPE,
+    InverseWinding = INVERSE_WINDING_SK_PATH_FILLTYPE, 
+    InverseEvenOdd = INVERSE_EVENODD_SK_PATH_FILLTYPE
+    
 const
   LastSeparableMode* = Multiply
   LastCoeffMode* = Screen

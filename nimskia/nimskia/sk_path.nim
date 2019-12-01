@@ -67,6 +67,9 @@ proc reset*(this: SKPath) =
 proc rewind*(this: SKPath) =
   sk_path_rewind(this.native)
 
+proc `fillType=`*(this: SKPath, fillType: SKPathFillType) =
+  sk_path_set_filltype(this.native, fillType.sk_path_filltype_t)
+
 
 
 

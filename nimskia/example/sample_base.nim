@@ -18,6 +18,7 @@ type Sample* = ref object
 
 var
   surface: SKSurface = nil
+  customKeyProc*: proc(key: int32, scancode: int32, action: int32, mods: int32)
 
 proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
              action: int32, mods: int32): void {.cdecl.} =
@@ -25,6 +26,8 @@ proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
     window.setWindowShouldClose(true)
   if key == GLFWKey.S and action == GLFWPress:
     emitPng("snapshot.png", surface)
+  if customKeyProc != nil:
+    customKeyProc(key, scancode, action, mods)
 
 proc start*(this: Sample) =
   assert glfwInit()
