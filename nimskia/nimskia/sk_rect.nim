@@ -1,7 +1,7 @@
 import ../wrapper/sk_types
 
-import sk_color
-
+import strformat
+# generify + ref
 type
   SKRect* = ref object
     native*: sk_rect_t
@@ -9,11 +9,31 @@ type
   SKRectI* = ref object
     native*: sk_irect_t
 
-template left*(rect: untyped): untyped = rect.left
-template top*(rect: untyped): untyped = rect.top
-template right*(rect: untyped): untyped = rect.right
-template bottom*(rect: untyped): untyped = rect.bottom
+template left*(rect: untyped): auto = rect.native.left
+template top*(rect: untyped): auto = rect.native.top
+template right*(rect: untyped): auto = rect.native.right
+template bottom*(rect: untyped): auto = rect.native.bottom
+template width*(rect: untyped): auto = rect.native.right - rect.native.left
+template heigth*(rect: untyped): auto = rect.native.bottom - rect.native.top
+template midX*(rect: untyped): auto = rect.native.left  + (rect.width / 2)
+template midY*(rect: untyped): auto = rect.native.top  + (rect.heigth / 2)
 
+proc `left=`*(rect: SKRect, value: float) = rect.native.left = value
+proc `right=`*(rect: SKRect, value: float) = rect.native.right = value
+proc `top=`*(rect: SKRect, value: float) = rect.native.top = value
+proc `bottom=`*(rect: SKRect, value: float) = rect.native.bottom = value
+
+proc `$`*(f: SKRect): string = 
+  &"top={f.top} left={f.left} width={f.width} heigth={f.heigth})"
+
+proc newRect*(rect: SKRect): SKRect = 
+  var r = new(sk_rect_t)
+  r.left = rect.left
+  r.top = rect.top
+  r.left = rect.left
+  r.right = rect.right
+  SKRect(native: r[])
+  
 proc newRect*(left, top, right, bottom: float): SKRect =
   var rect: sk_rect_t
   rect.left = left
@@ -43,6 +63,22 @@ proc newRect*(topLeft: (int32, int32), bottomRight: (int32, int32)): SKRectI =
 
 proc newRect*(topLeft: (int32, int32), width, heigth: int32): SKRectI =
   newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + heigth)
+
+proc offset*(this: SKRect, x, y: float) =
+  this.left += x
+  this.top += y
+  this.right += x
+  this.bottom += y
+
+proc inflate*(this: SKRect, x, y: float) =
+  this.left -= x
+  this.top -= y
+  this.right += x
+  this.bottom += y
+
+proc inflated*(this: SKRect, x, y: float): SKRect =
+  result = newRect(this)
+  result.inflate(x, y)
 
 converter tupleToRectF*(rect: (float,float,float,float)): SKRect =
   let(left,top,right,bottom) = rect

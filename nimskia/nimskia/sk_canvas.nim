@@ -46,6 +46,9 @@ proc drawRect*(this: SKCanvas, rect: SKRectI, paint: SKPaint) =
   # TODO: fixme
   sk_canvas_draw_rect(this.native, cast[ptr sk_rect_t](rect.native.addr), paint.native)
 
+proc drawRoundRect*(this: SKCanvas, rect: SKRect, rx: float, ry: float, paint: SKPaint) =
+  sk_canvas_draw_round_rect(this.native, cast[ptr sk_rect_t](rect.native.addr), rx, ry, paint.native)
+
 proc drawCircle*(this: SKCanvas, cx, cy, radius: float, paint: SKPaint) =
   sk_canvas_draw_circle(this.native, cx, cy, radius, paint.native)
 
@@ -79,6 +82,9 @@ proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap) =
   var paint = newPaint()
   drawBitmap(this, bitmap, 0, 0, paint)
   paint.dispose()
+
+proc drawText*(this: SKCanvas, text: string, x: float, y: float, paint: SKPaint) =
+  sk_canvas_draw_text(this.native, text.cstring, len(text), x, y, paint.native)
 
 proc dispose*(this: SKCanvas) =
   sk_canvas_destroy(this.native)

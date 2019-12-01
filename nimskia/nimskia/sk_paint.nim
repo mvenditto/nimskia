@@ -4,6 +4,7 @@ import ../wrapper/sk_paint
 import sk_color
 import sk_enums
 import sk_shader
+import sk_rect
 
 type
   SKPaint* = ref object
@@ -66,6 +67,44 @@ template joinCap*(this: SKPaint): SKStrokeJoin =
 
 proc `joinCap=`*(this: SKPaint, jointType: SKStrokeJoin) =
   sk_paint_set_stroke_join(this.native, jointType.sk_stroke_join_t) 
+
+proc measureText*(this: SKPaint, text: pointer, length: int, cbounds: SKRect): float =
+  return sk_paint_measure_text(
+    this.native,
+    text,
+    length.cint,
+    cbounds.native.addr
+  )
+
+proc measureText*(this: SKPaint, text: string, length: int, cbounds: SKRect): float =
+  return sk_paint_measure_text(
+    this.native,
+    text.cstring,
+    length.cint,
+    cbounds.native.addr
+  )
+
+proc measureText*(this: SKPaint, text: string): float =
+  return sk_paint_measure_text(
+    this.native,
+    text.cstring,
+    len(text).cint,
+    nil
+  )
+
+proc measureText*(this: SKPaint, text: string, cbounds: var SKRect) =
+  discard sk_paint_measure_text(
+    this.native,
+    text.cstring,
+    len(text).cint,
+    cbounds.native.addr
+  )
+
+proc `textSize=`*(this: SKPaint, textSize: float) =
+  sk_paint_set_textsize(this.native, textSize)
+
+template textSize*(this: SKPaint): float =
+  sk_paint_get_textsize(this.native).float
 
 proc newPaint*(): SKPaint = SKPaint(native: sk_paint_new())
 
