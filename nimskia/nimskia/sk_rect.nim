@@ -1,5 +1,8 @@
 import ../wrapper/sk_types
 
+import sk_size
+import sk_point
+
 import strformat
 # generify + ref
 type
@@ -14,9 +17,9 @@ template top*(rect: untyped): auto = rect.native.top
 template right*(rect: untyped): auto = rect.native.right
 template bottom*(rect: untyped): auto = rect.native.bottom
 template width*(rect: untyped): auto = rect.native.right - rect.native.left
-template heigth*(rect: untyped): auto = rect.native.bottom - rect.native.top
+template height*(rect: untyped): auto = rect.native.bottom - rect.native.top
 template midX*(rect: untyped): auto = rect.native.left  + (rect.width / 2)
-template midY*(rect: untyped): auto = rect.native.top  + (rect.heigth / 2)
+template midY*(rect: untyped): auto = rect.native.top  + (rect.height / 2)
 
 proc `left=`*(rect: SKRect, value: float) = rect.native.left = value
 proc `right=`*(rect: SKRect, value: float) = rect.native.right = value
@@ -24,7 +27,7 @@ proc `top=`*(rect: SKRect, value: float) = rect.native.top = value
 proc `bottom=`*(rect: SKRect, value: float) = rect.native.bottom = value
 
 proc `$`*(f: SKRect): string = 
-  &"top={f.top} left={f.left} width={f.width} heigth={f.heigth})"
+  &"top={f.top} left={f.left} width={f.width} height={f.height})"
 
 proc newRect*(rect: SKRect): SKRect = 
   var r = new(sk_rect_t)
@@ -58,11 +61,32 @@ proc newRect*(left, top, right, bottom: int32): SKRectI =
   rect.bottom = bottom
   SKRectI(native: rect)
 
+proc `==`*(a: SKRect, b: SKRect): bool =
+  a.left == b.left and a.top == b.top and a.right == b.right and a.bottom == b.bottom
+
 proc newRect*(topLeft: (int32, int32), bottomRight: (int32, int32)): SKRectI =
   newRect(topLeft[0], topLeft[1], bottomRight[0], bottomRight[1])
 
 proc newRect*(topLeft: (int32, int32), width, heigth: int32): SKRectI =
   newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + heigth)
+
+proc size*(this: SKRect): SKSize =
+  result = newSize(this.width, this.height)
+
+proc `size=`*(this: SKRect, size: SKSize) =
+  this.right = size.width + this.left
+  this.bottom = size.height + this.top
+
+template location*(this: SKRect): SKPoint =
+  newPoint(this.top, this.left)
+
+proc `location=`*(this: SKRect, location: SKPoint) =
+  let w = this.width
+  let h = this.height
+  this.left = location.x
+  this.top = location.y
+  this.right = location.x + w
+  this.bottom = location.y + h
 
 proc offset*(this: SKRect, x, y: float) =
   this.left += x
@@ -79,6 +103,18 @@ proc inflate*(this: SKRect, x, y: float) =
 proc inflated*(this: SKRect, x, y: float): SKRect =
   result = newRect(this)
   result.inflate(x, y)
+
+proc standardized*(r: SKRect): SKRect =
+  if r.left > r.right:
+    if r.top > r.bottom:
+      return newRect(r.right, r.bottom, r.left, r.top)
+    else:
+      return newRect(r.right, r.top, r.left, r.bottom)
+  else:
+    if r.top > r.bottom:
+      return newRect(r.left, r.bottom, r.right, r.top)
+    else:
+      return newRect(r.left, r.top, r.right, r.bottom)
 
 converter tupleToRectF*(rect: (float,float,float,float)): SKRect =
   let(left,top,right,bottom) = rect
