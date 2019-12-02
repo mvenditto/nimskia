@@ -6,7 +6,6 @@ import sk_colorspace
 type
   SKImageInfo* = ref object
       native*: sk_imageinfo_t
-      colorspace*: SKColorSpace
 
 template width*(this: SKImageInfo): int32 = this.native.width
 
@@ -17,7 +16,11 @@ template colorType*(this: SKImageInfo): SKColorType = this.native.colorType.SKCo
 template alphaType*(this: SKImageInfo): SKAlphaType = this.native.alphaType.SKAlphaType
 
 proc `alphaType=`*(this: SKImageInfo, alphaType: SKAlphaType) =
+
   this.native.alphaType = alphaType.sk_alphatype_t
+
+proc `colorType=`*(this: SKImageInfo, colorType: SKColorType) =
+  this.native.colorType = colorType.sk_colortype_t
 
 proc `colorspace=`*(this: SKImageInfo, colorSpace: SKColorSpace) =
   this.native.colorspace = colorSpace.native
@@ -51,7 +54,8 @@ proc newImageInfo*(width: int, heigth: int, colorType: SKColorType , alphaType: 
   imageInfo.height = heigth.cint
   imageInfo.colorType = colorType.sk_colortype_t
   imageInfo.alphaType = alphaType.sk_alphatype_t
-  SKImageInfo(native: imageInfo, colorspace: colorspace)
+  SKImageInfo(native: imageInfo)
 
-proc dispose*(this: SKImageInfo) =
-  dealloc(this.native.addr)
+proc withColorType*(this: SKImageInfo, colorType: SKColorType): SKImageInfo =
+  result = deepCopy this
+  result.colorType = colorType
