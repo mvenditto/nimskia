@@ -28,6 +28,14 @@ cd nimskia
 nimgen nimgen.cfg
 ```
 
+## Run tests
+```shell
+cd nimskia/tests
+bash run_test.sh my_test.nim
+# or
+nim c -o:bin/ -r my_test.nim
+```
+
 ## Examples
 snippet of the "high-level" api build upon the raw bindings (wip)
 ```nim
