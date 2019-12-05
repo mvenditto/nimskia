@@ -39,8 +39,8 @@ proc main() =
 
   var bitmap = readBitmapStream("../docs/images/skia.png")
 
-  let imageHeigth = bitmap.info.heigth
-  echo &"bitmap: {bitmap.info.width}x{bitmap.info.heigth}"
+  let imageHeigth = bitmap.info.height
+  echo &"bitmap: {bitmap.info.width}x{bitmap.info.height}"
 
   proc update(canvas: SKCanvas, dt: float) =
     canvas.clear(DarkBlue)

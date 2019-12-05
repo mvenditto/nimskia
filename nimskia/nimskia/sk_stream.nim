@@ -147,7 +147,14 @@ proc isValid*(s: SKFileStream): bool =
 proc newSKFileStream*(path: string): SKFileStream =
   new(result)
   result.native = cast[ptr sk_stream_t](sk_filestream_new(path))
-
+  
+proc openSKFileStream*(path: string): SKFileStream =
+  let fs = newSKFileStream(path)
+  if not fs.isValid():
+    fs.dispose()
+    return nil
+  return fs
+  
 
 
 

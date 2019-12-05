@@ -45,11 +45,19 @@ proc newRect*(left, top, right, bottom: float): SKRect =
   rect.bottom = bottom
   SKRect(native: rect)
 
+proc newRectF*(left, top, right, bottom: int): SKRect =
+  var rect: sk_rect_t
+  rect.left = left.float
+  rect.top = top.float
+  rect.right = right.float
+  rect.bottom = bottom.float
+  SKRect(native: rect)
+
 proc newRect*(topLeft: (float, float), bottomRight: (float, float)): SKRect =
   newRect(topLeft[0], topLeft[1], bottomRight[0], bottomRight[1])
 
-proc newRect*(topLeft: (float, float), width, heigth: float): SKRect =
-  newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + heigth)
+proc newRect*(topLeft: (float, float), width, height: float): SKRect =
+  newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + height)
 
 ### SKRectI
 
@@ -67,8 +75,8 @@ proc `==`*(a: SKRect, b: SKRect): bool =
 proc newRect*(topLeft: (int32, int32), bottomRight: (int32, int32)): SKRectI =
   newRect(topLeft[0], topLeft[1], bottomRight[0], bottomRight[1])
 
-proc newRect*(topLeft: (int32, int32), width, heigth: int32): SKRectI =
-  newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + heigth)
+proc newRect*(topLeft: (int32, int32), width, height: int32): SKRectI =
+  newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + height)
 
 proc size*(this: SKRect): SKSize =
   result = newSize(this.width, this.height)

@@ -31,8 +31,8 @@ proc main() =
 
   var bitmap = readBitmap("../docs/images/skia.png")
 
-  let imageHeigth = bitmap.info.heigth
-  echo &"bitmap: {bitmap.info.width}x{bitmap.info.heigth}"
+  let imageHeigth = bitmap.info.height
+  echo &"bitmap: {bitmap.info.width}x{bitmap.info.height}"
 
   let paint = newPaint()
   paint.strokeWidth = 3
@@ -45,7 +45,7 @@ proc main() =
     rx, 
     ry,
     bitmap.info.width.float - rx,
-    bitmap.info.heigth.float - ry
+    bitmap.info.height.float - ry
   )
   annotCanvas.drawRect(rect, paint)
 

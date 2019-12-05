@@ -11,7 +11,7 @@ template sk_color_get_r*(c: untyped): untyped =
 template sk_color_get_g*(c: untyped): untyped =
   (((c) shr 8) and 0x000000FF)
 template sk_color_get_b*(c: untyped): untyped =
-  (((c) shr 0) and 0x000000FF)\n
+  (((c) shr 0) and 0x000000FF)
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")
 {.passC: "-I\"" & sourcePath & "skia/include/c\"".}
 {.passC: "-I\"" & sourcePath & "skia/include/xamarin\"".}

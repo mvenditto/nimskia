@@ -5,6 +5,7 @@ import sk_color
 import sk_enums
 import sk_shader
 import sk_rect
+import sk_patheffect
 
 type
   SKPaint* = ref object
@@ -44,6 +45,9 @@ proc `shader=`*(this: SKPaint, shader: SKShader) =
 
 proc shader*(this: SKPaint): SKShader = 
   SKShader(native: sk_paint_get_shader(this.native))
+
+proc `pathEffect=`*(this: SKPaint, pathEffect: SKPathEffect) =
+  sk_paint_set_path_effect(this.native, pathEffect.native) 
 
 template strokeWidth*(this: SKPaint): float = 
   sk_paint_get_stroke_width(this.native).float

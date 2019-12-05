@@ -115,7 +115,15 @@ type
     EvenOdd = EVENODD_SK_PATH_FILLTYPE,
     InverseWinding = INVERSE_WINDING_SK_PATH_FILLTYPE, 
     InverseEvenOdd = INVERSE_EVENODD_SK_PATH_FILLTYPE
-    
+
+  SKTransferFunctionBehavior* = enum
+    Respect = RESPECT_SK_TRANSFER_FUNCTION_BEHAVIOR
+    Ignore = IGNORE_SK_TRANSFER_FUNCTION_BEHAVIOR
+
+  SKImageCachingHint* = enum
+    Allow = ALLOW_SK_IMAGE_CACHING_HINT
+    Disallow = DISALLOW_SK_IMAGE_CACHING_HINT
+
 const
   LastSeparableMode* = Multiply
   LastCoeffMode* = Screen

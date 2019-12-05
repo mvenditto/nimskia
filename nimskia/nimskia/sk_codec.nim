@@ -20,6 +20,12 @@ proc newCodec*(stream: SKStream): (SKCodecResult, SKCodec) =
   var codec = SkCodec(native: sk_codec_new_from_stream(stream.native, res.addr))
   return (res.SkCodecResult, codec)
 
+proc newCodec*(filename: string): (SKCodecResult, SKCodec) = 
+  let fs = openSKFileStream(filename)
+  if isNil fs:
+    return (InternalError, nil)
+  return newCodec(fs)
+
 proc dispose*(this: SkCodec) =
   sk_codec_destroy(this.native)
 
