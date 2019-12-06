@@ -52,4 +52,9 @@ proc new1DPathEffect*(
       style.sk_path_effect_1d_style_t
     )
   )
+
+proc sum*(first: SKPathEffect, second: SKPathEffect): SKPathEffect =
+  SKPathEffect(native: sk_path_effect_create_sum(first.native, second.native))
+
+proc `+`* (first: SKPathEffect, second: SKPathEffect): SKPathEffect = sum(first, second)
   

@@ -22,17 +22,17 @@ proc main() =
 
   let strokePaint = newPaint()
   strokePaint.style = Stroke
-  strokePaint.color = Blue
+  strokePaint.color = Teal
   strokePaint.strokeWidth = 2
   strokePaint.strokeCap = RoundCap
   strokePaint.antialias = true
-  strokePaint.pathEffect = new1DPathEffect(dash, 32.0, 0.0, Rotate)
-  
-  # newDescretePathEffect(10.0, 5.0, 132344)
+  strokePaint.pathEffect =  sum(
+        newDescretePathEffect(10.0, 5.0, 795755684),
+        newDescretePathEffect(20.0, 50.0, 795755684)
+    )
   
   proc update(canvas: SKCanvas, dt: float) =
     canvas.clear(White)
-    
     canvas.drawCircle(240, 240, 122,strokePaint)
 
   let sample = Sample(
