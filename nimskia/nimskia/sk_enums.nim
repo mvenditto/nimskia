@@ -123,6 +123,11 @@ type
   SKImageCachingHint* = enum
     Allow = ALLOW_SK_IMAGE_CACHING_HINT
     Disallow = DISALLOW_SK_IMAGE_CACHING_HINT
+  
+  SKPathEffect1DStyle* = enum
+    Translate = TRANSLATE_SK_PATH_EFFECT_1D_STYLE
+    Rotate = ROTATE_SK_PATH_EFFECT_1D_STYLE
+    Morph = MORPH_SK_PATH_EFFECT_1D_STYLE
 
 const
   LastSeparableMode* = Multiply

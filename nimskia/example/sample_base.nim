@@ -4,6 +4,7 @@ import ../nimskia/[
   sk_canvas, 
   gr_context,
   sk_surface,
+  sk_imageinfo,
   sk_enums,
   sk_matrix
 ]
@@ -17,8 +18,13 @@ type Sample* = ref object
   surface*: SKSurface
 
 var
+  scale = (1.float, 1.float)
   surface: SKSurface = nil
   customKeyProc*: proc(key: int32, scancode: int32, action: int32, mods: int32)
+
+const
+  numSamples = 4
+  numStencilBits = 8
 
 proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
              action: int32, mods: int32): void {.cdecl.} =
@@ -34,8 +40,12 @@ proc start*(this: Sample) =
   glfwWindowHint(GLFWContextVersionMajor, 3)
   glfwWindowHint(GLFWContextVersionMinor, 3)
   glfwWindowHint(GLFWOpenglForwardCompat, GLFW_TRUE) 
-  glfwWindowHint(GLFWOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
+  glfwWindowHint(GLFWOpenglProfile, GLFWOpenglAnyProfile)
   glfwWindowHint(GLFWResizable, GLFW_FALSE)
+  glfwWindowHint(GLFWDoublebuffer, GLFW_TRUE)
+  glfwWindowHint(GLFWStencilBits, numStencilBits)
+  glfwWindowHint(GLFWSamples, numSamples)
+  glfwWindowHint(GLFWSrgbCapable, GLFW_TRUE)
 
   let w = glfwCreateWindow(this.w, this.h, this.title)
   assert(not isNil w, "Cannot create a new GLFW window.")
@@ -44,14 +54,30 @@ proc start*(this: Sample) =
   w.makeContextCurrent()
   assert glInit()
 
+  glEnable(GL_MULTISAMPLE)
+
   var grContext = createGL()
   assert not isNil grContext
 
-  var info = newFrameBufferInfo(0, GL_RGBA8.uint32)
+  var info = newFrameBufferInfo(0, GL_RGBA8.uint32) #GL_BGRA8
   assert not isNil info
 
-  var target = createBackendRenderTarget(this.w, this.h, 0, 0, info)
-  assert not isNil target
+
+  discard """
+  var samples: GLInt 
+  var stencil: GLInt
+  glGetIntegerv(GL_SAMPLES, samples.addr)
+  glGetIntegerv(GL_STENCIL_BITS, stencil.addr)
+  echo "samples: " & $samples
+  echo "stencilBits: " & $stencil
+  """
+
+  var target = createBackendRenderTarget(this.w, this.h, 0, numStencilBits, info)
+  assert not isNil target  
+
+  echo "platformColor: " & $platformColorType
+  echo "samples: " & $target.samples
+  echo "stencilBits: " & $target.stencils
 
   surface = newSurface(
       grContext,
@@ -73,6 +99,12 @@ proc start*(this: Sample) =
   """
 
   var latest = glfwGetTime()
+  var fbh, fbw: int32
+  w.getFramebufferSize(fbw.addr, fbh.addr)
+  scale[0] = fbw.float / this.w.float
+  scale[1] = fbh.float / this.h.float
+  echo $scale
+
   while not w.windowShouldClose:
     glfwPollEvents()
     let now = glfwGetTime()

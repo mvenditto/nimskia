@@ -1,6 +1,7 @@
 import ../wrapper/sk_path
 import ../wrapper/sk_types
 import sk_enums
+import sk_rect
 
 type 
   SKPath* = ref object
@@ -58,6 +59,10 @@ proc arcTo*(this: SKPath,
     )
     result = this
 
+proc addOval*(this: SKPath, bounds: SKRect, direction: SKPathDirection): SKPath =
+  sk_path_add_oval(this.native, bounds.native.addr, direction.sk_path_direction_t)
+  this
+
 proc close*(this: SKPath) =
   sk_path_close(this.native)
 
@@ -69,6 +74,7 @@ proc rewind*(this: SKPath) =
 
 proc `fillType=`*(this: SKPath, fillType: SKPathFillType) =
   sk_path_set_filltype(this.native, fillType.sk_path_filltype_t)
+
 
 
 

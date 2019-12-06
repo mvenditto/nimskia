@@ -8,8 +8,18 @@ import ../nimskia/[
   sk_path,
   sk_surface,
   sk_image,
-  sk_data
+  sk_data,
+  sk_path
 ]
+
+import math
+
+proc star*(r: float, c: float): SKPath =
+  result = newPath()
+  discard result.moveTo(c + r, c)
+  for i in 1..7:
+    let a = 2.6927937 * i.float
+    discard result.lineTo(c + r * cos(a), c + r * sin(a))
 
 proc emitPng*(path: string; surface: SKSurface) =
   var image = surface.snapshot()

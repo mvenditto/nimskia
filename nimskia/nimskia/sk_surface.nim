@@ -59,13 +59,17 @@ proc newSurface*(
 ): SKSUrface =
   assert(not isNil ctx, "Context cannot be nil")
   assert(not isNil target, "Target cannot be nil")  
+  echo $(cast[uint32](ctx))
+  echo $(cast[uint32](target))
+  echo $(cast[uint32](colorType))
+  
   var surf = sk_surface_new_backend_render_target(
     ctx.native, 
     target.native, 
     origin.gr_surfaceorigin_t,
     colorType.sk_colortype_t,
-    if not isNil colorspace: colorspace.native else: cast[ptr sk_colorspace_t](0),
-    if not isNil props: props.native else: cast[ptr sk_surfaceprops_t](0),
+    if not isNil colorspace: colorspace.native else: nil,
+    if not isNil props: props.native else: nil,
   )
   SKSurface(
     native: surf, 

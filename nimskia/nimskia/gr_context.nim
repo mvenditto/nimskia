@@ -86,6 +86,12 @@ proc resetContext*(this: GRContext, state: GRGlBackendState) =
 proc resetContext*(this: GRContext, state: GRBackendState) =
   gr_context_reset_context(this.native, state.uint32)
 
+template samples*(this: GRBackendRenderTarget): int =
+  gr_backendrendertarget_get_samples(this.native).int
+
+template stencils*(this: GRBackendRenderTarget): int =
+  gr_backendrendertarget_get_stencils(this.native).int
+
 proc createBackendRenderTarget*(
   width: int32, height: int32, sampleCount: int32, stencilBits: int32, glInfo: GRGlFramebufferInfo): GRBackendRenderTarget =
   var handle = gr_backendrendertarget_new_gl(width, height, sampleCount, stencilBits, glInfo.native)
