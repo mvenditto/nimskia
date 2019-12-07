@@ -134,6 +134,15 @@ proc swap*(this: SKBitmap, other: SKBitmap) =
 template getPixel*(this: SKBitmap, x, y: int): SKColor =
   sk_bitmap_get_pixel_color(this.native, x.cint, y.cint).SKColor
 
+template setPixel*(this: SKBitmap, x: int, y: int, color: SKColor) =
+  sk_bitmap_set_pixel_color(this.native, x.cint, y.cint, color.sk_color_t)
+
+proc `[]`*(this: SKBitmap, x, y: int): SKColor = 
+  getPixel(this, x, y)
+
+proc `[]=`*(this: SKBitmap, x: int, y: int, color: SKColor): SKColor = 
+  setPixel(this, x, y, color)
+
 proc copyTo*(this: SKBitmap, destination: SKBitmap, colorType: SKColorType): bool =
   assert not isNil destination
   

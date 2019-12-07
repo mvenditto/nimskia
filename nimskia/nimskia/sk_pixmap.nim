@@ -4,6 +4,7 @@ import ../wrapper/sk_types
 import sk_imageinfo
 import sk_enums
 import sk_colorspace
+import sk_color
 import internals/native
 
 type
@@ -64,3 +65,8 @@ proc readPixels*(
 
 proc readPixels*(this: SKPixmap, dst: SKPixmap): bool =
   readPixels(this, dst.info, dst.pixels, dst.info.rowBytes, 0, 0, Respect)
+
+proc `[]`*(this: SKPixmap, x, y: int): SKColor =
+  sk_pixmap_get_pixel_color(this.native, x.cint, y.cint).SKColor
+
+proc getPixel*(this: SKPixmap, x, y: int): SKColor = this[x, y]
