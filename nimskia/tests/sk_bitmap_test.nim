@@ -159,6 +159,12 @@ suite "sk bitmap tests":
     check((1, 83, 255).SKColor == bmp2.getPixel(108, 20))
     check((255, 166, 1).SKColor == bmp2.getPixel(20, 108))
     check((255, 1, 214).SKColor == bmp2.getPixel(108, 108))
+  
+  test "subscript operator works correctly":
+    let bmp = newTestBitmap()
+    check(Red == bmp[10,10])
+    bmp[10,10] = Violet
+    check(Violet == bmp[10,10])
 
 
     

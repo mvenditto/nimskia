@@ -140,7 +140,7 @@ template setPixel*(this: SKBitmap, x: int, y: int, color: SKColor) =
 proc `[]`*(this: SKBitmap, x, y: int): SKColor = 
   getPixel(this, x, y)
 
-proc `[]=`*(this: SKBitmap, x: int, y: int, color: SKColor): SKColor = 
+proc `[]=`*(this: SKBitmap, x: int, y: int, color: SKColor) = 
   setPixel(this, x, y, color)
 
 proc copyTo*(this: SKBitmap, destination: SKBitmap, colorType: SKColorType): bool =
