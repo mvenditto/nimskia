@@ -8,6 +8,7 @@ tested on mono/skia v1.60.1
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 cd skia
 git checkout xamarin-mobile-bindings -b v1.60.1
+sh tools/install_dependencies.sh
 python ./tools/git-sync-deps
 ./bin/gn gen 'out/linux/x64' --args='
     is_official_build=true skia_enable_tools=false
@@ -21,8 +22,9 @@ python ./tools/git-sync-deps
 ../depot_tools/ninja 'SkiaSharp' -C 'out/linux/x64'
 mkdir out/Shared && cp out/linux/x64/libSkiaSharp.so.60.1.0 out/Shared/libskia.so
 ```
-see also: [https://github.com/mono/SkiaSharp/wiki/Building-SkiaSharp]()
-
+see also: 
+ - [https://github.com/mono/SkiaSharp/wiki/Building-SkiaSharp]()
+ - [https://skia.org/user/build]()
  ## Generate the bindings
 ```shell
 cd nimskia
