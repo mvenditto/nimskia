@@ -13,6 +13,13 @@ proc newPath*(): SKPath =
 proc dispose*(this: SKPath) =
   sk_path_delete(this.native)
 
+proc parseSvgPathData*(svgString: cstring): SKPath =
+  result = SKPath(native: sk_path_new())
+  let success = sk_path_parse_svg_string(result.native, svgString)
+  if not success:
+    result.dispose()
+    result = nil
+
 proc moveTo*(this: SKPath, x, y: float): SKPath =
   sk_path_move_to(this.native, x, y)
   this
