@@ -1,9 +1,0 @@
-SKSize	sk_size.html#SKSize	sk_size: SKSize	
-SKSizeI	sk_size.html#SKSizeI	sk_size: SKSizeI	
-width	sk_size.html#width.t,SKSize	sk_size: width(this: SKSize): float	
-height	sk_size.html#height.t,SKSize	sk_size: height(this: SKSize): float	
-width	sk_size.html#width.t,SKSizeI	sk_size: width(this: SKSizeI): int32	
-height	sk_size.html#height.t,SKSizeI	sk_size: height(this: SKSizeI): int32	
-newSize	sk_size.html#newSize,float,float	sk_size: newSize(width, height: float): SKSize	
-newSizeF	sk_size.html#newSizeF,int32,int32	sk_size: newSizeF(width, height: int32): SKSize	
-newSize	sk_size.html#newSize,int32,int32	sk_size: newSize(width, height: int32): SKSizeI	

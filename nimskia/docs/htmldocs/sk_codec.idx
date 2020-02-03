@@ -1,7 +1,0 @@
-SkCodec	sk_codec.html#SkCodec	sk_codec: SkCodec	
-newCodec	sk_codec.html#newCodec,SKData	sk_codec: newCodec(data: SKData): SkCodec	
-newCodec	sk_codec.html#newCodec,SKStream	sk_codec: newCodec(stream: SKStream): (SkCodecResult, SkCodec)	
-newCodec	sk_codec.html#newCodec,string	sk_codec: newCodec(filename: string): (SkCodecResult, SkCodec)	
-dispose	sk_codec.html#dispose,SkCodec	sk_codec: dispose(this: SkCodec)	
-info	sk_codec.html#info,SkCodec	sk_codec: info(this: SkCodec): SKImageInfo	
-pixels	sk_codec.html#pixels,SkCodec,SKImageInfo,pointer	sk_codec: pixels(this: SkCodec; info: SKImageInfo; pixels: pointer): SkCodecResult	

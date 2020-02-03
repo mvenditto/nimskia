@@ -1,9 +1,0 @@
-SKImage	sk_image.html#SKImage	sk_image: SKImage	
-dispose	sk_image.html#dispose,SKImage	sk_image: dispose(this: SKImage)	
-width	sk_image.html#width.t,SKImage	sk_image: width(this: SKImage): int	
-height	sk_image.html#height.t,SKImage	sk_image: height(this: SKImage): int	
-alphaType	sk_image.html#alphaType.t,SKImage	sk_image: alphaType(this: SKImage): SKAlphaType	
-uniqueID	sk_image.html#uniqueID.t,SKImage	sk_image: uniqueID(this: SKImage): uint32	
-encode	sk_image.html#encode,SKImage	sk_image: encode(this: SKImage): SKData	
-readPixels	sk_image.html#readPixels,SKImage,SKImageInfo,pointer,int,int,int,SKImageCachingHint	sk_image: readPixels(this: SKImage; dstInfo: SKImageInfo; dstPixels: pointer; dstRowBytes: int;\n           srcX: int; srcY: int; caching: SKImageCachingHint = Allow): bool	
-readPixels	sk_image.html#readPixels,SKImage,SKImageInfo,pointer	sk_image: readPixels(this: SKImage; dstInfo: SKImageInfo; dstPixels: pointer): bool	

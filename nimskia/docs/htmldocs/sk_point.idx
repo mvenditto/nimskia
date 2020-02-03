@@ -1,8 +1,0 @@
-SKPoint	sk_point.html#SKPoint	sk_point: SKPoint	
-SKPointI	sk_point.html#SKPointI	sk_point: SKPointI	
-newPoint	sk_point.html#newPoint,float,float	sk_point: newPoint(x, y: float): SKPoint	
-tupleToSKPoint	sk_point.html#tupleToSKPoint.c	sk_point: tupleToSKPoint(p: (float, float)): SKPoint	
-newPoint	sk_point.html#newPoint,int,int	sk_point: newPoint(x, y: int): SKPointI	
-`+`	sk_point.html#+,SKPoint,SKPoint	sk_point: `+`(a: SKPoint; b: SKPoint): SKPoint	
-`-`	sk_point.html#-,SKPoint,SKPoint	sk_point: `-`(a: SKPoint; b: SKPoint): SKPoint	
-tupleToSKPoint	sk_point.html#tupleToSKPoint.c_2	sk_point: tupleToSKPoint(p: (int, int)): SKPointI	
