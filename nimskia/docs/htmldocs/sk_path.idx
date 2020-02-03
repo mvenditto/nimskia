@@ -1,0 +1,23 @@
+SKPath	sk_path.html#SKPath	sk_path: SKPath	
+newPath	sk_path.html#newPath	sk_path: newPath(): SKPath	
+dispose	sk_path.html#dispose,SKPath	sk_path: dispose(this: SKPath)	
+parseSvgPathData	sk_path.html#parseSvgPathData,cstring	sk_path: parseSvgPathData(svgString: cstring): SKPath	
+moveTo	sk_path.html#moveTo,SKPath,float,float	sk_path: moveTo(this: SKPath; x, y: float): SKPath	
+lineTo	sk_path.html#lineTo,SKPath,float,float	sk_path: lineTo(this: SKPath; x, y: float): SKPath	
+quadTo	sk_path.html#quadTo,SKPath,float,float,float,float	sk_path: quadTo(this: SKPath; x0, y0, x1, y1: float): SKPath	
+conicTo	sk_path.html#conicTo,SKPath,float,float,float,float,float	sk_path: conicTo(this: SKPath; x0, y0, x1, y1, w: float): SKPath	
+cubicTo	sk_path.html#cubicTo,SKPath,float,float,float,float,float,float	sk_path: cubicTo(this: SKPath; x0, y0, x1, y1, x2, y2: float): SKPath	
+rlineTo	sk_path.html#rlineTo,SKPath,float,float	sk_path: rlineTo(this: SKPath; x, y: float): SKPath	
+rquadTo	sk_path.html#rquadTo,SKPath,float,float,float,float	sk_path: rquadTo(this: SKPath; x0, y0, x1, y1: float): SKPath	
+rconicTo	sk_path.html#rconicTo,SKPath,float,float,float,float,float	sk_path: rconicTo(this: SKPath; x0, y0, x1, y1, w: float): SKPath	
+rcubicTo	sk_path.html#rcubicTo,SKPath,float,float,float,float,float,float	sk_path: rcubicTo(this: SKPath; x0, y0, x1, y1, x2, y2: float): SKPath	
+arcTo	sk_path.html#arcTo,SKPath,float,float,float,SKPathArcSize,SKPathDirection,float,float	sk_path: arcTo(this: SKPath; rx: float; ry: float; xAxisRotate: float; arcSize: SKPathArcSize;\n      sweep: SKPathDirection; x, y: float): SKPath	
+addOval	sk_path.html#addOval,SKPath,SKRect,SKPathDirection	sk_path: addOval(this: SKPath; bounds: SKRect; direction: SKPathDirection): SKPath	
+close	sk_path.html#close,SKPath	sk_path: close(this: SKPath)	
+reset	sk_path.html#reset,SKPath	sk_path: reset(this: SKPath)	
+rewind	sk_path.html#rewind,SKPath	sk_path: rewind(this: SKPath)	
+fillType=	sk_path.html#fillType=,SKPath,SKPathFillType	sk_path: fillType=(this: SKPath; fillType: SKPathFillType)	
+bounds	sk_path.html#bounds,SKPath	sk_path: bounds(this: SKPath): SKRect	
+tightBounds	sk_path.html#tightBounds,SKPath	sk_path: tightBounds(this: SKPath): SKRect	
+computeTightBounds	sk_path.html#computeTightBounds,SKPath	sk_path: computeTightBounds(this: SKPath): SKRect	
+transform	sk_path.html#transform,SKPath,SKMatrix	sk_path: transform(this: SKPath; mat: SKMatrix)	

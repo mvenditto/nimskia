@@ -1,0 +1,8 @@
+SKPathEffect	sk_patheffect.html#SKPathEffect	sk_patheffect: SKPathEffect	
+dispose	sk_patheffect.html#dispose,SKPathEffect	sk_patheffect: dispose(this: SKPathEffect)	
+newDash	sk_patheffect.html#newDash,openArray[float],int,float	sk_patheffect: newDash(intervals: openArray[float]; count: int; phase: float): SKPathEffect	
+newDash	sk_patheffect.html#newDash,openArray[float],float	sk_patheffect: newDash(intervals: openArray[float]; phase: float): SKPathEffect	
+newDescretePathEffect	sk_patheffect.html#newDescretePathEffect,float,float,uint	sk_patheffect: newDescretePathEffect(segmentLen: float; deviation: float; seed: uint): SKPathEffect	
+new1DPathEffect	sk_patheffect.html#new1DPathEffect,SKPath,float,float,SKPathEffect1DStyle	sk_patheffect: new1DPathEffect(path: SKPath; advance: float; phase: float; style: SKPathEffect1DStyle): SKPathEffect	
+sum	sk_patheffect.html#sum,SKPathEffect,SKPathEffect	sk_patheffect: sum(first: SKPathEffect; second: SKPathEffect): SKPathEffect	
+`+`	sk_patheffect.html#+,SKPathEffect,SKPathEffect	sk_patheffect: `+`(first: SKPathEffect; second: SKPathEffect): SKPathEffect	

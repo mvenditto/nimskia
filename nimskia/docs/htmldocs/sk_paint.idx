@@ -1,0 +1,32 @@
+SKPaint	sk_paint.html#SKPaint	sk_paint: SKPaint	
+dispose	sk_paint.html#dispose,SKPaint	sk_paint: dispose(this: SKPaint)	
+isAntialias	sk_paint.html#isAntialias.t,SKPaint	sk_paint: isAntialias(this: SKPaint): bool	
+antialias=	sk_paint.html#antialias=,SKPaint,bool	sk_paint: antialias=(this: SKPaint; enabled: bool)	
+color	sk_paint.html#color.t,SKPaint	sk_paint: color(this: SKPaint): SKColor	
+color=	sk_paint.html#color=,SKPaint,SKColor	sk_paint: color=(this: SKPaint; color: SKColor)	
+color=	sk_paint.html#color=,SKPaint,	sk_paint: color=(this: SKPaint; argb: (int, int, int, int))	
+style	sk_paint.html#style.t,SKPaint	sk_paint: style(this: SKPaint): SKPaintStyle	
+style=	sk_paint.html#style=,SKPaint,SKPaintStyle	sk_paint: style=(this: SKPaint; style: SKPaintStyle)	
+isStroke	sk_paint.html#isStroke,SKPaint	sk_paint: isStroke(this: SKPaint): bool	
+shader=	sk_paint.html#shader=,SKPaint,SKShader	sk_paint: shader=(this: SKPaint; shader: SKShader)	
+shader	sk_paint.html#shader,SKPaint	sk_paint: shader(this: SKPaint): SKShader	
+pathEffect=	sk_paint.html#pathEffect=,SKPaint,SKPathEffect	sk_paint: pathEffect=(this: SKPaint; pathEffect: SKPathEffect)	
+strokeWidth	sk_paint.html#strokeWidth.t,SKPaint	sk_paint: strokeWidth(this: SKPaint): float	
+strokeWidth=	sk_paint.html#strokeWidth=,SKPaint,float	sk_paint: strokeWidth=(this: SKPaint; strokeWidth: float)	
+miterWidth	sk_paint.html#miterWidth.t,SKPaint	sk_paint: miterWidth(this: SKPaint): float	
+miterWidth=	sk_paint.html#miterWidth=,SKPaint,float	sk_paint: miterWidth=(this: SKPaint; miterWidth: float)	
+strokeCap	sk_paint.html#strokeCap.t,SKPaint	sk_paint: strokeCap(this: SKPaint): SKStrokeCap	
+strokeCap=	sk_paint.html#strokeCap=,SKPaint,SKStrokeCap	sk_paint: strokeCap=(this: SKPaint; capType: SKStrokeCap)	
+joinCap	sk_paint.html#joinCap.t,SKPaint	sk_paint: joinCap(this: SKPaint): SKStrokeJoin	
+joinCap=	sk_paint.html#joinCap=,SKPaint,SKStrokeJoin	sk_paint: joinCap=(this: SKPaint; jointType: SKStrokeJoin)	
+measureText	sk_paint.html#measureText,SKPaint,pointer,int,SKRect	sk_paint: measureText(this: SKPaint; text: pointer; length: int; cbounds: SKRect): float	
+measureText	sk_paint.html#measureText,SKPaint,string,int,SKRect	sk_paint: measureText(this: SKPaint; text: string; length: int; cbounds: SKRect): float	
+measureText	sk_paint.html#measureText,SKPaint,string	sk_paint: measureText(this: SKPaint; text: string): float	
+measureText	sk_paint.html#measureText,SKPaint,string,SKRect	sk_paint: measureText(this: SKPaint; text: string; cbounds: var SKRect)	
+textSize=	sk_paint.html#textSize=,SKPaint,float	sk_paint: textSize=(this: SKPaint; textSize: float)	
+textSize	sk_paint.html#textSize.t,SKPaint	sk_paint: textSize(this: SKPaint): float	
+fontSpacing	sk_paint.html#fontSpacing.t,SKPaint	sk_paint: fontSpacing(this: SKPaint): float	
+textAlign=	sk_paint.html#textAlign=,SKPaint,SKTextAlign	sk_paint: textAlign=(this: SKPaint; align: SKTextAlign)	
+newPaint	sk_paint.html#newPaint	sk_paint: newPaint(): SKPaint	
+newPaint	sk_paint.html#newPaint,SKColor	sk_paint: newPaint(color: SKColor): SKPaint	
+newPaint	sk_paint.html#newPaint,int,int,int,int	sk_paint: newPaint(a, r, g, b: int): SKPaint	

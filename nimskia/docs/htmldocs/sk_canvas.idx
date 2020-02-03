@@ -1,0 +1,32 @@
+SKCanvas	sk_canvas.html#SKCanvas	sk_canvas: SKCanvas	
+newCanvas	sk_canvas.html#newCanvas,SKBitmap	sk_canvas: newCanvas(bitmap: SKBitmap): SKCanvas	
+translate	sk_canvas.html#translate,SKCanvas,float,float	sk_canvas: translate(this: SKCanvas; cx, cy: float)	
+scale	sk_canvas.html#scale,SKCanvas,float,float	sk_canvas: scale(this: SKCanvas; sx, sy: float)	
+scale	sk_canvas.html#scale,SKCanvas,float,float,float,float	sk_canvas: scale(this: SKCanvas; sx, sy, px, py: float)	
+rotateDegrees	sk_canvas.html#rotateDegrees,SKCanvas,float	sk_canvas: rotateDegrees(this: SKCanvas; degrees: float)	
+rotateRadians	sk_canvas.html#rotateRadians,SKCanvas,float	sk_canvas: rotateRadians(this: SKCanvas; radians: float)	
+drawPaint	sk_canvas.html#drawPaint,SKCanvas,SKPaint	sk_canvas: drawPaint(this: SKCanvas; paint: SKPaint)	
+drawRect	sk_canvas.html#drawRect,SKCanvas,SKRect,SKPaint	sk_canvas: drawRect(this: SKCanvas; rect: SKRect; paint: SKPaint)	
+drawRect	sk_canvas.html#drawRect,SKCanvas,SKRectI,SKPaint	sk_canvas: drawRect(this: SKCanvas; rect: SKRectI; paint: SKPaint)	
+drawRoundRect	sk_canvas.html#drawRoundRect,SKCanvas,SKRect,float,float,SKPaint	sk_canvas: drawRoundRect(this: SKCanvas; rect: SKRect; rx: float; ry: float; paint: SKPaint)	
+drawCircle	sk_canvas.html#drawCircle,SKCanvas,float,float,float,SKPaint	sk_canvas: drawCircle(this: SKCanvas; cx, cy, radius: float; paint: SKPaint)	
+drawOval	sk_canvas.html#drawOval,SKCanvas,SKRect,SKPaint	sk_canvas: drawOval(this: SKCanvas; bounds: SKRect; paint: SKPaint)	
+drawImage	sk_canvas.html#drawImage,SKCanvas,SKImage,float,float,SKPaint	sk_canvas: drawImage(this: SKCanvas; image: SKImage; cx: float; cy: float; paint: SKPaint)	
+drawColor	sk_canvas.html#drawColor,SKCanvas,SKColor,SKBlendMode	sk_canvas: drawColor(this: SKCanvas; color: SKColor; mode: SKBlendMode)	
+drawPath	sk_canvas.html#drawPath,SKCanvas,SKPath,SKPaint	sk_canvas: drawPath(this: SKCanvas; path: SKPath; paint: SKPaint)	
+drawLine	sk_canvas.html#drawLine,SKCanvas,float,float,float,float,SKPaint	sk_canvas: drawLine(this: SKCanvas; x1: float; y1: float; x2: float; y2: float; paint: SKPaint)	
+drawBitmap	sk_canvas.html#drawBitmap,SKCanvas,SKBitmap,float,float,SKPaint	sk_canvas: drawBitmap(this: SKCanvas; bitmap: SKBitmap; left: float; top: float; paint: SKPaint)	
+drawBitmap	sk_canvas.html#drawBitmap,SKCanvas,SKBitmap,float,float	sk_canvas: drawBitmap(this: SKCanvas; bitmap: SKBitmap; left: float; top: float)	
+drawBitmap	sk_canvas.html#drawBitmap,SKCanvas,SKBitmap	sk_canvas: drawBitmap(this: SKCanvas; bitmap: SKBitmap)	
+drawText	sk_canvas.html#drawText,SKCanvas,string,float,float,SKPaint	sk_canvas: drawText(this: SKCanvas; text: string; x: float; y: float; paint: SKPaint)	
+dispose	sk_canvas.html#dispose,SKCanvas	sk_canvas: dispose(this: SKCanvas)	
+save	sk_canvas.html#save,SKCanvas	sk_canvas: save(this: SKCanvas): int	
+save_layer	sk_canvas.html#save_layer,SKCanvas,SKRect,SKPaint	sk_canvas: save_layer(this: SKCanvas; bounds: SKRect; paint: SKPaint): int	
+restore	sk_canvas.html#restore,SKCanvas	sk_canvas: restore(this: SKCanvas)	
+clear	sk_canvas.html#clear,SKCanvas,SKColor	sk_canvas: clear(this: SKCanvas; color: SKColor)	
+clip	sk_canvas.html#clip,SKCanvas,SKRect,SKClipOp,bool	sk_canvas: clip(this: SKCanvas; bounds: SKRect; clipop: SKClipOp; doAA: bool)	
+flush	sk_canvas.html#flush,SKCanvas	sk_canvas: flush(this: SKCanvas)	
+resetMatrix	sk_canvas.html#resetMatrix,SKCanvas	sk_canvas: resetMatrix(this: SKCanvas)	
+setMatrix	sk_canvas.html#setMatrix,SKCanvas,SKMatrix	sk_canvas: setMatrix(this: SKCanvas; matrix: SKMatrix)	
+concatMatrix	sk_canvas.html#concatMatrix,SKCanvas,SKMatrix	sk_canvas: concatMatrix(this: SKCanvas; matrix: SKMatrix)	
+autoRestore	sk_canvas.html#autoRestore.t,SKCanvas,untyped	sk_canvas: autoRestore(canvas: SKCanvas; ops: untyped): untyped	

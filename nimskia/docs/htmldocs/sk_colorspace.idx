@@ -1,0 +1,4 @@
+SKColorSpace	sk_colorspace.html#SKColorSpace	sk_colorspace: SKColorSpace	
+dispose	sk_colorspace.html#dispose,SKColorSpace	sk_colorspace: dispose(this: SKColorSpace)	
+newSrgbColorSpace	sk_colorspace.html#newSrgbColorSpace	sk_colorspace: newSrgbColorSpace(): SKColorSpace	
+newSrgbLinearColorSpace	sk_colorspace.html#newSrgbLinearColorSpace	sk_colorspace: newSrgbLinearColorSpace(): SKColorSpace	

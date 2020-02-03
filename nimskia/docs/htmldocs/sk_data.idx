@@ -1,0 +1,8 @@
+SKData	sk_data.html#SKData	sk_data: SKData	
+newData	sk_data.html#newData	sk_data: newData(): SKData	
+newData	sk_data.html#newData,pointer,int	sk_data: newData(src: pointer; size: int): SKData	
+newData	sk_data.html#newData,SKData,int,int	sk_data: newData(data: SKData; offset: int; length: int): SKData	
+dispose	sk_data.html#dispose,SKData	sk_data: dispose(data: SKData)	
+size	sk_data.html#size.t,SKData	sk_data: size(this: SKData): int	
+data	sk_data.html#data.t,SKData	sk_data: data(this: SKData): pointer	
+len	sk_data.html#len.t,SKData	sk_data: len(this: SKData): int	

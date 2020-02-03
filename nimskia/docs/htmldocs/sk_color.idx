@@ -1,0 +1,9 @@
+SKColor	sk_color.html#SKColor	sk_color: SKColor	
+r	sk_color.html#r.t,SKColor	sk_color: r(color: SKColor): byte	
+g	sk_color.html#g.t,SKColor	sk_color: g(color: SKColor): byte	
+b	sk_color.html#b.t,SKColor	sk_color: b(color: SKColor): byte	
+a	sk_color.html#a.t,SKColor	sk_color: a(color: SKColor): byte	
+newColorARGB	sk_color.html#newColorARGB.t,int,int,int,int	sk_color: newColorARGB(a, r, g, b: int): SKColor	
+withAlpha	sk_color.html#withAlpha.t,SKColor,byte	sk_color: withAlpha(c: SKColor; a: byte): SKColor	
+tupleToColorARGB	sk_color.html#tupleToColorARGB.c	sk_color: tupleToColorARGB(t: (int, int, int, int)): SKColor	
+tupleToColorRGB	sk_color.html#tupleToColorRGB.c	sk_color: tupleToColorRGB(t: (int, int, int)): SKColor	

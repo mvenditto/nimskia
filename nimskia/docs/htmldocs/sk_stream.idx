@@ -1,0 +1,37 @@
+SKStream	sk_stream.html#SKStream	sk_stream: SKStream	
+SKStreamRewindable	sk_stream.html#SKStreamRewindable	sk_stream: SKStreamRewindable	
+SKStreamSeekable	sk_stream.html#SKStreamSeekable	sk_stream: SKStreamSeekable	
+SKStreamAsset	sk_stream.html#SKStreamAsset	sk_stream: SKStreamAsset	
+SKFileStream	sk_stream.html#SKFileStream	sk_stream: SKFileStream	
+isAtEnd	sk_stream.html#isAtEnd,SKStream	sk_stream: isAtEnd(s: SKStream): bool	
+hasPosition	sk_stream.html#hasPosition,SKStreamSeekable	sk_stream: hasPosition(s: SKStreamSeekable): bool	
+hasLength	sk_stream.html#hasLength,SKStreamAsset	sk_stream: hasLength(s: SKStreamAsset): bool	
+getPosition	sk_stream.html#getPosition,SKStreamSeekable	sk_stream: getPosition(s: SKStreamSeekable): int	
+getLength	sk_stream.html#getLength,SKStreamAsset	sk_stream: getLength(s: SKStreamAsset): int	
+read	sk_stream.html#read,SKStream,pointer,int	sk_stream: read(s: SKStream; buffer: pointer; size: int): int	
+peek	sk_stream.html#peek,SKStream,pointer,int	sk_stream: peek(s: SKStream; buffer: pointer; size: int): int	
+readByte	sk_stream.html#readByte,SKStream,int8	sk_stream: readByte(s: SKStream; buffer: var int8): bool	
+readInt16	sk_stream.html#readInt16,SKStream,int16	sk_stream: readInt16(s: SKStream; buffer: var int16): bool	
+readInt32	sk_stream.html#readInt32,SKStream,int32	sk_stream: readInt32(s: SKStream; buffer: var int32): bool	
+readUByte	sk_stream.html#readUByte,SKStream,uint8	sk_stream: readUByte(s: SKStream; buffer: var uint8): bool	
+readUInt16	sk_stream.html#readUInt16,SKStream,uint16	sk_stream: readUInt16(s: SKStream; buffer: var uint16): bool	
+readUInt32	sk_stream.html#readUInt32,SKStream,uint32	sk_stream: readUInt32(s: SKStream; buffer: var uint32): bool	
+readBool	sk_stream.html#readBool,SKStream,bool	sk_stream: readBool(s: SKStream; buffer: var bool): bool	
+readByte	sk_stream.html#readByte,SKStream	sk_stream: readByte(s: SKStream): int8	
+readInt16	sk_stream.html#readInt16,SKStream	sk_stream: readInt16(s: SKStream): int16	
+readInt32	sk_stream.html#readInt32,SKStream	sk_stream: readInt32(s: SKStream): int32	
+readUByte	sk_stream.html#readUByte,SKStream	sk_stream: readUByte(s: SKStream): uint8	
+readUInt16	sk_stream.html#readUInt16,SKStream	sk_stream: readUInt16(s: SKStream): uint16	
+readUInt32	sk_stream.html#readUInt32,SKStream	sk_stream: readUInt32(s: SKStream): uint32	
+readBool	sk_stream.html#readBool,SKStream	sk_stream: readBool(s: SKStream): bool	
+skip	sk_stream.html#skip,SKStream,int	sk_stream: skip(s: SKStream; size: int): int	
+rewind	sk_stream.html#rewind,SKStreamRewindable	sk_stream: rewind(s: SKStreamRewindable): bool	
+seek	sk_stream.html#seek,SKStreamSeekable,int	sk_stream: seek(s: SKStreamSeekable; position: int): bool	
+move	sk_stream.html#move,SKStreamSeekable,int	sk_stream: move(s: SKStreamSeekable; offset: int): bool	
+fork	sk_stream.html#fork,SKStreamSeekable	sk_stream: fork(s: SKStreamSeekable): SKStreamSeekable	
+duplicate	sk_stream.html#duplicate,SKStreamRewindable	sk_stream: duplicate(s: SKStreamRewindable): SKStreamRewindable	
+dispose	sk_stream.html#dispose,SKStream	sk_stream: dispose(s: SKStream)	
+dispose	sk_stream.html#dispose,SKFileStream	sk_stream: dispose(s: SKFileStream)	
+isValid	sk_stream.html#isValid,SKFileStream	sk_stream: isValid(s: SKFileStream): bool	
+newSKFileStream	sk_stream.html#newSKFileStream,string	sk_stream: newSKFileStream(path: string): SKFileStream	
+openSKFileStream	sk_stream.html#openSKFileStream,string	sk_stream: openSKFileStream(path: string): SKFileStream	

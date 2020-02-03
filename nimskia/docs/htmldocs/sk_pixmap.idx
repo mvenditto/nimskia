@@ -1,0 +1,16 @@
+SKPixmap	sk_pixmap.html#SKPixmap	sk_pixmap: SKPixmap	
+newPixmap	sk_pixmap.html#newPixmap	sk_pixmap: newPixmap(): SKPixmap	
+newPixmap	sk_pixmap.html#newPixmap,SKImageInfo,pointer,int	sk_pixmap: newPixmap(info: SKImageInfo; pixels: pointer; rowBytes: int): SKPixmap	
+dispose	sk_pixmap.html#dispose,SKPixmap	sk_pixmap: dispose(this: SKPixmap)	
+info	sk_pixmap.html#info.t,SKPixmap	sk_pixmap: info(this: SKPixmap): SKImageInfo	
+rowBytes	sk_pixmap.html#rowBytes.t,SKPixmap	sk_pixmap: rowBytes(this: SKPixmap): int	
+pixels	sk_pixmap.html#pixels,SKPixmap	sk_pixmap: pixels(this: SKPixmap): pointer	
+alphaType	sk_pixmap.html#alphaType.t,SKPixmap	sk_pixmap: alphaType(this: SKPixmap): SKAlphaType	
+colorType	sk_pixmap.html#colorType.t,SKPixmap	sk_pixmap: colorType(this: SKPixmap): SKColorType	
+colorspace	sk_pixmap.html#colorspace,SKPixmap	sk_pixmap: colorspace(this: SKPixmap): SKColorSpace	
+withAlphaType	sk_pixmap.html#withAlphaType,SKPixmap,SKAlphaType	sk_pixmap: withAlphaType(this: SKPixmap; alphaType: SKAlphaType): SKPixmap	
+withColorSpace	sk_pixmap.html#withColorSpace,SKPixmap,SKColorSpace	sk_pixmap: withColorSpace(this: SKPixmap; colorspace: SKColorSpace): SKPixmap	
+readPixels	sk_pixmap.html#readPixels,SKPixmap,SKImageInfo,pointer,int,int,int,SKTransferFunctionBehavior	sk_pixmap: readPixels(this: SKPixmap; dstInfo: SKImageInfo; dstPixels: pointer; dstRowBytes: int;\n           srcX: int; srcY: int; behavior: SKTransferFunctionBehavior): bool	
+readPixels	sk_pixmap.html#readPixels,SKPixmap,SKPixmap	sk_pixmap: readPixels(this: SKPixmap; dst: SKPixmap): bool	
+`[]`	sk_pixmap.html#[],SKPixmap,int,int	sk_pixmap: `[]`(this: SKPixmap; x, y: int): SKColor	
+getPixel	sk_pixmap.html#getPixel,SKPixmap,int,int	sk_pixmap: getPixel(this: SKPixmap; x, y: int): SKColor	

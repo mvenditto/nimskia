@@ -1,0 +1,12 @@
+SKSurface	sk_surface.html#SKSurface	sk_surface: SKSurface	
+SKSurfaceProps	sk_surface.html#SKSurfaceProps	sk_surface: SKSurfaceProps	
+SKSurfaceProps	sk_surface.html#sksurfaceprops	 SKSurfaceProps	
+newSurfaceProps	sk_surface.html#newSurfaceProps,SKPixelGeometry	sk_surface: newSurfaceProps(pixelGeometry: SKPixelGeometry): SKSurfaceProps	
+SKSurface	sk_surface.html#sksurface	 SKSurface	
+newSurface	sk_surface.html#newSurface,SKImageInfo,int,SKSurfaceProps	sk_surface: newSurface(info: SKImageInfo; rowBytes: int; props: SKSurfaceProps): SKSurface	
+newSurface	sk_surface.html#newSurface,SKImageInfo	sk_surface: newSurface(info: SKImageInfo): SKSurface	
+newSurface	sk_surface.html#newSurface,SKImageInfo,int	sk_surface: newSurface(info: SKImageInfo; rowBytes: int): SKSurface	
+newSurface	sk_surface.html#newSurface,SKImageInfo,SKSurfaceProps	sk_surface: newSurface(info: SKImageInfo; props: SKSurfaceProps): SKSurface	
+newSurface	sk_surface.html#newSurface,GRContext,GRBackendRenderTarget,GRSurfaceOrigin,SKColorType,SKColorSpace,SKSurfaceProps	sk_surface: newSurface(ctx: GRContext; target: GRBackendRenderTarget; origin: GRSurfaceOrigin;\n           colorType: SKColorType; colorspace: SKColorSpace; props: SKSurfaceProps): SKSurface	
+dispose	sk_surface.html#dispose,SKSurface	sk_surface: dispose(this: SKSurface)	
+snapshot	sk_surface.html#snapshot,SKSurface	sk_surface: snapshot(this: SKSurface): SKImage	
