@@ -1,4 +1,4 @@
-# nimskia
+# nimskia ![](https://img.shields.io/static/v1?label=version&message=2020.02.04_1-alpha&color=blue)
 experimental nim wrapper around mono/skia C API
 
 tested on mono/skia v1.60.1
