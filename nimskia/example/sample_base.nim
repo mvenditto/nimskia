@@ -6,9 +6,12 @@ import ../nimskia/[
   sk_surface,
   sk_imageinfo,
   sk_enums,
-  sk_matrix
+  sk_matrix,
+  sk_color
 ]
 
+import strutils
+import os
 import common_api
 
 type Sample* = ref object
@@ -18,6 +21,7 @@ type Sample* = ref object
   surface*: SKSurface
 
 var
+  self: Sample
   scale = (1.float, 1.float)
   surface: SKSurface = nil
   customKeyProc*: proc(key: int32, scancode: int32, action: int32, mods: int32)
@@ -25,17 +29,31 @@ var
 const
   numSamples = 4
   numStencilBits = 8
+  snapshotsDir = "./snapshots"
+  DefaultBg* = newColorARGB(255,247,247,247)
 
 proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
              action: int32, mods: int32): void {.cdecl.} =
   if key == GLFWKey.ESCAPE and action == GLFWPress:
     window.setWindowShouldClose(true)
   if key == GLFWKey.S and action == GLFWPress:
-    emitPng("snapshot.png", surface)
+
+    let file = self.title
+      .replace(" ", "_")
+      .replace(".", "_")
+      .replace(":", "_") & ".png"
+
+    if not dirExists snapshotsDir:
+      createDir(snapshotsDir)
+    
+    emitPng(joinPath(snapshotsDir, file), surface)
+    
   if customKeyProc != nil:
     customKeyProc(key, scancode, action, mods)
 
 proc start*(this: Sample) =
+  self = this
+
   assert glfwInit()
   glfwWindowHint(GLFWContextVersionMajor, 3)
   glfwWindowHint(GLFWContextVersionMinor, 3)

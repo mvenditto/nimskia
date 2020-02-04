@@ -14,50 +14,42 @@ import sample_base
 import strformat
 
 const
-  w = 640
-  h = 480
+  w = 320
+  h = 320
   title = "sample: bitmap annotation"
 
 proc readBitmap(path: string): SKBitmap =
-  echo "read bitmap from stream"
   var fs = newSKFileStream(path)
   assert fs.isValid
   var(res,codec) = newCodec(fs)
   assert res == Success
-  let desiredInfo = newImageInfo(380, 133, Rgba8888, Premul, nil)
-  result = decodeBitmap(codec, desiredInfo)
+  result = decodeBitmap(codec)
 
 proc main() =
 
-  var bitmap = readBitmap("../docs/images/skia.png")
+  var bitmap = readBitmap("resources/images/skia.png")
 
-  let imageHeigth = bitmap.info.height
   echo &"bitmap: {bitmap.info.width}x{bitmap.info.height}"
 
   let paint = newPaint()
-  paint.strokeWidth = 3
+  paint.strokeWidth = 4
   paint.color = Red
   paint.style = Stroke 
 
+  const(padX, padY) = (4.0, 4.0)
+
   let annotCanvas = newCanvas(bitmap)
-  var(rx, ry) = (80.float, 33.float) 
   var rect = newRect(
-    rx, 
-    ry,
-    bitmap.info.width.float - rx,
-    bitmap.info.height.float - ry
+    0, 
+    0,
+    bitmap.info.width.float,
+    bitmap.info.height.float
   )
   annotCanvas.drawRect(rect, paint)
 
   proc update(canvas: SKCanvas, dt: float) =
-    canvas.clear(DarkBlue)
-    #discard canvas.save()
-    # flip vertically to adjust coords
-    #canvas.scale(
-    #  1.0, -1.0,  0, imageHeigth.float / 2.0
-    #);
-    canvas.drawBitmap(bitmap,0,0)
-    #canvas.restore()
+    canvas.clear(DefaultBg)
+    canvas.drawBitmap(bitmap,padX,h / 2.0 - bitmap.info.height.float / 2.0)
 
   let sample = Sample(
     title: title,

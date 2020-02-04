@@ -13,8 +13,8 @@ import streams
 import strformat
 
 const
-  w = 640
-  h = 480
+  w = 320
+  h = 320
   title = "sample: bitmap basics"
 
 proc readBitmapData(path: string): SKBitmap =
@@ -37,19 +37,19 @@ proc readBitmapStream(path: string): SKBitmap =
 
 proc main() =
 
-  var bitmap = readBitmapStream("../docs/images/skia.png")
+  var bitmap = readBitmapStream("resources/images/skia.png")
 
   let imageHeigth = bitmap.info.height
   echo &"bitmap: {bitmap.info.width}x{bitmap.info.height}"
 
   proc update(canvas: SKCanvas, dt: float) =
-    canvas.clear(DarkBlue)
+    canvas.clear(DefaultBg)
     #discard canvas.save()
     # flip vertically to adjust coords
     #canvas.scale(
     #  1.0, -1.0,  0, imageHeigth.float / 2.0
     #);
-    canvas.drawBitmap(bitmap,0,0)
+    canvas.drawBitmap(bitmap, 4, h / 2.0 - imageHeigth.float / 2.0)
     #canvas.restore()
 
   let sample = Sample(

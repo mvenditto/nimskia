@@ -3,8 +3,7 @@ import ../nimskia/[
   sk_colors,
   sk_paint,
   sk_enums,
-  sk_path,
-  sk_imageinfo
+  sk_path
 ]
 import sample_base
 

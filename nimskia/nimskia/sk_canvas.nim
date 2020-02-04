@@ -119,6 +119,9 @@ proc setMatrix*(this: SKCanvas, matrix: SKMatrix) =
 proc concatMatrix*(this: SKCanvas, matrix: SKMatrix) =
   sk_canvas_concat(this.native, matrix.native)
 
+proc skew*(this: SKCanvas, sx,sy: float) =
+  sk_canvas_skew(this.native, sx, sy)
+
 template autoRestore*(canvas: SKCanvas, ops: untyped): untyped =
   discard canvas.save()
   ops

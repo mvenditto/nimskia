@@ -2,6 +2,7 @@ import ../wrapper/sk_path
 import ../wrapper/sk_types
 import sk_enums
 import sk_rect
+import sk_matrix
 
 type 
   SKPath* = ref object
@@ -81,6 +82,23 @@ proc rewind*(this: SKPath) =
 
 proc `fillType=`*(this: SKPath, fillType: SKPathFillType) =
   sk_path_set_filltype(this.native, fillType.sk_path_filltype_t)
+
+proc bounds*(this: SKPath): SKRect =
+  result = newRect()
+  sk_path_get_bounds(this.native, result.native.addr)
+
+proc tightBounds*(this: SKPath): SKRect =
+  result = newRect()
+  if not sk_pathop_tight_bounds(this.native, result.native.addr):
+    result = nil
+
+proc computeTightBounds*(this: SKPath): SKRect =
+  result = newRect()
+  sk_path_compute_tight_bounds(this.native, result.native.addr)
+
+proc transform*(this: SKPath, mat: SKMatrix) =
+  sk_path_transform(this.native, mat.native)
+
 
 
 
