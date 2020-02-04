@@ -108,12 +108,24 @@ proc getIdentityMatrix*(): SKMatrix =
   )
 
 proc newRotationMatrix*(radians: float): SKMatrix =
-  new(result)
+  result = newMatrix()
   setSinCos(
     result, 
     sin(radians), 
     cos(radians)
   )
+
+proc newSkewMatrix*(sx, sy: float): SKMatrix =
+  result = newMatrix()
+  result.scaleX = 1
+  result.skewX = sx
+  result.transX = 0
+  result.skewY = sy
+  result.scaleY = 1
+  result.transY = 0
+  result.persp0 = 0
+  result.persp1 = 0
+  result.persp2 = 1
 
 converter tupleToMatrix*(
   t: (float,float,float,

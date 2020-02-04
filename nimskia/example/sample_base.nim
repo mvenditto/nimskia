@@ -11,20 +11,29 @@ import ../nimskia/[
 ]
 
 import strutils
+import strformat
 import os
 import common_api
 
-type Sample* = ref object
-  title*: string
-  w*, h*: int32
-  update*: proc(canvas: SKCanvas, dt: float)
-  surface*: SKSurface
+type 
+  Sample* = ref object
+    title*: string
+    w*, h*: int32
+    update*: proc(canvas: SKCanvas, dt: float)
+    surface*: SKSurface
+
+  GifTask = ref object
+    done*: bool
+    frames*: int
+    framesTot*: int
+    tick*: proc()
 
 var
-  self: Sample
+  sampleSelf: Sample
   scale = (1.float, 1.float)
   surface: SKSurface = nil
   customKeyProc*: proc(key: int32, scancode: int32, action: int32, mods: int32)
+  gifTask: GifTask
 
 const
   numSamples = 4
@@ -32,27 +41,65 @@ const
   snapshotsDir = "./snapshots"
   DefaultBg* = newColorARGB(255,247,247,247)
 
+proc escapedSampleName(): string =
+  sampleSelf.title
+      .replace(" ", "_")
+      .replace(".", "_")
+      .replace(":", "_") 
+
+proc takeScreenshot(file: string = "") =
+  var output = file
+  if len(output) < 1:
+    output = joinPath(
+      snapshotsDir, 
+      escapedSampleName() & ".png"
+    )
+
+  if not dirExists snapshotsDir:
+    createDir(snapshotsDir)
+  
+  emitPng(output, surface)
+
+# just saves single frames, do not encodes to a .gif file
+proc newGifTask(prefix: string, frames: int = 30) =
+  if not isNil gifTask:
+    if not gifTask.done:
+      return
+
+  let sample = escapedSampleName()
+  let outDir = joinPath(snapshotsDir, sample)
+  if dirExists outDir:
+    removeDir(outDir)
+  createDir(outDir)
+  gifTask = new(GifTask)
+
+  proc gifTaskTick() =
+    if gifTask.frames < gifTask.framesTot:
+      echo &"save frame ${gifTask.frames}"
+      takeScreenshot(joinPath(outDir, prefix & $gifTask.frames & ".png"))
+      gifTask.frames += 1
+      return
+    gifTask.done = true
+    
+  gifTask.done = false
+  gifTask.frames = 0
+  gifTask.framesTot = frames
+  gifTask.tick = gifTaskTick
+  
+
 proc keyProc(window: GLFWWindow, key: int32, scancode: int32,
              action: int32, mods: int32): void {.cdecl.} =
   if key == GLFWKey.ESCAPE and action == GLFWPress:
     window.setWindowShouldClose(true)
   if key == GLFWKey.S and action == GLFWPress:
-
-    let file = self.title
-      .replace(" ", "_")
-      .replace(".", "_")
-      .replace(":", "_") & ".png"
-
-    if not dirExists snapshotsDir:
-      createDir(snapshotsDir)
-    
-    emitPng(joinPath(snapshotsDir, file), surface)
-    
+    takeScreenshot()
+  if key == GLFWKey.G and action == GLFWPress:
+    newGifTask("gif", 30)
   if customKeyProc != nil:
     customKeyProc(key, scancode, action, mods)
 
 proc start*(this: Sample) =
-  self = this
+  sampleSelf = this
 
   assert glfwInit()
   glfwWindowHint(GLFWContextVersionMajor, 3)
@@ -129,6 +176,7 @@ proc start*(this: Sample) =
     let dt = now - latest
     latest = now
     this.update(surface.canvas, dt)
+    if not isNil gifTask: gifTask.tick()
     grContext.flush()
     w.swapBuffers()
 

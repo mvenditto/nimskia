@@ -29,6 +29,10 @@ proc `bottom=`*(rect: SKRect, value: float) = rect.native.bottom = value
 proc `$`*(f: SKRect): string = 
   &"top={f.top} left={f.left} width={f.width} height={f.height})"
 
+proc newRect*(): SKRect =
+  var r = new(sk_rect_t)
+  SKRect(native: r[])
+
 proc newRect*(rect: SKRect): SKRect = 
   var r = new(sk_rect_t)
   r.left = rect.left

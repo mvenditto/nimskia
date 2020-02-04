@@ -9,11 +9,11 @@ import sample_base
 import math
 
 const
-  w = 800
-  h = 600
+  w = 320
+  h = 320
   hw = w / 2
   hh = h / 2
-  radius = 75
+  radius = 32
   cycleTime: float64 = 1000
   title = "sample: circle expand animation"
 
@@ -33,7 +33,7 @@ proc main() =
     x - trunc(x / y) * y
 
   proc update(canvas: SKCanvas, dt: float) =
-    canvas.clear(MidnightBlue)
+    canvas.clear(DefaultBg)
     
     elapsed += dt * 1000
     elapsedTot += dt * 1000
@@ -46,7 +46,7 @@ proc main() =
       let r = radius * (c.float + t)
       paint.strokeWidth = radius / 4 * (if c == 0: t else: 1)
       let a = (255 * (1 - c / 5)).int
-      paint.color = (a, 0xBC, 0xEE, 0xFF)
+      paint.color = (a, 0x33, 0x33, 0xFF)
       canvas.drawCircle(hw, hh, r, paint)
     
     canvas.flush()
