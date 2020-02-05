@@ -1,5 +1,7 @@
 when defined(Linux):
   const dynlibsk_managedstream = "libskia.so"
+when defined(Windows):
+  const dynlibsk_managedstream = "libskia.dll"
 
 import strutils
 const sourcePath = currentSourcePath().split({'\\', '/'})[0..^2].join("/")

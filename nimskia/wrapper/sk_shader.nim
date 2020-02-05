@@ -1,5 +1,7 @@
 when defined(Linux):
   const dynlibsk_shader = "libskia.so"
+when defined(Windows):
+  const dynlibsk_shader = "libskia.dll"
 
 import strutils
 import sk_types

@@ -1,5 +1,7 @@
 when defined(Linux):
   const dynlibsk_picture = "libskia.so"
+when defined(Windows):
+  const dynlibsk_picture = "libskia.dll"
 
 import strutils
 import sk_types

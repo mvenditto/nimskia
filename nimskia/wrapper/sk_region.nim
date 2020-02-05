@@ -1,5 +1,7 @@
 when defined(Linux):
   const dynlibsk_region = "libskia.so"
+when defined(Windows):
+  const dynlibsk_region = "libskia.dll"
 
 import strutils
 import sk_types

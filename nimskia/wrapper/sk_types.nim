@@ -1,5 +1,7 @@
 when defined(Linux):
   const dynlibsk_types = "libskia.so"
+when defined(Windows):
+  const dynlibsk_types = "libskia.dll"
 
 import strutils
 template sk_color_set_argb*(a, r, g, b: untyped): untyped =

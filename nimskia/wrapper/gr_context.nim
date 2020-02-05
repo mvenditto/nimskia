@@ -1,5 +1,7 @@
 when defined(Linux):
   const dynlibgr_context = "libskia.so"
+when defined(Windows):
+  const dynlibgr_context = "libskia.dll"
 
 import strutils
 import sk_types

@@ -1,5 +1,7 @@
 when defined(Linux):
   const dynlibsk_mask = "libskia.so"
+when defined(Windows):
+  const dynlibsk_mask = "libskia.dll"
 
 import strutils
 import sk_types
