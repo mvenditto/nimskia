@@ -7,6 +7,11 @@ import ../nimskia/[
   sk_rect
 ]
 
+import gl_contexts/[
+  gl_context,
+  glfw_context
+]
+
 proc newTestBitmap*(alpha: byte = 255): SKBitmap =
   var bmp = newBitmap(40, 40)
   bmp.erase(Transparent)
@@ -42,3 +47,6 @@ proc validateTestBitmap*(bmp: SKBitmap, alpha: byte = 255) =
   assert Green.withAlpha(alpha) == bmp.getPixel(30, 10)
   assert Blue.withAlpha(alpha) == bmp.getPixel(10, 30)
   assert Yellow.withAlpha(alpha) == bmp.getPixel(30, 30)
+
+proc createGlContext*(): GlContext =
+  result = newGlfwContext()

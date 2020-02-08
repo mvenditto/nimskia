@@ -2,6 +2,8 @@ import ../wrapper/sk_stream
 import ../wrapper/sk_types
 import internals/native
 
+import sk_data
+
 type
   # still not good enough, more work needed here
   
@@ -14,6 +16,8 @@ type
   SKStreamAsset* = ref object of SKStreamSeekable
 
   SKFileStream* = ref object of SKStreamAsset
+
+  SKMemoryStream* = ref object of SKStreamAsset
 
 
 proc isAtEnd*(s: SKStream): bool =
@@ -154,6 +158,51 @@ proc openSKFileStream*(path: string): SKFileStream =
     fs.dispose()
     return nil
   return fs
+
+# SKMemoryStream
+
+proc checkCreated(s: SKMemoryStream) =
+  assert(not isNil s.native, "Cannot create new SKMemoryStream instance.")
+
+proc newSKMemoryStream*(): SKMemoryStream =
+  new(result)
+  result.native = cast[ptr sk_stream_t](sk_memorystream_new())
+  checkCreated(result)
+
+proc newSKMemoryStream*(length: int): SKMemoryStream =
+  new(result)
+  result.native = cast[ptr sk_stream_t](
+    sk_memorystream_new_with_length(length))
+  checkCreated(result)
+
+proc newSKMemoryStream*(data: pointer, length: int, copyData: bool): SKMemoryStream =
+  new(result)
+  result.native = cast[ptr sk_stream_t](
+    sk_memorystream_new_with_data(data, length, copyData)
+  )
+  checkCreated(result)
+
+proc newSKMemoryStream*(data: SKData): SKMemoryStream =
+  new(result)
+  result.native = cast[ptr sk_stream_t](
+    sk_memorystream_new_with_skdata(data.native)
+  )
+  checkCreated(result)
+
+proc dispose*(s: SKMemoryStream) =
+  sk_memorystream_destroy(
+    cast[ptr sk_stream_memorystream_t](s.native))
+
+proc setMemory*(s: SKMemoryStream, data: pointer, length: int, copyData: bool = false) = 
+  sk_memorystream_set_memory(cast[ptr sk_stream_memorystream_t](s.native), data, length, copyData)
+
+proc setMemory*(s: SKMemoryStream, data: seq[byte], copyData: bool = false) =
+  s.setMemory(cast[pointer](data[0].unsafeAddr), data.len, copyData)
+
+proc newSKMemoryStream*(data: seq[byte]): SKMemoryStream =
+  result = newSKMemoryStream()
+  result.setMemory(data, true)
+
   
 
 
