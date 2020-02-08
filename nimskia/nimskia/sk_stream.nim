@@ -1,6 +1,10 @@
 import ../wrapper/sk_stream
 import ../wrapper/sk_types
-import internals/native
+
+import internals/[
+  native, 
+  exceptions
+]
 
 import sk_data
 
@@ -8,6 +12,8 @@ type
   # still not good enough, more work needed here
   
   SKStream* = ref object of SKObject[sk_stream_t]
+
+  SKWStream* = ref object of SKObject[sk_wstream_t]
   
   SKStreamRewindable* = ref object of SKStream
   
@@ -18,6 +24,8 @@ type
   SKFileStream* = ref object of SKStreamAsset
 
   SKMemoryStream* = ref object of SKStreamAsset
+
+  SKFileWStream* = ref object of SKWStream
 
 
 proc isAtEnd*(s: SKStream): bool =
@@ -162,7 +170,8 @@ proc openSKFileStream*(path: string): SKFileStream =
 # SKMemoryStream
 
 proc checkCreated(s: SKMemoryStream) =
-  assert(not isNil s.native, "Cannot create new SKMemoryStream instance.")
+  if isNil s.native:
+    raise newException(UnsupportedOperationError, "Cannot create new SKMemoryStream instance.")
 
 proc newSKMemoryStream*(): SKMemoryStream =
   new(result)
@@ -202,6 +211,69 @@ proc setMemory*(s: SKMemoryStream, data: seq[byte], copyData: bool = false) =
 proc newSKMemoryStream*(data: seq[byte]): SKMemoryStream =
   result = newSKMemoryStream()
   result.setMemory(data, true)
+
+# SKWStream
+
+proc write8*(s: SKWStream, value: uint8): bool =
+  sk_wstream_write_8(s.native, value)
+
+proc write16*(s: SKWStream, value: uint16): bool =
+  sk_wstream_write_16(s.native, value)
+
+proc write32*(s: SKWStream, value: uint32): bool =
+  sk_wstream_write_32(s.native, value)
+
+proc writeText*(s: SKWStream, value: string): bool =
+  sk_wstream_write_text(s.native, value)
+
+proc writeDecimalAsText*(s: SKWStream, value: int32): bool =
+  sk_wstream_write_dec_as_text(s.native, value)
+
+proc writeBigDecimalAsText*(s: SKWStream, value: int64, digits: int32): bool =
+  sk_wstream_write_bigdec_as_text(s.native, value, digits)
+
+proc writeHexAsText*(s: SKWStream, value: uint32, digits: int32): bool = 
+  sk_wstream_write_hex_as_text(s.native, value, digits)
+
+proc writeScalarAsText*(s: SKWStream, value: float): bool = 
+  sk_wstream_write_scalar_as_text(s.native, value)
+
+proc writeBool*(s: SKWStream, value: bool): bool =
+  sk_wstream_write_bool(s.native, value)
+
+proc writeScalar*(s: SKWStream, value: float): bool = 
+  sk_wstream_write_scalar(s.native, value)
+
+proc writeStream*(s: SKWStream, input: SKStream, length: int): bool = 
+  sk_wstream_write_stream(s.native, input.native, length)
+
+proc newSKFileWStream*(path: string): SKFileWStream =
+  new(result)
+  result.native = cast[ptr sk_wstream_t](sk_filewstream_new(path))
+  if isNil result.native:
+    raise newException(UnsupportedOperationError, "Cannot create new SKFileWStream instance.")
+
+proc dispose*(s: SKFileWStream) =
+  sk_filewstream_destroy(cast[ptr sk_wstream_filestream_t](s.native))
+
+template isValid*(s: SKFileWStream): bool =
+  sk_filewstream_is_valid(cast[ptr sk_wstream_filestream_t](s.native))
+
+proc openSKFileWStream*(path: string): SKFileWStream =
+  var stream = newSKFileWStream(path)
+  if not stream.isValid:
+    stream.dispose()
+    stream = nil
+  return stream
+
+
+
+
+
+
+
+
+
 
   
 

@@ -6,11 +6,18 @@ import ../nimskia/[
 
 import test_common
 import os
+import oids
+import strformat
 
 const
   pathToImages = "resources"
 
 suite "SkStream tests":
+
+  let tmpDir = joinPath(getCurrentDir(), &"tmp_{genOid()}")
+  if not dirExists tmpDir:
+    createDir(tmpDir)
+
   test "Supports non-ASCII characters in path":
     let path = joinPath(pathToImages, "上田雅美.jpg")
     let stream = newSKFileStream(path)
@@ -18,7 +25,21 @@ suite "SkStream tests":
     check(not isNil stream.native)
     check(stream.getLength() > 0)
     check(stream.isValid)
-  
+
+  test "Writeable file stream select correct Stream for ASCII path":
+    let path = joinPath(tmpDir, &"{genOid()}.txt")
+    let stream = openSKFileWStream(path)
+    check(not isNil stream.native)
+    defer: stream.dispose()
+    check(stream.isValid)
+
+  test "Writeable file stream select correct Stream for ASCII path":
+    let path = joinPath(tmpDir, &"{genOid()}-上田雅美.txt")
+    let stream = openSKFileWStream(path)
+    check(not isNil stream.native)
+    defer: stream.dispose()
+    check(stream.isValid)
+
   test "File stream select correct stream for ASCII path":
     let path = joinPath(pathToImages, "color-wheel.png")
     let stream = openSKFileStream(path)
@@ -63,3 +84,6 @@ suite "SkStream tests":
     check(3 == stream.readByte())
     check(4 == fork.readByte())
     check(4 == stream.readByte())
+
+  removeDir(tmpDir)
+  

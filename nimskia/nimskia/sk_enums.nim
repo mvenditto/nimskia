@@ -129,6 +129,17 @@ type
     Rotate = ROTATE_SK_PATH_EFFECT_1D_STYLE
     Morph = MORPH_SK_PATH_EFFECT_1D_STYLE
 
+  SKTextEncoding* {.pure.} = enum
+    Utf8 = UTF8_SK_TEXT_ENCODING
+    Utf16 = UTF16_SK_TEXT_ENCODING
+    Utf32 = UTF32_SK_TEXT_ENCODING
+    GlyphId = GLYPH_ID_SK_TEXT_ENCODING
+  
+  SKEncoding* {.pure.} = enum
+    Utf8 = UTF8_SK_ENCODING
+    Utf16 = UTF16_SK_ENCODING
+    Utf32 = UTF32_SK_ENCODING
+
 const
   LastSeparableMode* = Multiply
   LastCoeffMode* = Screen
