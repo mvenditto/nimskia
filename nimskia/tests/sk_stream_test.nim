@@ -1,10 +1,7 @@
 import unittest
 
-import ../nimskia/[
-  sk_stream
-]
+import ../nimskia/sk_stream
 
-import test_common
 import os
 import oids
 import strformat
