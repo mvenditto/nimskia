@@ -100,3 +100,10 @@ proc createBackendRenderTarget*(
 
 proc dispose*(this: GRBackendRenderTarget) =
   gr_backendrendertarget_delete(this.native)
+
+proc createNativeGlInterface*(): GRGlInterface =
+  new(result)
+  result.native = gr_glinterface_create_native_interface()
+
+proc validate*(this: GRGlInterface): bool =
+  gr_glinterface_validate(this.native)

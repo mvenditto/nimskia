@@ -84,3 +84,11 @@ proc dispose*(this: SKSurface) = sk_surface_unref(this.native)
 proc snapshot*(this: SKSurface): SKImage =
   var image = sk_surface_new_image_snapshot(this.native)
   return SKImage(native: image)
+
+proc newSurface*(context: GRContext, budgeted: bool, info: SKImageInfo): SKSurface =
+  var surf = sk_surface_new_render_target(context.native, budgeted, info.native.addr, 0, BottomLeft.gr_surfaceorigin_t, nil, false)
+  SKSurface(
+    native: surf,
+    props: nil,
+    canvas: SKCanvas(native: sk_surface_get_canvas(surf))
+  )
