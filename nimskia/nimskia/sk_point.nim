@@ -1,10 +1,10 @@
-
-import internals/native
 import ../wrapper/sk_types
 
 type
   SKPoint* = ref sk_point_t
   SKPointI* = ref sk_ipoint_t
+
+let SKEmptyPoint* = SKPoint()
 
 proc newPoint*(x,y: float): SKPoint =
   new(result)

@@ -8,7 +8,6 @@ import sk_stream
 
 import internals/native
 
-
 type
   SkCodec* = ref object of SKObject[sk_codec_t]
 

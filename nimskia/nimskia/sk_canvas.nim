@@ -9,8 +9,8 @@ import sk_enums
 import sk_path
 import sk_bitmap
 import sk_matrix
-
-import macros
+import sk_data
+import sk_point
 
 type
   SKCanvas* = ref object
@@ -126,3 +126,33 @@ template autoRestore*(canvas: SKCanvas, ops: untyped): untyped =
   discard canvas.save()
   ops
   canvas.restore()
+
+proc drawLinkDestinationAnnotation*(this: SKCanvas, rect: SKRect, value: SKData) =
+  sk_canvas_draw_link_destination_annotation(
+    this.native, 
+    rect.native.addr, 
+    value.native
+  )
+
+proc drawLinkDestinationAnnotation*(this: SKCanvas, rect: SKRect, value: string) =
+  let data = newData(value)
+  sk_canvas_draw_link_destination_annotation(
+    this.native, 
+    rect.native.addr, 
+    data.native
+  )
+
+proc drawNamedDestinationAnnotation*(this: SKCanvas, point: SKPoint, value: SKData) =
+  sk_canvas_draw_named_destination_annotation(
+    this.native,
+    point[].addr,
+    value.native
+  )
+
+proc drawNamedDestinationAnnotation*(this: SKCanvas, point: SKPoint, value: string) =
+  let data = newData(value)
+  sk_canvas_draw_named_destination_annotation(
+    this.native,
+    point[].addr,
+    data.native
+  )
