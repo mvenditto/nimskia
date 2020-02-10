@@ -26,33 +26,38 @@ type
     keywords*: string
     creator*: string
     producer*: string
-    creation*: ref DateTime
-    modified*: ref DateTime
+    creation*: DateTime
+    modified*: DateTime
     rasterDpi*: float
     pdfA*: bool
     encodingQuality*: int
 
+proc newPdfMetadataNow(): SKDocumentPdfMetadata =
+  SKDocumentPdfMetadata(
+    creation: now(),
+    modified: now()
+  )
+
 proc newPdfMetadata*(): SKDocumentPdfMetadata =
-  result = SKDocumentPdfMetadata()
+  result = newPdfMetadataNow()
   result.rasterDpi = DefaultRasterDpi
   result.pdfA = false
   result.encodingQuality = DefaultEncodingQuality
 
-
 proc newPdfMetadata*(rasterDpi: float): SKDocumentPdfMetadata =
-  result = SKDocumentPdfMetadata()
+  result = newPdfMetadataNow()
   result.rasterDpi = rasterDpi
   result.pdfA = false
   result.encodingQuality = DefaultEncodingQuality
 
 proc newPdfMetadata*(encodingQuality: int): SKDocumentPdfMetadata =
-  result = SKDocumentPdfMetadata()
+  result = newPdfMetadataNow()
   result.rasterDpi = DefaultRasterDpi
   result.pdfA = false
   result.encodingQuality = encodingQuality
 
 proc newPdfMetadata*(rasterDpi: float, encodingQuality: int): SKDocumentPdfMetadata =
-  result = SKDocumentPdfMetadata()
+  result = newPdfMetadataNow()
   result.rasterDpi = rasterDpi
   result.pdfA = false
   result.encodingQuality = encodingQuality
@@ -86,7 +91,7 @@ proc createPdf*(stream: SKWStream): SKDocument =
   result.underlyingStream = stream
   result.native = sk_document_create_pdf_from_stream(stream.native)
 
-proc createPdf*(stream: SKWStream, meta: SKDocumentPdfMetadata): SKDocument = 
+proc createPdf*(stream: SKWStream, meta: SKDocumentPdfMetadata, createdNow: bool = false): SKDocument = 
   if isNil stream: raise newException(ValueError, "stream cannot be nul")
   new(result)
 
@@ -110,14 +115,11 @@ proc createPdf*(stream: SKWStream, meta: SKDocumentPdfMetadata): SKDocument =
     fEncodingQuality: meta.encodingQuality.cint
   )
   
-  if not isNil meta.creation:
-    var creation: sk_time_datetime_t = meta.creation[]
-    metadata.fCreation = creation.addr
-
-  if not isNil meta.modified:
-    var modified: sk_time_datetime_t = meta.modified[]
-    metadata.fModified = modified.addr
-
+  var creation: sk_time_datetime_t = if createdNow: now() else: meta.creation
+  metadata.fCreation = creation.addr
+  var modified: sk_time_datetime_t = if createdNow: now() else: meta.modified
+  metadata.fModified = modified.addr
+  
   defer:
     title.dispose()
     author.dispose()

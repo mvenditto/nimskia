@@ -25,13 +25,13 @@ proc createExampleDir() =
 proc createPdfMetadata(): SKDocumentPdfMetadata =
   result = newPdfMetadata()
   result.author = "cool developer"
-  #result.creation[] = now()
   result.creator = "cool developer library"
   result.keywords = "pdf, skia, nimskia"
-  #result.modified[] = now()
   result.producer = "nimskia"
   result.subject = "pdf creation example"
   result.title = "example pdf"
+  result.creation = now()
+  result.modified = now()
 
 proc createPdf() =
   let path = joinPath(sampleTmpDir, "example.pdf")
