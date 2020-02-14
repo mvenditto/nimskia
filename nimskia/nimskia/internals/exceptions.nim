@@ -3,6 +3,7 @@ import system
 
 type
   UnsupportedOperationError* = object of CatchableError
+  InvalidOperationError* = object of CatchableError
 
 proc notSupported*() =
   assert(false, &"not supported")
