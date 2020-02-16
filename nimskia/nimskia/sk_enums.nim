@@ -140,6 +140,11 @@ type
     Utf16 = UTF16_SK_ENCODING
     Utf32 = UTF32_SK_ENCODING
 
+  SKVertexMode* = enum
+    Triangles = TRIANGLES_SK_VERTICES_VERTEX_MODE, 
+    TriangleStrip = TRIANGLE_STRIP_SK_VERTICES_VERTEX_MODE,
+    TriangleFan = TRIANGLE_FAN_SK_VERTICES_VERTEX_MODE
+
 const
   LastSeparableMode* = Multiply
   LastCoeffMode* = Screen
