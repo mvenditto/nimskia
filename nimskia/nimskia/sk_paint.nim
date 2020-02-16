@@ -104,6 +104,15 @@ proc measureText*(this: SKPaint, text: string, cbounds: var SKRect) =
     cbounds.native.addr
   )
 
+proc measureTextBounds*(this: SKPaint, text: string): SKRect =
+  result = newRect()
+  discard sk_paint_measure_text(
+    this.native,
+    text.cstring,
+    len(text).cint,
+    result.native.addr
+  )
+
 proc `textSize=`*(this: SKPaint, textSize: float) =
   sk_paint_set_textsize(this.native, textSize)
 

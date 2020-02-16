@@ -1,4 +1,5 @@
 import ../wrapper/sk_types
+import strutils
 
 type
   SKColor* = uint32
@@ -21,4 +22,9 @@ converter tupleToColorARGB*(t: (int,int,int,int)): SKColor =
 converter tupleToColorRGB*(t: (int,int,int)): SKColor =
   let(r,g,b) = t
   newColorARGB(255,r,g,b)
+
+proc newColorARGB*(hex: string): SKColor =
+  var tmp = hex.replace("#","")
+  tmp = tmp.align(8, 'F')
+  fromHex[int32](tmp).SKColor
 
