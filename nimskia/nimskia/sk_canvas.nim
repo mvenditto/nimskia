@@ -11,6 +11,7 @@ import sk_bitmap
 import sk_matrix
 import sk_data
 import sk_point
+import sk_vertices
 
 type
   SKCanvas* = ref object
@@ -156,3 +157,20 @@ proc drawNamedDestinationAnnotation*(this: SKCanvas, point: SKPoint, value: stri
     point[].addr,
     data.native
   )
+  
+proc drawVertices*(this: SKCanvas, vertices: SKVertices, mode: SKBlendMode, paint: SKPaint) =
+  sk_canvas_draw_vertices(
+    this.native, vertices.native, mode.sk_blendmode_t, paint.native
+  )
+
+proc drawVertices*(
+  this: SKCanvas, 
+  vmode: SKVertexMode,
+  vertices: openArray[SKPoint],
+  colors: openArray[SKColor],
+  paint: SKPaint
+) =
+  let verts = copy(vmode, vertices, colors)
+  this.drawVertices(verts, Modulate, paint)
+  
+

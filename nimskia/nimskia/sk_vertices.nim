@@ -19,10 +19,10 @@ proc unrefNative*(this: SKVertices) =
 
 proc copy*(
   vmode: SKVertexMode, 
-  positions: seq[SKPoint],
-  texs: seq[SKPoint],
-  colors: seq[SKColor],
-  indices: seq[uint16]): SKVertices =
+  positions: openArray[SKPoint],
+  texs: openArray[SKPoint],
+  colors: openArray[SKColor],
+  indices: openArray[uint16]): SKVertices =
 
   if len(positions) <= 0:
     raise newException(ValueError, "num vertices must be > 0")
@@ -42,23 +42,23 @@ proc copy*(
     native: sk_vertices_make_copy(
         vmode.sk_vertices_vertex_mode_t,
         vertextCount.cint,
-        p[0].unsafeAddr,
-        t[0].unsafeAddr,
-        c[0].unsafeAddr,
+        if len(p) == 0: nil else: p[0].unsafeAddr,
+        if len(t) == 0: nil else: t[0].unsafeAddr,
+        if len(c) == 0: nil else: c[0].unsafeAddr,
         indexCount.cint,
-        indices[0].unsafeAddr
+        if len(indices) == 0: nil else: indices[0].unsafeAddr
       )
   )
 
 proc copy*(
   vmode: SKVertexMode, 
-  positions: seq[SKPoint],
-  texs: seq[SKPoint],
-  colors: seq[SKColor]): SKVertices =
+  positions: openArray[SKPoint],
+  texs: openArray[SKPoint],
+  colors: openArray[SKColor]): SKVertices =
   copy(vmode, positions, texs, colors, newSeq[uint16]())
 
 proc copy*(
   vmode: SKVertexMode, 
-  positions: seq[SKPoint],
-  colors: seq[SKColor]): SKVertices =
+  positions: openArray[SKPoint],
+  colors: openArray[SKColor]): SKVertices =
   copy(vmode, positions, newSeq[SKPoint](), colors, newSeq[uint16]())
