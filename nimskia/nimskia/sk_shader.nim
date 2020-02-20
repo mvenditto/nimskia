@@ -6,6 +6,8 @@ import ../wrapper/sk_types
 import sk_point
 import sk_enums
 import sk_color
+import sk_matrix
+import sk_bitmap
 
 type
   SKShader* = ref object of SKObject[sk_shader_t]
@@ -182,6 +184,28 @@ proc newPerlinNoiseTurbolence*(
       nil
     )
   )
+
+proc newBitmapShader*(
+  bitmap: SKBitmap,
+  tmx, tmy: SKShaderTileMode,
+  localMatrix: SKMatrix
+): SKShader = 
+  SKShader(native: sk_shader_new_bitmap(
+    bitmap.native,
+    tmx.sk_shader_tilemode_t,
+    tmy.sk_shader_tilemode_t,
+    if isNil localMatrix: nil else: localMatrix.native
+  ))
+
+template newBitmapShader*(
+  bitmap: SKBitmap,
+  tmx, tmy: SKShaderTileMode
+): SKShader = newBitmapShader(bitmap, tmx, tmy, nil)
+
+template newBitmapShader*(
+  bitmap: SKBitmap
+): SKShader = newBitmapShader(bitmap, Clamp, Clamp, nil)
+
 
 proc compose*(a,b: SKShader): SKShader =
   SKShader(native: sk_shader_new_compose(

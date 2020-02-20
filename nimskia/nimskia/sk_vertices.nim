@@ -8,6 +8,12 @@ import internals/native
 import sequtils
 import sugar
 
+const
+  NoColors = newSeq[SKColor]()
+  NoIndices = newSeq[uint16]()
+let 
+  NoTextures = newSeq[SKPoint]()
+
 type
   SKVertices* = ref object of SKObject[sk_vertices_t]
 
@@ -50,15 +56,32 @@ proc copy*(
       )
   )
 
-proc copy*(
+template copy*(
   vmode: SKVertexMode, 
   positions: openArray[SKPoint],
   texs: openArray[SKPoint],
-  colors: openArray[SKColor]): SKVertices =
-  copy(vmode, positions, texs, colors, newSeq[uint16]())
+  colors: openArray[SKColor]
+): SKVertices =
+  copy(vmode, positions, texs, colors, NoIndices)
 
-proc copy*(
+template copy*(
   vmode: SKVertexMode, 
   positions: openArray[SKPoint],
-  colors: openArray[SKColor]): SKVertices =
-  copy(vmode, positions, newSeq[SKPoint](), colors, newSeq[uint16]())
+  colors: openArray[SKColor]
+): SKVertices =
+  copy(vmode, positions, newSeq[SKPoint](), colors, NoIndices)
+
+template copy*(
+  vmode: SKVertexMode, 
+  positions: openArray[SKPoint],
+  texs: openArray[SKPoint]
+): SKVertices =
+  copy(vmode, positions, texs, NoColors, NoIndices)
+
+template copy*(
+  vmode: SKVertexMode, 
+  positions: openArray[SKPoint],
+  colors: openArray[SKColor],
+  indices: openArray[uint16]
+): SKVertices =
+  copy(vmode, positions, NoTextures, colors, indices)
