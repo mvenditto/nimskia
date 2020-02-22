@@ -1,14 +1,14 @@
 import ../wrapper/sk_types
 
 type
-  SKPixelGeometry* = enum
+  SkPixelGeometry* = enum
     UnknownPixelGeom = UNKNOWN_SK_PIXELGEOMETRY, 
     Rgb_H = RGB_H_SK_PIXELGEOMETRY, 
     Bgr_H = BGR_H_SK_PIXELGEOMETRY,
     Rgb_V = RGB_V_SK_PIXELGEOMETRY, 
     Bgr_V = BGR_V_SK_PIXELGEOMETRY
 
-  SKColorType* = enum
+  SkColorType* = enum
     UnknownColorType = UNKNOWN_SK_COLORTYPE, 
     Alpha8 = ALPHA_8_SK_COLORTYPE, 
     Rgb565 = RGB_565_SK_COLORTYPE,
@@ -21,39 +21,39 @@ type
     Gray8 = GRAY_8_SK_COLORTYPE, 
     RgbaF16 = RGBA_F16_SK_COLORTYPE
   
-  SKAlphaType* = enum
+  SkAlphaType* = enum
     Opaque = OPAQUE_SK_ALPHATYPE, 
     Premul = PREMUL_SK_ALPHATYPE, 
     Unpremul = UNPREMUL_SK_ALPHATYPE
   
-  SKStrokeCap* = enum
+  SkStrokeCap* = enum
     ButtCap = BUTT_SK_STROKE_CAP, 
     RoundCap = ROUND_SK_STROKE_CAP, 
     SquareCap = SQUARE_SK_STROKE_CAP
   
-  SKStrokeJoin* = enum
+  SkStrokeJoin* = enum
     MitelJoint = MITER_SK_STROKE_JOIN, 
     RoundJoint = ROUND_SK_STROKE_JOIN, 
     BevelJoint = BEVEL_SK_STROKE_JOIN
   
-  SKClipOp* {.pure.} = enum
+  SkClipOp* {.pure.} = enum
     Difference = DIFFERENCE_SK_CLIPOP
     Intersect = INTERSECT_SK_CLIPOP
 
-  SKPathArcSize* {.pure.} = enum
+  SkPathArcSize* {.pure.} = enum
     Small = SMALL_SK_PATH_ARC_SIZE
     Large = LARGE_SK_PATH_ARC_SIZE
   
-  SKPathDirection* = enum
+  SkPathDirection* = enum
     Clockwise = CW_SK_PATH_DIRECTION
     CounterClockwise = CCW_SK_PATH_DIRECTION
 
-  SKPaintStyle* = enum
+  SkPaintStyle* = enum
     Fill = FILL_SK_PAINT_STYLE
     Stroke = STROKE_SK_PAINT_STYLE
     StrokeAndFill = STROKE_AND_FILL_SK_PAINT_STYLE
   
-  SKZeroInitialized* = enum
+  SkZeroInitialized* = enum
     Yes = YES_SK_CODEC_ZERO_INITIALIZED
     No = NO_SK_CODEC_ZERO_INITIALIZED
 
@@ -69,7 +69,7 @@ type
     InternalError = INTERNAL_ERROR_SK_CODEC_RESULT
     Unimplemented = UNIMPLEMENTED_SK_CODEC_RESULT
 
-  SKBlendMode* = enum
+  SkBlendMode* = enum
     Clear = CLEAR_SK_BLENDMODE
     Src = SRC_SK_BLENDMODE
     Dst = DST_SK_BLENDMODE
@@ -100,47 +100,47 @@ type
     Color = COLOR_SK_BLENDMODE
     Luminosity LUMINOSITY_SK_BLENDMODE
 
-  SKShaderTileMode* = enum
+  SkShaderTileMode* = enum
     Clamp = CLAMP_SK_SHADER_TILEMODE
     Repeat = REPEAT_SK_SHADER_TILEMODE
     Mirror = MIRROR_SK_SHADER_TILEMODE
   
-  SKTextAlign* = enum
+  SkTextAlign* = enum
     Left = LEFT_SK_TEXT_ALIGN
     Center = CENTER_SK_TEXT_ALIGN
     Right = RIGHT_SK_TEXT_ALIGN
 
-  SKPathFillType* = enum
+  SkPathFillType* = enum
     Winding = WINDING_SK_PATH_FILLTYPE, 
     EvenOdd = EVENODD_SK_PATH_FILLTYPE,
     InverseWinding = INVERSE_WINDING_SK_PATH_FILLTYPE, 
     InverseEvenOdd = INVERSE_EVENODD_SK_PATH_FILLTYPE
 
-  SKTransferFunctionBehavior* = enum
+  SkTransferFunctionBehavior* = enum
     Respect = RESPECT_SK_TRANSFER_FUNCTION_BEHAVIOR
     Ignore = IGNORE_SK_TRANSFER_FUNCTION_BEHAVIOR
 
-  SKImageCachingHint* = enum
+  SkImageCachingHint* = enum
     Allow = ALLOW_SK_IMAGE_CACHING_HINT
     Disallow = DISALLOW_SK_IMAGE_CACHING_HINT
   
-  SKPathEffect1DStyle* = enum
+  SkPathEffect1DStyle* = enum
     Translate = TRANSLATE_SK_PATH_EFFECT_1D_STYLE
     Rotate = ROTATE_SK_PATH_EFFECT_1D_STYLE
     Morph = MORPH_SK_PATH_EFFECT_1D_STYLE
 
-  SKTextEncoding* {.pure.} = enum
+  SkTextEncoding* {.pure.} = enum
     Utf8 = UTF8_SK_TEXT_ENCODING
     Utf16 = UTF16_SK_TEXT_ENCODING
     Utf32 = UTF32_SK_TEXT_ENCODING
     GlyphId = GLYPH_ID_SK_TEXT_ENCODING
   
-  SKEncoding* {.pure.} = enum
+  SkEncoding* {.pure.} = enum
     Utf8 = UTF8_SK_ENCODING
     Utf16 = UTF16_SK_ENCODING
     Utf32 = UTF32_SK_ENCODING
 
-  SKVertexMode* = enum
+  SkVertexMode* = enum
     Triangles = TRIANGLES_SK_VERTICES_VERTEX_MODE, 
     TriangleStrip = TRIANGLE_STRIP_SK_VERTICES_VERTEX_MODE,
     TriangleFan = TRIANGLE_FAN_SK_VERTICES_VERTEX_MODE
