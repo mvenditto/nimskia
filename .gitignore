@@ -1,4 +1,6 @@
 nimskia/example/snapshots/
 nimskia/example/bin
+nimskia/example/*_tmp
 nimskia/tests/bin
+nimskia/libs
 depot_tools/
