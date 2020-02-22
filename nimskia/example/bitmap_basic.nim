@@ -17,21 +17,21 @@ const
   h = 320
   title = "sample: bitmap basics"
 
-proc readBitmapData(path: string): SKBitmap =
+proc readBitmapData(path: string): SkBitmap =
   var file = open(path, fmRead)
   let length = file.getFileSize()
   let buff = alloc(length)
   var s = newFileStream(file)
   assert s.readData(buff, length.int) > 0
-  var data = newData(buff, length.int)
-  result = decodeBitmap(newCodec(data))
+  var data = newSkData(buff, length.int)
+  result = decodeBitmap(newSkCodec(data))
   s.close()
 
-proc readBitmapStream(path: string): SKBitmap =
+proc readBitmapStream(path: string): SkBitmap =
   echo "read bitmap from stream"
-  var fs = newSKFileStream(path)
+  var fs = newSkFileStream(path)
   assert fs.isValid
-  var(res,codec) = newCodec(fs)
+  var(res,codec) = newSkCodec(fs)
   assert res == Success
   result = decodeBitmap(codec)
 
@@ -42,7 +42,7 @@ proc main() =
   let imageHeigth = bitmap.info.height
   echo &"bitmap: {bitmap.info.width}x{bitmap.info.height}"
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(DefaultBg)
     #discard canvas.save()
     # flip vertically to adjust coords

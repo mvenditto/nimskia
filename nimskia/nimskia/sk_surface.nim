@@ -10,53 +10,53 @@ import gr_context
 
 
 type
-  SKSurface* = ref object
+  SkSurface* = ref object
     native*: ptr sk_surface_t
-    canvas*: SKCanvas
-    props*: SKSurfaceProps
+    canvas*: SkCanvas
+    props*: SkSurfaceProps
 
-  SKSurfaceProps* = ref object
+  SkSurfaceProps* = ref object
     native*: ptr sk_surfaceprops_t
-    pixelGeometry*: SKPixelGeometry
+    pixelGeometry*: SkPixelGeometry
 
-### SKSurfaceProps
+### SkSurfaceProps
 
-proc newSurfaceProps*(pixelGeometry: SKPixelGeometry): SKSurfaceProps =
+proc newSkSurfaceProps*(pixelGeometry: SkPixelGeometry): SkSurfaceProps =
   var x: sk_surfaceprops_t 
-  SKSurfaceProps(native: x.addr, pixelGeometry: pixelGeometry)
+  SkSurfaceProps(native: x.addr, pixelGeometry: pixelGeometry)
 
-### SKSurface
+### SkSurface
 
-proc newSurface*(info: SKImageInfo, rowBytes: int, props: SKSurfaceProps): SKSurface =
+proc newSkSurface*(info: SkImageInfo, rowBytes: int, props: SkSurfaceProps): SkSurface =
   var surf = sk_surface_new_raster(
     info.native.addr,
     rowBytes, 
     if isNil props: nil else: props.native
   )
   var nativeCanvas = sk_surface_get_canvas(surf)
-  SKSurface(
+  SkSurface(
     native: surf, 
     props: props,
-    canvas: SKCanvas(native: nativeCanvas) 
+    canvas: SkCanvas(native: nativeCanvas) 
   )
 
-proc newSurface*(info: SKImageInfo): SKSurface =
-  return newSurface(info, 0, nil)
+proc newSkSurface*(info: SkImageInfo): SkSurface =
+  return newSkSurface(info, 0, nil)
 
-proc newSurface*(info: SKImageInfo, rowBytes: int): SKSurface =
-  return newSurface(info, rowBytes, nil)
+proc newSkSurface*(info: SkImageInfo, rowBytes: int): SkSurface =
+  return newSkSurface(info, rowBytes, nil)
 
-proc newSurface*(info: SKImageInfo, props: SKSurfacePRops): SKSurface =
-  return newSurface(info, 0, props)
+proc newSkSurface*(info: SkImageInfo, props: SkSurfacePRops): SkSurface =
+  return newSkSurface(info, 0, props)
 
-proc newSurface*(
+proc newSkSurface*(
   ctx: GRContext, 
   target: GRBackendRenderTarget, 
   origin: GRSurfaceOrigin, 
-  colorType: SKColorType,
-  colorspace: SKColorspace,
-  props: SKSurfaceProps
-): SKSUrface =
+  colorType: SkColorType,
+  colorspace: SkColorspace,
+  props: SkSurfaceProps
+): SkSUrface =
   assert(not isNil ctx, "Context cannot be nil")
   assert(not isNil target, "Target cannot be nil")  
   echo $(cast[uint32](ctx))
@@ -71,24 +71,24 @@ proc newSurface*(
     if not isNil colorspace: colorspace.native else: nil,
     if not isNil props: props.native else: nil,
   )
-  SKSurface(
+  SkSurface(
     native: surf, 
     props: props, 
-    canvas: SKCanvas(native: sk_surface_get_canvas(surf))
+    canvas: SkCanvas(native: sk_surface_get_canvas(surf))
   )
 
 # TODO: implemente raster direct surface
 
-proc dispose*(this: SKSurface) = sk_surface_unref(this.native)
+proc dispose*(this: SkSurface) = sk_surface_unref(this.native)
 
-proc snapshot*(this: SKSurface): SKImage =
+proc snapshot*(this: SkSurface): SkImage =
   var image = sk_surface_new_image_snapshot(this.native)
-  return SKImage(native: image)
+  return SkImage(native: image)
 
-proc newSurface*(context: GRContext, budgeted: bool, info: SKImageInfo): SKSurface =
+proc newSkSurface*(context: GRContext, budgeted: bool, info: SkImageInfo): SkSurface =
   var surf = sk_surface_new_render_target(context.native, budgeted, info.native.addr, 0, BottomLeft.gr_surfaceorigin_t, nil, false)
-  SKSurface(
+  SkSurface(
     native: surf,
     props: nil,
-    canvas: SKCanvas(native: sk_surface_get_canvas(surf))
+    canvas: SkCanvas(native: sk_surface_get_canvas(surf))
   )

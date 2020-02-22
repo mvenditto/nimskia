@@ -6,10 +6,10 @@ import sk_point
 import strformat
 # generify + ref
 type
-  SKRect* = ref object
+  SkRect* = ref object
     native*: sk_rect_t
   
-  SKRectI* = ref object
+  SkRectI* = ref object
     native*: sk_irect_t
 
 template left*(rect: untyped): auto = rect.native.left
@@ -21,78 +21,78 @@ template height*(rect: untyped): auto = rect.native.bottom - rect.native.top
 template midX*(rect: untyped): auto = rect.native.left  + (rect.width / 2)
 template midY*(rect: untyped): auto = rect.native.top  + (rect.height / 2)
 
-proc `left=`*(rect: SKRect, value: float) = rect.native.left = value
-proc `right=`*(rect: SKRect, value: float) = rect.native.right = value
-proc `top=`*(rect: SKRect, value: float) = rect.native.top = value
-proc `bottom=`*(rect: SKRect, value: float) = rect.native.bottom = value
+proc `left=`*(rect: SkRect, value: float) = rect.native.left = value
+proc `right=`*(rect: SkRect, value: float) = rect.native.right = value
+proc `top=`*(rect: SkRect, value: float) = rect.native.top = value
+proc `bottom=`*(rect: SkRect, value: float) = rect.native.bottom = value
 
-proc `$`*(f: SKRect): string = 
+proc `$`*(f: SkRect): string = 
   &"(top={f.top} left={f.left} width={f.width} height={f.height})"
 
-proc newRect*(): SKRect =
+proc newSkRect*(): SkRect =
   var r = new(sk_rect_t)
-  SKRect(native: r[])
+  SkRect(native: r[])
 
-proc newRect*(rect: SKRect): SKRect = 
+proc newSkRect*(rect: SkRect): SkRect = 
   var r = new(sk_rect_t)
   r.left = rect.left
   r.top = rect.top
   r.left = rect.left
   r.right = rect.right
-  SKRect(native: r[])
+  SkRect(native: r[])
   
-proc newRect*(left, top, right, bottom: float): SKRect =
+proc newSkRect*(left, top, right, bottom: float): SkRect =
   var rect: sk_rect_t
   rect.left = left
   rect.top = top
   rect.right = right
   rect.bottom = bottom
-  SKRect(native: rect)
+  SkRect(native: rect)
 
-proc newRectF*(left, top, right, bottom: int): SKRect =
+proc newSkRectF*(left, top, right, bottom: int): SkRect =
   var rect: sk_rect_t
   rect.left = left.float
   rect.top = top.float
   rect.right = right.float
   rect.bottom = bottom.float
-  SKRect(native: rect)
+  SkRect(native: rect)
 
-proc newRect*(topLeft: (float, float), bottomRight: (float, float)): SKRect =
-  newRect(topLeft[0], topLeft[1], bottomRight[0], bottomRight[1])
+proc newSkRect*(topLeft: (float, float), bottomRight: (float, float)): SkRect =
+  newSkRect(topLeft[0], topLeft[1], bottomRight[0], bottomRight[1])
 
-proc newRect*(topLeft: (float, float), width, height: float): SKRect =
-  newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + height)
+proc newSkRect*(topLeft: (float, float), width, height: float): SkRect =
+  newSkRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + height)
 
-### SKRectI
+### SkRectI
 
-proc newRect*(left, top, right, bottom: int32): SKRectI =
+proc newSkRect*(left, top, right, bottom: int32): SkRectI =
   var rect: sk_irect_t
   rect.left = left
   rect.top = top
   rect.right = right
   rect.bottom = bottom
-  SKRectI(native: rect)
+  SkRectI(native: rect)
 
-proc `==`*(a: SKRect, b: SKRect): bool =
+proc `==`*(a: SkRect, b: SkRect): bool =
   a.left == b.left and a.top == b.top and a.right == b.right and a.bottom == b.bottom
 
-proc newRect*(topLeft: (int32, int32), bottomRight: (int32, int32)): SKRectI =
-  newRect(topLeft[0], topLeft[1], bottomRight[0], bottomRight[1])
+proc newSkRect*(topLeft: (int32, int32), bottomRight: (int32, int32)): SkRectI =
+  newSkRect(topLeft[0], topLeft[1], bottomRight[0], bottomRight[1])
 
-proc newRect*(topLeft: (int32, int32), width, height: int32): SKRectI =
-  newRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + height)
+proc newSkRect*(topLeft: (int32, int32), width, height: int32): SkRectI =
+  newSkRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + height)
 
-proc size*(this: SKRect): SKSize =
-  result = newSize(this.width, this.height)
+proc size*(this: SkRect): SkSize =
+  result = newSkSize(this.width, this.height)
 
-proc `size=`*(this: SKRect, size: SKSize) =
+proc `size=`*(this: SkRect, size: SkSize) =
   this.right = size.width + this.left
   this.bottom = size.height + this.top
 
-template location*(this: SKRect): SKPoint =
-  newPoint(this.top, this.left)
+template location*(this: SkRect): SkPoint =
+  newSkPoint(this.top, this.left)
 
-proc `location=`*(this: SKRect, location: SKPoint) =
+proc `location=`*(this: SkRect, location: SkPoint) =
   let w = this.width
   let h = this.height
   this.left = location.x
@@ -100,34 +100,34 @@ proc `location=`*(this: SKRect, location: SKPoint) =
   this.right = location.x + w
   this.bottom = location.y + h
 
-proc offset*(this: SKRect, x, y: float) =
+proc offset*(this: SkRect, x, y: float) =
   this.left += x
   this.top += y
   this.right += x
   this.bottom += y
 
-proc inflate*(this: SKRect, x, y: float) =
+proc inflate*(this: SkRect, x, y: float) =
   this.left -= x
   this.top -= y
   this.right += x
   this.bottom += y
 
-proc inflated*(this: SKRect, x, y: float): SKRect =
-  result = newRect(this)
+proc inflated*(this: SkRect, x, y: float): SkRect =
+  result = newSkRect(this)
   result.inflate(x, y)
 
-proc standardized*(r: SKRect): SKRect =
+proc standardized*(r: SkRect): SkRect =
   if r.left > r.right:
     if r.top > r.bottom:
-      return newRect(r.right, r.bottom, r.left, r.top)
+      return newSkRect(r.right, r.bottom, r.left, r.top)
     else:
-      return newRect(r.right, r.top, r.left, r.bottom)
+      return newSkRect(r.right, r.top, r.left, r.bottom)
   else:
     if r.top > r.bottom:
-      return newRect(r.left, r.bottom, r.right, r.top)
+      return newSkRect(r.left, r.bottom, r.right, r.top)
     else:
-      return newRect(r.left, r.top, r.right, r.bottom)
+      return newSkRect(r.left, r.top, r.right, r.bottom)
 
-converter tupleToRectF*(rect: (float,float,float,float)): SKRect =
+converter tupleToRectF*(rect: (float,float,float,float)): SkRect =
   let(left,top,right,bottom) = rect
-  result = newRect(left, top, right, bottom)
+  result = newSkRect(left, top, right, bottom)

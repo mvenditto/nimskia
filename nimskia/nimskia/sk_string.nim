@@ -5,23 +5,23 @@ import internals/native
 import internals/exceptions
 
 type
-  SKString* = ref object of SKObject[sk_string_t]
+  SkString* = ref object of SkObject[sk_string_t]
 
 proc createCopy(src: string, length: int): ptr sk_string_t =
   sk_string_new_with_copy(src, length)
 
-proc newSKString*(): SKString =
-  result = SKString(native: sk_string_new_empty())
+proc newSkString*(): SkString =
+  result = SkString(native: sk_string_new_empty())
   if isNil result.native:
-    raise newException(UnsupportedOperationError, "Cannot create a new SKString instance.")
+    raise newException(UnsupportedOperationError, "Cannot create a new SkString instance.")
 
-proc newSKString*(src: string): SKString =
-  result = SKString(native: createCopy(src, src.len))
+proc newSkString*(src: string): SkString =
+  result = SkString(native: createCopy(src, src.len))
   if isNil result.native:
-    raise newException(UnsupportedOperationError, "Cannot create a new SKString instance.")
+    raise newException(UnsupportedOperationError, "Cannot create a new SkString instance.")
 
-proc `$`*(this: SKString): string =
+proc `$`*(this: SkString): string =
   $sk_string_get_c_str(this.native)
 
-proc dispose*(this: SKString) =
+proc dispose*(this: SkString) =
   sk_string_destructor(this.native)

@@ -18,22 +18,22 @@ const
 
 proc main() =
 
-  let dash = newPath().addOval(newRectF(0,0,8,3), Clockwise)
-  let oval = newPath().addOval(newRectF(50,100,430,380), Clockwise)
+  let dash = newSkPath().addOval(newSkRectF(0,0,8,3), Clockwise)
+  let oval = newSkPath().addOval(newSkRectF(50,100,430,380), Clockwise)
   let effect1 = sum(
-        newDescretePathEffect(10.0, 5.0, 795755684),
-        newDescretePathEffect(20.0, 40.0, 795755684)
+        newSkDescretePathEffect(10.0, 5.0, 795755684),
+        newSkDescretePathEffect(20.0, 40.0, 795755684)
     )
-  let effect2 = new1DPathEffect(dash, 20, 0, Rotate)
+  let effect2 = newSk1DPathEffect(dash, 20, 0, Rotate)
 
 
-  let strokePaint = newPaint()
+  let strokePaint = newSkPaint()
   strokePaint.style = Stroke
   strokePaint.strokeWidth = 2
   strokePaint.strokeCap = RoundCap
   strokePaint.antialias = true
   
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(White)
 
     strokePaint.color = Teal

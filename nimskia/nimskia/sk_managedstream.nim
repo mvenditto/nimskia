@@ -11,30 +11,30 @@ import system
 
 type
 
-  SKManagedStreamObj* = object of SKStreamAsset
-    onReadImpl*: proc(s: SKManagedStream, buff: pointer, size: int): int
-    onPeekImpl*: proc(s: SKManagedStream, buff: pointer, size: int): int
-    onIsAtEndImpl*: proc(s: SKManagedStream): bool
-    onHasPositionImpl*: proc(s: SKManagedStream): bool
-    onHasLengthImpl*: proc(s: SKManagedStream): bool
-    onRewindImpl*: proc(s: SKManagedStream): bool
-    onGetPositionImpl*: proc(s: SKManagedStream): int
-    onGetLengthImpl*: proc(s: SKManagedStream): int
-    onSeekImpl*: proc(s: SKManagedStream, position: int): bool
-    onMoveImpl*: proc(s: SKManagedStream, offset: int): bool
-    onCreateNewImpl*: proc(s: SKManagedStream): SKManagedStream
-    onDuplicateImpl*: proc(s: SKManagedStream): SKManagedStream
-    onForkImpl*: proc(s: SKManagedStream): SKManagedStream
+  SkManagedStreamObj* = object of SkStreamAsset
+    onReadImpl*: proc(s: SkManagedStream, buff: pointer, size: int): int
+    onPeekImpl*: proc(s: SkManagedStream, buff: pointer, size: int): int
+    onIsAtEndImpl*: proc(s: SkManagedStream): bool
+    onHasPositionImpl*: proc(s: SkManagedStream): bool
+    onHasLengthImpl*: proc(s: SkManagedStream): bool
+    onRewindImpl*: proc(s: SkManagedStream): bool
+    onGetPositionImpl*: proc(s: SkManagedStream): int
+    onGetLengthImpl*: proc(s: SkManagedStream): int
+    onSeekImpl*: proc(s: SkManagedStream, position: int): bool
+    onMoveImpl*: proc(s: SkManagedStream, offset: int): bool
+    onCreateNewImpl*: proc(s: SkManagedStream): SkManagedStream
+    onDuplicateImpl*: proc(s: SkManagedStream): SkManagedStream
+    onForkImpl*: proc(s: SkManagedStream): SkManagedStream
 
-  SKManagedStream* = ref object of SKManagedStreamObj
-    parent: SKManagedStream
-    child: SKManagedStream
+  SkManagedStream* = ref object of SkManagedStreamObj
+    parent: SkManagedStream
+    child: SkManagedStream
     wasCopied*: bool
     disposeUnderlyingStream: bool
     stream: Stream
 
 discard """
-proc onFork(s: SKManagedStream): SKManagedStream =
+proc onFork(s: SkManagedStream): SkManagedStream =
   var stream = s.onCreateNewImpl(s)
   discard sk_stream_seek(
     cast[ptr sk_stream_t](stream.native), 
@@ -43,7 +43,7 @@ proc onFork(s: SKManagedStream): SKManagedStream =
   stream
 """
 
-proc disposeInternal(s: SKManagedStream) =
+proc disposeInternal(s: SkManagedStream) =
   if (not isNil s.child) and (not isNil s.parent):
     s.child.parent = s.parent
     s.parent.child = s.child
@@ -63,11 +63,11 @@ proc disposeInternal(s: SKManagedStream) =
     s.stream = nil
 
 
-proc dispose*(s: SKManagedStream) =
+proc dispose*(s: SkManagedStream) =
   sk_managedstream_destroy(cast[ptr sk_stream_managedstream_t](s.native))
 
-proc getStreamFromCtx(context: pointer): SKManagedStream =
-  cast[ref SKManagedStream](context)[]
+proc getStreamFromCtx(context: pointer): SkManagedStream =
+  cast[ref SkManagedStream](context)[]
 
 proc readProc(s: ptr sk_stream_managedstream_t, context: pointer, buffer: pointer, size: int): int {.cdecl.} =
   var stream = getStreamFromCtx(context)
@@ -141,59 +141,59 @@ system.once:
   procs.fDestroy = destroyProc
   sk_managedstream_set_procs(procs[])
 
-proc newSKManagedStreamInternal*(): SKManagedStream = 
-  var x = cast[ptr SKManagedStream](alloc(sizeof(SKManagedStream)))
-  x[] = SKManagedStream(
+proc newSkManagedStreamInternal*(): SkManagedStream = 
+  var x = cast[ptr SkManagedStream](alloc(sizeof(SkManagedStream)))
+  x[] = SkManagedStream(
     native: cast[ptr sk_stream_t](sk_managedstream_new(x)))
   x[]
 
-template canSeek(s: SKManagedStream): bool = 
+template canSeek(s: SkManagedStream): bool = 
   not isNil s.stream.setPositionImpl
 
-template verifyNative(s: SKManagedStream) =
+template verifyNative(s: SkManagedStream) =
   if s.wasCopied: raise newException(
     InvalidOperationError,
     "This stream was duplicated or forked and cannot be read anymore."
   )
 
-proc read(s: SKManagedStream, buff: pointer, length: int): int =
+proc read(s: SkManagedStream, buff: pointer, length: int): int =
   s.verifyNative
   s.stream.readData(buff, length)
 
-proc atEnd(s: SKManagedStream): bool = 
+proc atEnd(s: SkManagedStream): bool = 
   s.verifyNative
   s.atEnd()
 
-proc peek(s: SKManagedStream, buff: pointer, length: int): int =
+proc peek(s: SkManagedStream, buff: pointer, length: int): int =
   s.verifyNative
   s.stream.peekData(buff, length)
 
-proc hasPosition(s: SKManagedStream): bool = 
+proc hasPosition(s: SkManagedStream): bool = 
   s.verifyNative
   s.canSeek
 
-proc hasLength(s: SKManagedStream): bool = false
+proc hasLength(s: SkManagedStream): bool = false
 
-proc rewind(s: SKManagedStream): bool =
+proc rewind(s: SkManagedStream): bool =
   s.verifyNative
   if not s.canSeek: return false
   s.stream.setPosition(0)
   return true
 
-proc getPosition(s: SKManagedStream): int =
+proc getPosition(s: SkManagedStream): int =
   s.verifyNative
   if not s.canSeek: return 0
   return s.stream.getPosition()
 
-proc getLength(s: SKManagedStream): int = 0
+proc getLength(s: SkManagedStream): int = 0
 
-proc seek(s: SKManagedStream, position: int): bool =
+proc seek(s: SkManagedStream, position: int): bool =
   s.verifyNative
   if not s.canSeek: return false
   s.stream.setPosition(position)
   return true
 
-proc move(s: SKManagedStream, offset: int): bool =
+proc move(s: SkManagedStream, offset: int): bool =
   s.verifyNative
   if isNil s.stream.setPositionImpl:
     return false
@@ -201,8 +201,8 @@ proc move(s: SKManagedStream, offset: int): bool =
   s.stream.setPosition(currPos + offset)
   return true
 
-proc newSKManagedStream*(stream: Stream, disposeUnderlyingStream: bool = false): SKManagedStream =
-  result = newSKManagedStreamInternal()
+proc newSkManagedStream*(stream: Stream, disposeUnderlyingStream: bool = false): SkManagedStream =
+  result = newSkManagedStreamInternal()
 
   result.wasCopied = false
   result.disposeUnderlyingStream = disposeUnderlyingStream
@@ -219,12 +219,12 @@ proc newSKManagedStream*(stream: Stream, disposeUnderlyingStream: bool = false):
   result.onSeekImpl = seek
   result.onMoveImpl = move
 
-  proc duplicate(s: SKManagedStream): SKManagedStream =
+  proc duplicate(s: SkManagedStream): SkManagedStream =
     s.verifyNative
     
     if not s.canSeek: return nil
     
-    var newStream = newSKManagedStream(
+    var newStream = newSkManagedStream(
       s.stream, s.disposeUnderlyingStream
     )
     newStream.parent = s
@@ -237,10 +237,10 @@ proc newSKManagedStream*(stream: Stream, disposeUnderlyingStream: bool = false):
 
     return newStream
   
-  proc fork(s: SKManagedStream): SKManagedStream =
+  proc fork(s: SkManagedStream): SkManagedStream =
     s.verifyNative
 
-    var newStream = newSKManagedStream(
+    var newStream = newSkManagedStream(
       s.stream, s.disposeUnderlyingStream
     )
     

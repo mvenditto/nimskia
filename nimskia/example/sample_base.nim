@@ -19,8 +19,8 @@ type
   Sample* = ref object
     title*: string
     w*, h*: int32
-    update*: proc(canvas: SKCanvas, dt: float)
-    surface*: SKSurface
+    update*: proc(canvas: SkCanvas, dt: float)
+    surface*: SkSurface
 
   GifTask = ref object
     done*: bool
@@ -31,7 +31,7 @@ type
 var
   sampleSelf: Sample
   scale = (1.float, 1.float)
-  surface: SKSurface = nil
+  surface: SkSurface = nil
   customKeyProc*: proc(key: int32, scancode: int32, action: int32, mods: int32)
   gifTask: GifTask
 
@@ -39,7 +39,7 @@ const
   numSamples = 4
   numStencilBits = 8
   snapshotsDir = "./snapshots"
-  DefaultBg* = newColorARGB(255,247,247,247)
+  DefaultBg* = newSkColorARGB(255,247,247,247)
 
 proc escapedSampleName(): string =
   sampleSelf.title
@@ -124,7 +124,7 @@ proc start*(this: Sample) =
   var grContext = createGL()
   assert not isNil grContext
 
-  var info = newFrameBufferInfo(0, GL_RGBA8.uint32) #GL_BGRA8
+  var info = newSkFrameBufferInfo(0, GL_RGBA8.uint32) #GL_BGRA8
   assert not isNil info
 
 
@@ -144,7 +144,7 @@ proc start*(this: Sample) =
   echo "samples: " & $target.samples
   echo "stencilBits: " & $target.stencils
 
-  surface = newSurface(
+  surface = newSkSurface(
       grContext,
       target,
       BottomLeft,
@@ -156,7 +156,7 @@ proc start*(this: Sample) =
   this.surface = surface
 
   discard """
-  var flipMatrix: SKMatrix = (
+  var flipMatrix: SkMatrix = (
    -1.0, 0.0, 0.0, 
     0.0,-1.0, 0.0, 
     0.0, 0.0, 1.0

@@ -14,14 +14,14 @@ import ../nimskia/[
 
 import math
 
-proc star*(r: float, c: float): SKPath =
-  result = newPath()
+proc star*(r: float, c: float): SkPath =
+  result = newSkPath()
   discard result.moveTo(c + r, c)
   for i in 1..7:
     let a = 2.6927937 * i.float
     discard result.lineTo(c + r * cos(a), c + r * sin(a))
 
-proc emitPng*(path: string; surface: SKSurface) =
+proc emitPng*(path: string; surface: SkSurface) =
   var image = surface.snapshot()
   defer: image.dispose()
   
@@ -35,21 +35,21 @@ proc emitPng*(path: string; surface: SKSurface) =
   f.close()
 
 # assumes a 640x480 surface
-proc testDraw*(canvas: SKCanvas) =
-    var fill = newPaint()
+proc testDraw*(canvas: SkCanvas) =
+    var fill = newSkPaint()
     fill.color = Blue
     canvas.drawPaint(fill)
 
     fill.color = Cyan
-    var rect = newRect(100.float, 100, 540, 380)
+    var rect = newSkRect(100.float, 100, 540, 380)
     canvas.drawRect(rect, fill)
 
-    var stroke = newPaint(Red)
+    var stroke = newSkPaint(Red)
     stroke.antialias = true
     stroke.style = Stroke
     stroke.strokeWidth = 5.0
     
-    var path = newPath()
+    var path = newSkPath()
     discard path.moveTo(50.0, 50.0)
                 .lineTo(590.0, 50.0)
                 .cubicTo(-490.0, 50.0, 1130.0, 430.0, 50.0, 430.0)
@@ -57,8 +57,8 @@ proc testDraw*(canvas: SKCanvas) =
 
     canvas.drawPath(path, stroke)
 
-    fill.color = newColorArgb(0x80, 0x00, 0xFF, 0x00)
-    var rect2: SKRect = (120.0, 120.0, 520.0, 360.0)
+    fill.color = newSkColorArgb(0x80, 0x00, 0xFF, 0x00)
+    var rect2: SkRect = (120.0, 120.0, 520.0, 360.0)
     canvas.drawOval(rect2, fill)
 
     path.dispose()

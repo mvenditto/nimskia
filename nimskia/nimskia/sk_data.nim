@@ -5,29 +5,29 @@ import sequtils
 import sugar
 
 type
-  SKData* = ref object
+  SkData* = ref object
     native*: ptr sk_data_t
 
-proc newData*(): SKData = 
-  SKData(native: sk_data_new_empty())
+proc newSkData*(): SkData = 
+  SkData(native: sk_data_new_empty())
 
-proc newData*(src: pointer, size: int): SKData = 
-  SKData(native: sk_data_new_with_copy(src, size))
+proc newSkData*(src: pointer, size: int): SkData = 
+  SkData(native: sk_data_new_with_copy(src, size))
 
-proc newData*(data: SKData, offset: int, length: int): SKData =
-  SKData(native: sk_data_new_subset(data.native, offset, length))
+proc newSkData*(data: SkData, offset: int, length: int): SkData =
+  SkData(native: sk_data_new_subset(data.native, offset, length))
 
-proc newData*(value: string): SKData =
+proc newSkData*(value: string): SkData =
   let cvalue = value.cstring
   var bytes = cvalue.toSeq.map(c => c.byte)
   bytes.add(0.byte)
-  newData(bytes[0].unsafeAddr, bytes.len)
+  newSkData(bytes[0].unsafeAddr, bytes.len)
 
-proc dispose*(data: SKData) = sk_data_unref(data.native)
+proc dispose*(data: SkData) = sk_data_unref(data.native)
 
-template size*(this: SKData): int = sk_data_get_size(this.native)
+template size*(this: SkData): int = sk_data_get_size(this.native)
 
-template data*(this: SKData): pointer = sk_data_get_data(this.native)
+template data*(this: SkData): pointer = sk_data_get_data(this.native)
 
-template len*(this: SKData): int = size(this)
+template len*(this: SkData): int = size(this)
 

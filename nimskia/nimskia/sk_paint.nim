@@ -8,71 +8,71 @@ import sk_rect
 import sk_patheffect
 
 type
-  SKPaint* = ref object
+  SkPaint* = ref object
     native*: ptr sk_paint_t
 
-proc dispose*(this: SKPaint) = sk_paint_delete(this.native)
+proc dispose*(this: SkPaint) = sk_paint_delete(this.native)
 
-template isAntialias*(this: SKPaint): bool = sk_paint_is_antialias(this.native)
+template isAntialias*(this: SkPaint): bool = sk_paint_is_antialias(this.native)
 
-proc `antialias=`*(this: SKPaint, enabled: bool) = 
+proc `antialias=`*(this: SkPaint, enabled: bool) = 
   sk_paint_set_antialias(this.native, enabled)
 
-template color*(this: SKPaint): SKColor = 
-  sk_paint_get_color(this.native).SKColor
+template color*(this: SkPaint): SkColor = 
+  sk_paint_get_color(this.native).SkColor
 
-proc `color=`*(this: SKPaint, color: SKColor) =
+proc `color=`*(this: SkPaint, color: SkColor) =
   sk_paint_set_color(this.native, color.sk_color_t)
 
-proc `color=`*(this: SKPaint, argb: (int,int,int,int)) =
+proc `color=`*(this: SkPaint, argb: (int,int,int,int)) =
   var(a,r,g,b) = argb
-  sk_paint_set_color(this.native, newColorARGB(a,r,g,b)) 
+  sk_paint_set_color(this.native, newSkColorARGB(a,r,g,b)) 
 
-template style*(this: SKPaint): SKPaintStyle = 
-  sk_paint_get_style(this.native).SKPaintStyle
+template style*(this: SkPaint): SkPaintStyle = 
+  sk_paint_get_style(this.native).SkPaintStyle
 
-proc `style=`*(this: SKPaint, style: SKPaintStyle) = 
+proc `style=`*(this: SkPaint, style: SkPaintStyle) = 
   sk_paint_set_style(this.native, cast[sk_paint_style_t](style))
 
-proc isStroke*(this: SKPaint): bool = 
+proc isStroke*(this: SkPaint): bool = 
   this.style == Stroke
 
-proc `shader=`*(this: SKPaint, shader: SKShader) =
+proc `shader=`*(this: SkPaint, shader: SkShader) =
   sk_paint_set_shader(
     this.native, 
     if not isNil shader: shader.native else: nil
   )
 
-proc shader*(this: SKPaint): SKShader = 
-  SKShader(native: sk_paint_get_shader(this.native))
+proc shader*(this: SkPaint): SkShader = 
+  SkShader(native: sk_paint_get_shader(this.native))
 
-proc `pathEffect=`*(this: SKPaint, pathEffect: SKPathEffect) =
+proc `pathEffect=`*(this: SkPaint, pathEffect: SkPathEffect) =
   sk_paint_set_path_effect(this.native, pathEffect.native) 
 
-template strokeWidth*(this: SKPaint): float = 
+template strokeWidth*(this: SkPaint): float = 
   sk_paint_get_stroke_width(this.native).float
 
-proc `strokeWidth=`*(this: SKPaint, strokeWidth: float) =
+proc `strokeWidth=`*(this: SkPaint, strokeWidth: float) =
   sk_paint_set_stroke_width(this.native, strokeWidth) 
 
-template miterWidth*(this: SKPaint): float = sk_paint_get_stroke_miter(this.native)
+template miterWidth*(this: SkPaint): float = sk_paint_get_stroke_miter(this.native)
 
-proc `miterWidth=`*(this: SKPaint, miterWidth: float) =
+proc `miterWidth=`*(this: SkPaint, miterWidth: float) =
   sk_paint_set_stroke_miter(this.native, miterWidth) 
 
-template strokeCap*(this: SKPaint): SKStrokeCap = 
-  sk_paint_get_stroke_cap(this.native).SKStrokeCap
+template strokeCap*(this: SkPaint): SkStrokeCap = 
+  sk_paint_get_stroke_cap(this.native).SkStrokeCap
 
-proc `strokeCap=`*(this: SKPaint, capType: SKStrokeCap) =
+proc `strokeCap=`*(this: SkPaint, capType: SkStrokeCap) =
   sk_paint_set_stroke_cap(this.native, capType.sk_stroke_cap_t) 
 
-template joinCap*(this: SKPaint): SKStrokeJoin = 
-  sk_paint_get_stroke_join(this.native).SKStrokeJoin
+template joinCap*(this: SkPaint): SkStrokeJoin = 
+  sk_paint_get_stroke_join(this.native).SkStrokeJoin
 
-proc `joinCap=`*(this: SKPaint, jointType: SKStrokeJoin) =
+proc `joinCap=`*(this: SkPaint, jointType: SkStrokeJoin) =
   sk_paint_set_stroke_join(this.native, jointType.sk_stroke_join_t) 
 
-proc measureText*(this: SKPaint, text: pointer, length: int, cbounds: SKRect): float =
+proc measureText*(this: SkPaint, text: pointer, length: int, cbounds: SkRect): float =
   return sk_paint_measure_text(
     this.native,
     text,
@@ -80,7 +80,7 @@ proc measureText*(this: SKPaint, text: pointer, length: int, cbounds: SKRect): f
     cbounds.native.addr
   )
 
-proc measureText*(this: SKPaint, text: string, length: int, cbounds: SKRect): float =
+proc measureText*(this: SkPaint, text: string, length: int, cbounds: SkRect): float =
   return sk_paint_measure_text(
     this.native,
     text.cstring,
@@ -88,7 +88,7 @@ proc measureText*(this: SKPaint, text: string, length: int, cbounds: SKRect): fl
     cbounds.native.addr
   )
 
-proc measureText*(this: SKPaint, text: string): float =
+proc measureText*(this: SkPaint, text: string): float =
   return sk_paint_measure_text(
     this.native,
     text.cstring,
@@ -96,7 +96,7 @@ proc measureText*(this: SKPaint, text: string): float =
     nil
   )
 
-proc measureText*(this: SKPaint, text: string, cbounds: var SKRect) =
+proc measureText*(this: SkPaint, text: string, cbounds: var SkRect) =
   discard sk_paint_measure_text(
     this.native,
     text.cstring,
@@ -104,8 +104,8 @@ proc measureText*(this: SKPaint, text: string, cbounds: var SKRect) =
     cbounds.native.addr
   )
 
-proc measureTextBounds*(this: SKPaint, text: string): SKRect =
-  result = newRect()
+proc measureTextBounds*(this: SkPaint, text: string): SkRect =
+  result = newSkRect()
   discard sk_paint_measure_text(
     this.native,
     text.cstring,
@@ -113,24 +113,24 @@ proc measureTextBounds*(this: SKPaint, text: string): SKRect =
     result.native.addr
   )
 
-proc `textSize=`*(this: SKPaint, textSize: float) =
+proc `textSize=`*(this: SkPaint, textSize: float) =
   sk_paint_set_textsize(this.native, textSize)
 
-template textSize*(this: SKPaint): float =
+template textSize*(this: SkPaint): float =
   sk_paint_get_textsize(this.native).float
 
-template fontSpacing*(this: SKPaint): float =
+template fontSpacing*(this: SkPaint): float =
   sk_paint_get_fontmetrics(this.native, nil, 0)
 
-proc `textAlign=`*(this: SKPaint, align: SKTextAlign) =
+proc `textAlign=`*(this: SkPaint, align: SkTextAlign) =
   sk_paint_set_text_align(this.native, align.sk_text_align_t)
 
-proc newPaint*(): SKPaint = SKPaint(native: sk_paint_new())
+proc newSkPaint*(): SkPaint = SkPaint(native: sk_paint_new())
 
-proc newPaint*(color: SKColor): SKPaint = 
-  result = newPaint()
+proc newSkPaint*(color: SkColor): SkPaint = 
+  result = newSkPaint()
   result.color = color
 
-proc newPaint*(a,r,g,b: int): SKPaint = 
-  result = newPaint()
-  result.color = newColorARGB(a,r,g,b)
+proc newSkPaint*(a,r,g,b: int): SkPaint = 
+  result = newSkPaint()
+  result.color = newSkColorARGB(a,r,g,b)

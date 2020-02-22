@@ -19,7 +19,7 @@ proc test_draw*(canvas: ptr sk_canvas_t) =
     var stroke = sk_paint_new()
     sk_paint_set_color(stroke, sk_color_set_argb(0xFF, 0xFF, 0x00, 0x00))
     sk_paint_set_antialias(stroke, true)
-    sk_paint_set_style(stroke, STROKE_SK_PAINT_STYLE)
+    sk_paint_set_style(stroke, STROKE_Sk_PAINT_STYLE)
     sk_paint_set_stroke_width(stroke, 5.0f)
     var path = sk_path_new();
 

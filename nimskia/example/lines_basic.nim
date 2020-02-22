@@ -16,21 +16,21 @@ const
 
 proc main() =
 
-  let textPaint = newPaint()
+  let textPaint = newSkPaint()
   textPaint.color = Black
   textPaint.textSize = 40
   textPaint.textAlign = Center
   textPaint.antialias = true
   defer: textPaint.dispose()
 
-  let thickLinePaint = newPaint()
+  let thickLinePaint = newSkPaint()
   thickLinePaint.color = Orange
   thickLinePaint.style = Stroke
   thickLinePaint.strokeWidth = 35
   thickLinePaint.antialias = true
   defer: thickLinePaint.dispose()
 
-  let thinLinePaint = newPaint()
+  let thinLinePaint = newSkPaint()
   thinLinePaint.color = Black
   thinLinePaint.style = Stroke
   thinLinePaint.strokeWidth = 2
@@ -41,11 +41,11 @@ proc main() =
   let xLine1 = 100.float
   let xLine2 = w - xLine1
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(White)
 
     var y = textPaint.fontSpacing
-    for cap in SKStrokeCap:
+    for cap in SkStrokeCap:
       canvas.drawText($cap, xText, y, textPaint)
       y += textPaint.fontSpacing;
 

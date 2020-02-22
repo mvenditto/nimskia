@@ -1,35 +1,35 @@
 import ../wrapper/sk_types
 
 type
-  SKPoint* = ref sk_point_t
-  SKPointI* = ref sk_ipoint_t
+  SkPoint* = ref sk_point_t
+  SkPointI* = ref sk_ipoint_t
 
-let SKEmptyPoint* = SKPoint()
+let SkEmptyPoint* = SkPoint()
 
-proc newPoint*(x,y: float): SKPoint =
+proc newSkPoint*(x,y: float): SkPoint =
   new(result)
   result.x = x
   result.y = y
 
-converter tupleToSKPoint*(p: (float,float)): SKPoint =
+converter tupleToSkPoint*(p: (float,float)): SkPoint =
   let(x,y) = p
-  newPoint(x,y)
+  newSkPoint(x,y)
 
-proc newPoint*(x,y: int): SKPointI =
+proc newSkPoint*(x,y: int): SkPointI =
   new(result)
   result.x = x.int32
   result.y = y.int32
 
-proc `+`*(a: SKPoint, b: SKPoint): SKPoint =
+proc `+`*(a: SkPoint, b: SkPoint): SkPoint =
   new(result)
   result.x = a.x + b.x
   result.y = a.y + b.y
 
-proc `-`*(a: SKPoint, b: SKPoint): SKPoint =
+proc `-`*(a: SkPoint, b: SkPoint): SkPoint =
   new(result)
   result.x = a.x - b.x
   result.y = a.y - b.y
 
-converter tupleToSKPoint*(p: (int,int)): SKPointI =
+converter tupleToSkPoint*(p: (int,int)): SkPointI =
   let(x,y) = p
-  newPoint(x,y)
+  newSkPoint(x,y)

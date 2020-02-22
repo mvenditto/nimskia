@@ -40,10 +40,10 @@ proc main() =
 
   customKeyProc = keyProc
 
-  var path = newPath();
+  var path = newSkPath();
   defer: path.dispose()
 
-  let center = newPoint(w / 2, h / 2)
+  let center = newSkPoint(w / 2, h / 2)
   let radius = 0.35 * min(w, h)
 
   discard path.moveTo(w / 2, h / 2 - radius + 20);
@@ -55,19 +55,19 @@ proc main() =
   
   path.close()
 
-  let strokePaint = newPaint()
+  let strokePaint = newSkPaint()
   strokePaint.style = Stroke
   strokePaint.color = Red
   strokePaint.strokeWidth = 25
   strokePaint.antialias = true
   defer: strokePaint.dispose()
 
-  let fillPaint = newPaint()
+  let fillPaint = newSkPaint()
   fillPaint.color = Blue
   fillPaint.style = Fill
   defer: fillPaint.dispose()
 
-  let textPaint = newPaint()
+  let textPaint = newSkPaint()
   textPaint.color = Black
   textPaint.textSize = 18
   textPaint.textAlign = Left
@@ -77,7 +77,7 @@ proc main() =
 
 
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(White)
 
     path.fillType = fillMode

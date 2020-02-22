@@ -14,61 +14,61 @@ import sk_point
 import sk_vertices
 
 type
-  SKCanvas* = ref object
+  SkCanvas* = ref object
     native*: ptr sk_canvas_t
 
-proc newCanvas*(bitmap: SKBitmap): SKCanvas =
-  SKCanvas(native: sk_canvas_new_from_bitmap(bitmap.native))
+proc newSkCanvas*(bitmap: SkBitmap): SkCanvas =
+  SkCanvas(native: sk_canvas_new_from_bitmap(bitmap.native))
 
-proc translate*(this: SKCanvas, cx, cy: float) = 
+proc translate*(this: SkCanvas, cx, cy: float) = 
   sk_canvas_translate(this.native, cx, cy)
 
-proc scale*(this: SKCanvas, sx, sy: float) = 
+proc scale*(this: SkCanvas, sx, sy: float) = 
   sk_canvas_scale(this.native, sx, sy)
 
-proc scale*(this: SKCanvas, sx, sy, px, py: float) =
+proc scale*(this: SkCanvas, sx, sy, px, py: float) =
   sk_canvas_translate(this.native, px, py)
   sk_canvas_scale(this.native, sx, sy) 
   sk_canvas_translate(this.native, -px, -py)
 
-proc rotateDegrees*(this: SKCanvas, degrees: float) = 
+proc rotateDegrees*(this: SkCanvas, degrees: float) = 
   sk_canvas_rotate_degrees(this.native, degrees)
 
-proc rotateRadians*(this: SKCanvas, radians: float) = 
+proc rotateRadians*(this: SkCanvas, radians: float) = 
   sk_canvas_rotate_radians(this.native, radians)
 
-proc drawPaint*(this: SKCanvas, paint: SKPaint) =
+proc drawPaint*(this: SkCanvas, paint: SkPaint) =
   sk_canvas_draw_paint(this.native, paint.native)
 
-proc drawRect*(this: SKCanvas, rect: SKRect, paint: SKPaint) =
+proc drawRect*(this: SkCanvas, rect: SkRect, paint: SkPaint) =
   sk_canvas_draw_rect(this.native, rect.native.addr, paint.native)
 
-proc drawRect*(this: SKCanvas, rect: SKRectI, paint: SKPaint) =
+proc drawRect*(this: SkCanvas, rect: SkRectI, paint: SkPaint) =
   # TODO: fixme
   sk_canvas_draw_rect(this.native, cast[ptr sk_rect_t](rect.native.addr), paint.native)
 
-proc drawRoundRect*(this: SKCanvas, rect: SKRect, rx: float, ry: float, paint: SKPaint) =
+proc drawRoundRect*(this: SkCanvas, rect: SkRect, rx: float, ry: float, paint: SkPaint) =
   sk_canvas_draw_round_rect(this.native, cast[ptr sk_rect_t](rect.native.addr), rx, ry, paint.native)
 
-proc drawCircle*(this: SKCanvas, cx, cy, radius: float, paint: SKPaint) =
+proc drawCircle*(this: SkCanvas, cx, cy, radius: float, paint: SkPaint) =
   sk_canvas_draw_circle(this.native, cx, cy, radius, paint.native)
 
-proc drawOval*(this: SKCanvas, bounds: SKRect, paint: SKPaint) =
+proc drawOval*(this: SkCanvas, bounds: SkRect, paint: SkPaint) =
   sk_canvas_draw_oval(this.native, bounds.native.addr, paint.native)
 
-proc drawImage*(this: SKCanvas, image: SKImage, cx: float, cy:float, paint: SKPaint) =
+proc drawImage*(this: SkCanvas, image: SkImage, cx: float, cy:float, paint: SkPaint) =
   sk_canvas_draw_image(this.native, image.native, cx, cy, paint.native)
 
-proc drawColor*(this: SKCanvas, color: SKColor, mode: SKBlendMode) =
+proc drawColor*(this: SkCanvas, color: SkColor, mode: SkBlendMode) =
   sk_canvas_draw_color(this.native, color.sk_color_t, mode.sk_blendmode_t)
 
-proc drawPath*(this: SKCanvas, path: SKPath, paint: SKPaint) =
+proc drawPath*(this: SkCanvas, path: SkPath, paint: SkPaint) =
   sk_canvas_draw_path(this.native, path.native, paint.native)
 
-proc drawLine*(this: SKCanvas, x1: float, y1: float, x2: float, y2: float, paint: SKPaint) =
+proc drawLine*(this: SkCanvas, x1: float, y1: float, x2: float, y2: float, paint: SkPaint) =
   sk_canvas_draw_line(this.native, x1, y1, x2, y2, paint.native)
 
-proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap, left: float, top: float, paint: SKPaint) =
+proc drawBitmap*(this: SkCanvas, bitmap: SkBitmap, left: float, top: float, paint: SkPaint) =
   sk_canvas_draw_bitmap(
     this.native,
     bitmap.native,
@@ -77,98 +77,98 @@ proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap, left: float, top: float, pain
     paint.native
   )
 
-proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap, left: float, top: float) =
-  var paint = newPaint()
+proc drawBitmap*(this: SkCanvas, bitmap: SkBitmap, left: float, top: float) =
+  var paint = newSkPaint()
   drawBitmap(this, bitmap, left, top, paint)
   paint.dispose()
 
-proc drawBitmap*(this: SKCanvas, bitmap: SKBitmap) =
-  var paint = newPaint()
+proc drawBitmap*(this: SkCanvas, bitmap: SkBitmap) =
+  var paint = newSkPaint()
   drawBitmap(this, bitmap, 0, 0, paint)
   paint.dispose()
 
-proc drawText*(this: SKCanvas, text: string, x: float, y: float, paint: SKPaint) =
+proc drawText*(this: SkCanvas, text: string, x: float, y: float, paint: SkPaint) =
   sk_canvas_draw_text(this.native, text.cstring, len(text), x, y, paint.native)
 
-proc dispose*(this: SKCanvas) =
+proc dispose*(this: SkCanvas) =
   sk_canvas_destroy(this.native)
 
-proc save*(this: SKCanvas): int =
+proc save*(this: SkCanvas): int =
   sk_canvas_save(this.native)
 
-proc save_layer*(this: SKCanvas, bounds: SKRect, paint: SKPaint): int =
+proc save_layer*(this: SkCanvas, bounds: SkRect, paint: SkPaint): int =
   sk_canvas_save_layer(this.native, bounds.native.addr, paint.native)
 
-proc restore*(this: SKCanvas) =
+proc restore*(this: SkCanvas) =
   sk_canvas_restore(this.native)
 
-proc clear*(this: SKCanvas, color: SKColor) =
+proc clear*(this: SkCanvas, color: SkColor) =
   sk_canvas_clear(this.native, color.sk_color_t)
 
-proc clip*(this: SKCanvas, bounds: SKRect, clipop: SKClipOp, doAA: bool) =
+proc clip*(this: SkCanvas, bounds: SkRect, clipop: SkClipOp, doAA: bool) =
   sk_canvas_clip_rect_with_operation(this.native, bounds.native.addr, clipop.sk_clipop_t, doAA)
 
-proc flush*(this: SKCanvas) =
+proc flush*(this: SkCanvas) =
   sk_canvas_flush(this.native)
 
-proc resetMatrix*(this: SKCanvas) =
+proc resetMatrix*(this: SkCanvas) =
   sk_canvas_reset_matrix(this.native)
 
-proc setMatrix*(this: SKCanvas, matrix: SKMatrix) =
+proc setMatrix*(this: SkCanvas, matrix: SkMatrix) =
   sk_canvas_set_matrix(this.native, matrix.native)
 
-proc concatMatrix*(this: SKCanvas, matrix: SKMatrix) =
+proc concatMatrix*(this: SkCanvas, matrix: SkMatrix) =
   sk_canvas_concat(this.native, matrix.native)
 
-proc skew*(this: SKCanvas, sx,sy: float) =
+proc skew*(this: SkCanvas, sx,sy: float) =
   sk_canvas_skew(this.native, sx, sy)
 
-template autoRestore*(canvas: SKCanvas, ops: untyped): untyped =
+template autoRestore*(canvas: SkCanvas, ops: untyped): untyped =
   discard canvas.save()
   ops
   canvas.restore()
 
-proc drawLinkDestinationAnnotation*(this: SKCanvas, rect: SKRect, value: SKData) =
+proc drawLinkDestinationAnnotation*(this: SkCanvas, rect: SkRect, value: SkData) =
   sk_canvas_draw_link_destination_annotation(
     this.native, 
     rect.native.addr, 
     value.native
   )
 
-proc drawLinkDestinationAnnotation*(this: SKCanvas, rect: SKRect, value: string) =
-  let data = newData(value)
+proc drawLinkDestinationAnnotation*(this: SkCanvas, rect: SkRect, value: string) =
+  let data = newSkData(value)
   sk_canvas_draw_link_destination_annotation(
     this.native, 
     rect.native.addr, 
     data.native
   )
 
-proc drawNamedDestinationAnnotation*(this: SKCanvas, point: SKPoint, value: SKData) =
+proc drawNamedDestinationAnnotation*(this: SkCanvas, point: SkPoint, value: SkData) =
   sk_canvas_draw_named_destination_annotation(
     this.native,
     point[].addr,
     value.native
   )
 
-proc drawNamedDestinationAnnotation*(this: SKCanvas, point: SKPoint, value: string) =
-  let data = newData(value)
+proc drawNamedDestinationAnnotation*(this: SkCanvas, point: SkPoint, value: string) =
+  let data = newSkData(value)
   sk_canvas_draw_named_destination_annotation(
     this.native,
     point[].addr,
     data.native
   )
   
-proc drawVertices*(this: SKCanvas, vertices: SKVertices, mode: SKBlendMode, paint: SKPaint) =
+proc drawVertices*(this: SkCanvas, vertices: SkVertices, mode: SkBlendMode, paint: SkPaint) =
   sk_canvas_draw_vertices(
     this.native, vertices.native, mode.sk_blendmode_t, paint.native
   )
 
 proc drawVertices*(
-  this: SKCanvas, 
-  vmode: SKVertexMode,
-  vertices: openArray[SKPoint],
-  colors: openArray[SKColor],
-  paint: SKPaint
+  this: SkCanvas, 
+  vmode: SkVertexMode,
+  vertices: openArray[SkPoint],
+  colors: openArray[SkColor],
+  paint: SkPaint
 ) =
   let verts = copy(vmode, vertices, colors)
   this.drawVertices(verts, Modulate, paint)

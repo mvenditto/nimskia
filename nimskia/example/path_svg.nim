@@ -5,7 +5,9 @@ import ../nimskia/[
   sk_enums,
   sk_path
 ]
+
 import sample_base
+import imgui
 
 const
   w = 640
@@ -35,14 +37,14 @@ A 40 40 0 0 1 300 170 Z
 proc main() =
 
   var path = parseSvgPathData(svgString)
-  let strokePaint = newPaint()
+  let strokePaint = newSkPaint()
   strokePaint.style = Stroke
   strokePaint.color = RosyBrown
   strokePaint.strokeWidth = 8
   strokePaint.antialias = true
   defer: strokePaint.dispose()
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(White)
     canvas.autoRestore:
       canvas.translate(75,50)

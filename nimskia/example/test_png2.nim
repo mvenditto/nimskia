@@ -15,9 +15,9 @@ import ../nimskia/[
 import common_api
 
 proc main() =
-  var cs = newSrgbColorSpace()
-  var info = newImageInfo(640, 480, Rgba_8888, Premul, cs)
-  var surface = newSurface(info)
+  var cs = newSkSrgbColorSpace()
+  var info = newSkImageInfo(640, 480, Rgba_8888, Premul, cs)
+  var surface = newSkSurface(info)
   assert not isNil surface
 
   testDraw(surface.canvas)

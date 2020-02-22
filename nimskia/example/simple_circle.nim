@@ -16,13 +16,13 @@ const
 
 proc main() =
 
-  let paint = newPaint()
+  let paint = newSkPaint()
   defer: paint.dispose()
 
   paint.antialias = true
   paint.strokeWidth = 4.0
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(LightGray)
     paint.color = Blue
     paint.style = Fill

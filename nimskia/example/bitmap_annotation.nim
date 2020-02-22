@@ -18,10 +18,10 @@ const
   h = 320
   title = "sample: bitmap annotation"
 
-proc readBitmap(path: string): SKBitmap =
-  var fs = newSKFileStream(path)
+proc readBitmap(path: string): SkBitmap =
+  var fs = newSkFileStream(path)
   assert fs.isValid
-  var(res,codec) = newCodec(fs)
+  var(res,codec) = newSkCodec(fs)
   assert res == Success
   result = decodeBitmap(codec)
 
@@ -31,15 +31,15 @@ proc main() =
 
   echo &"bitmap: {bitmap.info.width}x{bitmap.info.height}"
 
-  let paint = newPaint()
+  let paint = newSkPaint()
   paint.strokeWidth = 4
   paint.color = Red
   paint.style = Stroke 
 
   const(padX, padY) = (4.0, 4.0)
 
-  let annotCanvas = newCanvas(bitmap)
-  var rect = newRect(
+  let annotCanvas = newSkCanvas(bitmap)
+  var rect = newSkRect(
     0, 
     0,
     bitmap.info.width.float,
@@ -47,7 +47,7 @@ proc main() =
   )
   annotCanvas.drawRect(rect, paint)
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(DefaultBg)
     canvas.drawBitmap(bitmap,padX,h / 2.0 - bitmap.info.height.float / 2.0)
 

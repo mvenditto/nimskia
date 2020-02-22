@@ -18,7 +18,7 @@ const
 
 proc main() =
 
-  let paint = newPaint()
+  let paint = newSkPaint()
   defer: paint.dispose()
 
   paint.antialias = true
@@ -26,12 +26,12 @@ proc main() =
   paint.textSize=128
   paint.strokeWidth = 4.0
 
-  var textBounds = new(SKRect)
+  var textBounds = new(SkRect)
   paint.measureText(str, textBounds)
   let tx = hw - textBounds.width / 2
   let ty = hh + textBounds.height / 2
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(DefaultBg)
     paint.color = Gray
 

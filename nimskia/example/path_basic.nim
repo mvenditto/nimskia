@@ -18,7 +18,7 @@ const
 
 proc main() =
 
-  var path = newPath();
+  var path = newSkPath();
 
   path.moveTo(0.5f * w, 0.1f * h) # Define the first contour
       .lineTo(0.2f * w, 0.4f * h)
@@ -29,20 +29,20 @@ proc main() =
       .lineTo(0.8f * w, 0.9f * h)
       .close()
 
-  let strokePaint = newPaint()
+  let strokePaint = newSkPaint()
   strokePaint.style = Stroke
   strokePaint.color = Magenta
   strokePaint.strokeWidth = 25
   strokePaint.antialias = true
   defer: strokePaint.dispose()
 
-  let fillPaint = newPaint()
+  let fillPaint = newSkPaint()
   fillPaint.color = Cyan
   fillPaint.style = Fill
   defer: fillPaint.dispose()
 
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(White)
     canvas.drawPath(path, fillPaint)
     canvas.drawPath(path, strokePaint)

@@ -21,10 +21,10 @@ const
 proc main() =
 
   var colors = [
-    (0, 0, 255).SKColor, 
-    (0, 255, 0).SKColor
+    (0, 0, 255).SkColor, 
+    (0, 255, 0).SkColor
   ]
-  let linearGrad = newLinearGradient(
+  let linearGrad = newSkLinearGradient(
     (0.0, 0.0),
     (rw, rh),
     colors,
@@ -32,7 +32,7 @@ proc main() =
   )
   defer: linearGrad.dispose()
 
-  let radialGrad = newRadialGradient(
+  let radialGrad = newSkRadialGradient(
     (rw * 1.5, rh * 0.5),
     180,
     colors,
@@ -41,7 +41,7 @@ proc main() =
   )
   defer: radialGrad.dispose()
 
-  let tcpGrad = newTwoPointConicalGradient(
+  let tcpGrad = newSkTwoPointConicalGradient(
     (rw * 2.5, rh * 0.5),
     rh * 0.5,
     (rw * 2.5, 16.0),
@@ -53,12 +53,12 @@ proc main() =
   defer: tcpGrad.dispose()
 
   let sweepColors = [
-    (0, 255, 255).SKColor,
-    (255, 0, 255).SKColor,
-    (255, 255, 0).SKColor,
-    (0, 255, 255).SKColor
+    (0, 255, 255).SkColor,
+    (255, 0, 255).SkColor,
+    (255, 255, 0).SkColor,
+    (0, 255, 255).SkColor
   ]
-  let sweepGrad = newSweepGradient(
+  let sweepGrad = newSkSweepGradient(
     (rw * 0.5, rh * 1.5),
     rw * 0.5,
     sweepColors,
@@ -68,12 +68,12 @@ proc main() =
   )
   defer: sweepGrad.dispose()
 
-  let perlinNoise = newPerlinNoiseFractal(
+  let perlinNoise = newSkPerlinNoiseFractal(
     0.5, 0.5, 4, 0
   )
   defer: perlinNoise.dispose()
 
-  let perlinNoiseT = newPerlinNoiseTurbolence(
+  let perlinNoiseT = newSkPerlinNoiseTurbolence(
     0.05, 0.05, 4, 0
   )
   defer: perlinNoiseT.dispose()
@@ -81,24 +81,24 @@ proc main() =
   let composed = compose(sweepGrad, perlinNoiseT, SrcOver)
   defer: composed.dispose()
 
-  var r0: SKRect = newRect(0f, 0f, rw, rh)
-  var r1: SKRect = newRect(rw, 0f, rw+rw, rh)
-  var r2: SKRect = newRect(2*rw, 0f, rw*3, rh)
-  var r3: SKRect = newRect(0f, rh, rw, rh * 2)
-  var r4: SKRect = newRect(rw, rh, rw+rw, rh * 2)
-  var r5: SKRect = newRect(2*rw, rh, rw*3, rh * 2)
-  var r6: SKRect = newRect(0f, 2*rh, rw, rh * 3)
+  var r0: SkRect = newSkRect(0f, 0f, rw, rh)
+  var r1: SkRect = newSkRect(rw, 0f, rw+rw, rh)
+  var r2: SkRect = newSkRect(2*rw, 0f, rw*3, rh)
+  var r3: SkRect = newSkRect(0f, rh, rw, rh * 2)
+  var r4: SkRect = newSkRect(rw, rh, rw+rw, rh * 2)
+  var r5: SkRect = newSkRect(2*rw, rh, rw*3, rh * 2)
+  var r6: SkRect = newSkRect(0f, 2*rh, rw, rh * 3)
 
-  let paint = newPaint()
+  let paint = newSkPaint()
   defer: paint.dispose()
 
-  let stroke = newPaint()
+  let stroke = newSkPaint()
   stroke.style = Stroke
   stroke.strokeWidth = 2
   stroke.color = DarkGray
   defer: stroke.dispose()
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(White)
 
     paint.shader = linearGrad

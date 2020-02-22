@@ -32,7 +32,7 @@ suite "GRContext tests":
     ctx.makeCurrent()
     defer: ctx.dispose()
     let grContext = createGL()
-    let gpuSurface = newSurface(grContext, true, newImageInfo(100,100))
+    let gpuSurface = newSkSurface(grContext, true, newSkImageInfo(100,100))
     check(not isNil gpuSurface.native)
     check(not isNil gpuSurface.canvas.native)
     gpuSurface.canvas.clear(Transparent)

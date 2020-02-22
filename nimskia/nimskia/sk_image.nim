@@ -6,30 +6,30 @@ import sk_enums
 import sk_imageinfo
 
 type
-  SKImage* = ref object 
+  SkImage* = ref object 
     native*: ptr sk_image_t
 
-proc dispose*(this: SKImage) = sk_image_unref(this.native)
+proc dispose*(this: SkImage) = sk_image_unref(this.native)
 
-template width*(this: SKImage): int = sk_image_get_width(this.native).int
+template width*(this: SkImage): int = sk_image_get_width(this.native).int
 
-template height*(this: SKImage): int = sk_image_get_height(this.native).int
+template height*(this: SkImage): int = sk_image_get_height(this.native).int
 
-template alphaType*(this: SKImage): SKAlphaType = sk_image_get_alpha_type(this.native).SKAlphaType
+template alphaType*(this: SkImage): SkAlphaType = sk_image_get_alpha_type(this.native).SkAlphaType
 
-template uniqueID*(this: SKImage): uint32 = sk_image_get_unique_id(this.native)
+template uniqueID*(this: SkImage): uint32 = sk_image_get_unique_id(this.native)
 
-proc encode*(this: SKImage): SKData = 
-  SKData(native: sk_image_encode(this.native))
+proc encode*(this: SkImage): SkData = 
+  SkData(native: sk_image_encode(this.native))
 
 proc readPixels*(
-  this: SKImage, 
-  dstInfo: SKImageInfo, 
+  this: SkImage, 
+  dstInfo: SkImageInfo, 
   dstPixels: pointer, 
   dstRowBytes: int,
   srcX: int, 
   srcY: int, 
-  caching: SKImageCachingHint = Allow): bool =
+  caching: SkImageCachingHint = Allow): bool =
 
   sk_image_read_pixels(
     this.native,
@@ -41,8 +41,8 @@ proc readPixels*(
   )
 
 proc readPixels*(
-  this: SKImage, 
-  dstInfo: SKImageInfo, 
+  this: SkImage, 
+  dstInfo: SkImageInfo, 
   dstPixels: pointer): bool =
 
   readPixels(

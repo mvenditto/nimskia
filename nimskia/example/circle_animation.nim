@@ -19,7 +19,7 @@ const
 
 proc main() =
 
-  let paint = newPaint()
+  let paint = newSkPaint()
   defer: paint.dispose()
   paint.antialias = true
   paint.style = Stroke
@@ -32,7 +32,7 @@ proc main() =
   proc fmod(x,y: float64): float64 =
     x - trunc(x / y) * y
 
-  proc update(canvas: SKCanvas, dt: float) =
+  proc update(canvas: SkCanvas, dt: float) =
     canvas.clear(DefaultBg)
     
     elapsed += dt * 1000

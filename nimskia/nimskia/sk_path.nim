@@ -5,98 +5,98 @@ import sk_rect
 import sk_matrix
 
 type 
-  SKPath* = ref object
+  SkPath* = ref object
     native*: ptr sk_path_t
 
-proc newPath*(): SKPath =
-  SKPath(native: sk_path_new())
+proc newSkPath*(): SkPath =
+  SkPath(native: sk_path_new())
 
-proc dispose*(this: SKPath) =
+proc dispose*(this: SkPath) =
   sk_path_delete(this.native)
 
-proc parseSvgPathData*(svgString: cstring): SKPath =
-  result = SKPath(native: sk_path_new())
+proc parseSvgPathData*(svgString: cstring): SkPath =
+  result = SkPath(native: sk_path_new())
   let success = sk_path_parse_svg_string(result.native, svgString)
   if not success:
     result.dispose()
     result = nil
 
-proc moveTo*(this: SKPath, x, y: float): SKPath =
+proc moveTo*(this: SkPath, x, y: float): SkPath =
   sk_path_move_to(this.native, x, y)
   this
 
-proc lineTo*(this: SKPath, x, y: float): SKPath =
+proc lineTo*(this: SkPath, x, y: float): SkPath =
   sk_path_line_to(this.native, x, y)
   this
 
-proc quadTo*(this: SKPath, x0, y0, x1, y1: float): SKPath =
+proc quadTo*(this: SkPath, x0, y0, x1, y1: float): SkPath =
   sk_path_quad_to(this.native, x0, y0, x1, y1)
   this
 
-proc conicTo*(this: SKPath, x0, y0, x1, y1, w: float): SKPath =
+proc conicTo*(this: SkPath, x0, y0, x1, y1, w: float): SkPath =
   sk_path_conic_to(this.native, x0, y0, x1, y1, w)
   this
 
-proc cubicTo*(this: SKPath, x0, y0, x1, y1, x2, y2: float): SKPath =
+proc cubicTo*(this: SkPath, x0, y0, x1, y1, x2, y2: float): SkPath =
   sk_path_cubic_to(this.native, x0, y0, x1, y1, x2, y2)
   this
 
-proc rlineTo*(this: SKPath, x, y: float): SKPath =
+proc rlineTo*(this: SkPath, x, y: float): SkPath =
   sk_path_rline_to(this.native, x, y)
   this
 
-proc rquadTo*(this: SKPath, x0, y0, x1, y1: float): SKPath =
+proc rquadTo*(this: SkPath, x0, y0, x1, y1: float): SkPath =
   sk_path_rquad_to(this.native, x0, y0, x1, y1)
   this
 
-proc rconicTo*(this: SKPath, x0, y0, x1, y1, w: float): SKPath =
+proc rconicTo*(this: SkPath, x0, y0, x1, y1, w: float): SkPath =
   sk_path_rconic_to(this.native, x0, y0, x1, y1, w)
   this
 
-proc rcubicTo*(this: SKPath, x0, y0, x1, y1, x2, y2: float): SKPath =
+proc rcubicTo*(this: SkPath, x0, y0, x1, y1, x2, y2: float): SkPath =
   sk_path_rcubic_to(this.native, x0, y0, x1, y1, x2, y2)
   this
 
-proc arcTo*(this: SKPath, 
+proc arcTo*(this: SkPath, 
   rx: float, ry: float, 
   xAxisRotate: float, 
-  arcSize: SKPathArcSize, 
-  sweep: SKPathDirection, x, y: float): SKPath = 
+  arcSize: SkPathArcSize, 
+  sweep: SkPathDirection, x, y: float): SkPath = 
     sk_path_arc_to(
       this.native, rx, ry, xAxisRotate, arcSize.sk_path_arc_size_t, sweep.sk_path_direction_t, x, y
     )
     result = this
 
-proc addOval*(this: SKPath, bounds: SKRect, direction: SKPathDirection): SKPath =
+proc addOval*(this: SkPath, bounds: SkRect, direction: SkPathDirection): SkPath =
   sk_path_add_oval(this.native, bounds.native.addr, direction.sk_path_direction_t)
   this
 
-proc close*(this: SKPath) =
+proc close*(this: SkPath) =
   sk_path_close(this.native)
 
-proc reset*(this: SKPath) =
+proc reset*(this: SkPath) =
   sk_path_reset(this.native)
 
-proc rewind*(this: SKPath) =
+proc rewind*(this: SkPath) =
   sk_path_rewind(this.native)
 
-proc `fillType=`*(this: SKPath, fillType: SKPathFillType) =
+proc `fillType=`*(this: SkPath, fillType: SkPathFillType) =
   sk_path_set_filltype(this.native, fillType.sk_path_filltype_t)
 
-proc bounds*(this: SKPath): SKRect =
-  result = newRect()
+proc bounds*(this: SkPath): SkRect =
+  result = newSkRect()
   sk_path_get_bounds(this.native, result.native.addr)
 
-proc tightBounds*(this: SKPath): SKRect =
-  result = newRect()
+proc tightBounds*(this: SkPath): SkRect =
+  result = newSkRect()
   if not sk_pathop_tight_bounds(this.native, result.native.addr):
     result = nil
 
-proc computeTightBounds*(this: SKPath): SKRect =
-  result = newRect()
+proc computeTightBounds*(this: SkPath): SkRect =
+  result = newSkRect()
   sk_path_compute_tight_bounds(this.native, result.native.addr)
 
-proc transform*(this: SKPath, mat: SKMatrix) =
+proc transform*(this: SkPath, mat: SkMatrix) =
   sk_path_transform(this.native, mat.native)
 
 

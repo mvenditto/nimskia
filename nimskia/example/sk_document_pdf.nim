@@ -22,8 +22,8 @@ proc createExampleDir() =
     removeDir(sampleTmpDir)
   createDir(sampleTmpDir)
 
-proc createPdfMetadata(): SKDocumentPdfMetadata =
-  result = newPdfMetadata()
+proc createPdfMetadata(): SkDocumentPdfMetadata =
+  result = newSkPdfMetadata()
   result.author = "cool developer"
   result.creator = "cool developer library"
   result.keywords = "pdf, skia, nimskia"
@@ -37,13 +37,13 @@ proc createPdf() =
   let path = joinPath(sampleTmpDir, "example.pdf")
   let meta = createPdfMetadata()
 
-  let stream = openSKFileWStream(path)
+  let stream = openSkFileWStream(path)
   let document = createPdf(stream, meta)
 
-  let paint = newPaint()
+  let paint = newSkPaint()
   paint.textSize = 64
   paint.antialias = true
-  paint.color = 0xFF9CAFB7.SKColor
+  paint.color = 0xFF9CAFB7.SkColor
   paint.strokeWidth = 3
   paint.textAlign = Center
 
@@ -53,12 +53,12 @@ proc createPdf() =
 
   # draw page 1
   let pdfCanvas = document.beginPage(width, height)
-  let nextPagePaint = newPaint()
+  let nextPagePaint = newSkPaint()
   nextPagePaint.antialias = true
   nextPagePaint.textSize = 16
   nextPagePaint.color = OrangeRed
   let nextText = "Next Page >>"
-  var btn = newRect(
+  var btn = newSkRect(
     width - nextPagePaint.measureText(nextText) - 24,
     0,
     width,
@@ -72,7 +72,7 @@ proc createPdf() =
   
   # draw page 2
   let pdfCanvas2 = document.beginPage(width, height)
-  pdfCanvas2.drawNamedDestinationAnnotation(newPoint(0f,0), "next-page");
+  pdfCanvas2.drawNamedDestinationAnnotation(newSkPoint(0f,0), "next-page");
   pdfCanvas2.drawText("...PDF 2/2...", width / 2, height / 4, paint)
   document.endPage()
   document.close()

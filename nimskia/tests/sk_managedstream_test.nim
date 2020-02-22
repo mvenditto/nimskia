@@ -10,11 +10,11 @@ import strformat
 import streams
 
 
-suite "SKManagedStream test":
+suite "SkManagedStream test":
   
   test "Nim stream is closed":
     var strm = newStringStream("test")
-    var managed = newSKManagedStream(strm, true)
+    var managed = newSkManagedStream(strm, true)
     check(strm.getPosition() == 0)
     managed.dispose()
     when defined(nimNoNilSeqs):
@@ -24,7 +24,7 @@ suite "SKManagedStream test":
 
   test "Nim stream is NOT closed":
     var strm = newStringStream("test")
-    var managed = newSKManagedStream(strm, false)
+    var managed = newSkManagedStream(strm, false)
     check(strm.getPosition() == 0)
     managed.dispose()
     when defined(nimNoNilSeqs):
@@ -38,7 +38,7 @@ suite "SKManagedStream test":
     for i in 0..255: x = x & chr(i)
 
     let strm = newStringStream(x)
-    let managed = newSKManagedStream(strm)
+    let managed = newSkManagedStream(strm)
 
     check(managed.rewind())
     check(managed.getPosition() == 0)
@@ -58,7 +58,7 @@ suite "SKManagedStream test":
 
   test "ManagedStream reads chunks correctly":
     let strm = newStringStream("abcd")
-    let managed = newSKManagedStream(strm)
+    let managed = newSkManagedStream(strm)
 
     check(managed.rewind())
     check(managed.getPosition() == 0)
@@ -72,7 +72,7 @@ suite "SKManagedStream test":
 
   test "ManagedStream reads offset chunks correctly":
     let strm = newStringStream("nimabcd")
-    let managed = newSKManagedStream(strm)
+    let managed = newSkManagedStream(strm)
 
     check(managed.rewind())
     check(managed.getPosition() == 0)
@@ -89,7 +89,7 @@ suite "SKManagedStream test":
 
   test "stream can be duplicated but original stream cannot be read anymore":
     let strm = newStringStream("abcdef")
-    let managed = newSKManagedStream(strm, true)
+    let managed = newSkManagedStream(strm, true)
     check(managed.readByte() == ord('a'))
     check(managed.readByte() == ord('b'))
     check(managed.readByte() == ord('c'))
@@ -104,7 +104,7 @@ suite "SKManagedStream test":
 
   test "stream can be forked but original stream cannot be read anymore":
     let strm = newStringStream("abcdef")
-    let managed = newSKManagedStream(strm, true)
+    let managed = newSkManagedStream(strm, true)
     check(managed.readByte() == ord('a'))
     check(managed.readByte() == ord('b'))
     let fork = managed.fork()
@@ -117,7 +117,7 @@ suite "SKManagedStream test":
 
   test "ManagedStream cannot be duplicated multiple times":
     let strm = newStringStream("abcdef")
-    let managed = newSKManagedStream(strm, true)
+    let managed = newSkManagedStream(strm, true)
     check(managed.readByte() == ord('a'))
     check(managed.readByte() == ord('b'))
     let dupe = managed.duplicate()
@@ -128,7 +128,7 @@ suite "SKManagedStream test":
   test "stream can be duplicated multiple times if the child is destroyed":
     let strm = newStringStream("abcdef")
 
-    let managed = newSKManagedStream(strm, true)
+    let managed = newSkManagedStream(strm, true)
     check(managed.readByte() == ord('a'))
     check(managed.readByte() == ord('b'))
 

@@ -16,10 +16,10 @@ const
   DefaultEncodingQuality* = 101
 
 type
-  SKDocument* = ref object of SKObject[sk_document_t]
-    underlyingStream*: SKWStream
+  SkDocument* = ref object of SkObject[sk_document_t]
+    underlyingStream*: SkWStream
 
-  SKDocumentPdfMetadata* = object
+  SkDocumentPdfMetadata* = object
     title*: string
     author*: string
     subject*: string
@@ -32,76 +32,76 @@ type
     pdfA*: bool
     encodingQuality*: int
 
-proc newPdfMetadataNow(): SKDocumentPdfMetadata =
-  SKDocumentPdfMetadata(
+proc newSkPdfMetadataNow(): SkDocumentPdfMetadata =
+  SkDocumentPdfMetadata(
     creation: now(),
     modified: now()
   )
 
-proc newPdfMetadata*(): SKDocumentPdfMetadata =
-  result = newPdfMetadataNow()
+proc newSkPdfMetadata*(): SkDocumentPdfMetadata =
+  result = newSkPdfMetadataNow()
   result.rasterDpi = DefaultRasterDpi
   result.pdfA = false
   result.encodingQuality = DefaultEncodingQuality
 
-proc newPdfMetadata*(rasterDpi: float): SKDocumentPdfMetadata =
-  result = newPdfMetadataNow()
+proc newSkPdfMetadata*(rasterDpi: float): SkDocumentPdfMetadata =
+  result = newSkPdfMetadataNow()
   result.rasterDpi = rasterDpi
   result.pdfA = false
   result.encodingQuality = DefaultEncodingQuality
 
-proc newPdfMetadata*(encodingQuality: int): SKDocumentPdfMetadata =
-  result = newPdfMetadataNow()
+proc newSkPdfMetadata*(encodingQuality: int): SkDocumentPdfMetadata =
+  result = newSkPdfMetadataNow()
   result.rasterDpi = DefaultRasterDpi
   result.pdfA = false
   result.encodingQuality = encodingQuality
 
-proc newPdfMetadata*(rasterDpi: float, encodingQuality: int): SKDocumentPdfMetadata =
-  result = newPdfMetadataNow()
+proc newSkPdfMetadata*(rasterDpi: float, encodingQuality: int): SkDocumentPdfMetadata =
+  result = newSkPdfMetadataNow()
   result.rasterDpi = rasterDpi
   result.pdfA = false
   result.encodingQuality = encodingQuality
 
-proc abort*(doc: SKDocument) =
+proc abort*(doc: SkDocument) =
   sk_document_abort(doc.native)
 
-proc beginPage*(doc: SKDocument, width, height: float): SKCanvas =
-  SKCanvas(native: sk_document_begin_page(doc.native, width, height, nil))
+proc beginPage*(doc: SkDocument, width, height: float): SkCanvas =
+  SkCanvas(native: sk_document_begin_page(doc.native, width, height, nil))
 
-proc beginPage*(doc: SKDocument, width: float, height: float, content: SKRect): SKCanvas =
-  SKCanvas(native: sk_document_begin_page(doc.native, width, height, content.native.addr))
+proc beginPage*(doc: SkDocument, width: float, height: float, content: SkRect): SkCanvas =
+  SkCanvas(native: sk_document_begin_page(doc.native, width, height, content.native.addr))
 
-proc endPage*(doc: SKDocument) =
+proc endPage*(doc: SkDocument) =
   sk_document_end_page(doc.native)
 
-proc close*(doc: SKDocument) =
+proc close*(doc: SkDocument) =
   sk_document_close(doc.native)
 
 # PDF creation
 
-proc createPdf*(path: string): SKDocument =
+proc createPdf*(path: string): SkDocument =
   new(result)
-  let stream = openSKFileWStream(path)
+  let stream = openSkFileWStream(path)
   result.underlyingStream = stream
   result.native = sk_document_create_pdf_from_stream(stream.native)
 
-proc createPdf*(stream: SKWStream): SKDocument =
-  if isNil stream: raise newException(ValueError, "stream cannot be nul")
+proc createPdf*(stream: SkWStream): SkDocument =
+  if isNil stream: raise newException(ValueError, "stream cannot be null")
   new(result)
   result.underlyingStream = stream
   result.native = sk_document_create_pdf_from_stream(stream.native)
 
-proc createPdf*(stream: SKWStream, meta: SKDocumentPdfMetadata, createdNow: bool = false): SKDocument = 
-  if isNil stream: raise newException(ValueError, "stream cannot be nul")
+proc createPdf*(stream: SkWStream, meta: SkDocumentPdfMetadata, createdNow: bool = false): SkDocument = 
+  if isNil stream: raise newException(ValueError, "stream cannot be null")
   new(result)
 
   let 
-    title = newSKString(meta.title)
-    author = newSKString(meta.author)
-    subject = newSKString(meta.subject)
-    keywords = newSKString(meta.keywords)
-    creator = newSKString(meta.creator)
-    producer = newSKString(meta.producer)
+    title = newSkString(meta.title)
+    author = newSkString(meta.author)
+    subject = newSkString(meta.subject)
+    keywords = newSkString(meta.keywords)
+    creator = newSkString(meta.creator)
+    producer = newSkString(meta.producer)
   
   var metadata = sk_document_pdf_metadata_t(
     fTitle: if isNil title.native: nil else: title.native,
@@ -128,11 +128,11 @@ proc createPdf*(stream: SKWStream, meta: SKDocumentPdfMetadata, createdNow: bool
     creator.dispose()
     producer.dispose()
 
-  SKDocument(native: sk_document_create_pdf_from_stream_with_metadata(
+  SkDocument(native: sk_document_create_pdf_from_stream_with_metadata(
     stream.native, metadata.addr
   ))
 
-proc createPdf*(path: string, meta: SKDocumentPdfMetadata): SKDocument = 
-    let stream = openSKFileWStream(path)
+proc createPdf*(path: string, meta: SkDocumentPdfMetadata): SkDocument = 
+    let stream = openSkFileWStream(path)
     createPdf(stream, meta)
 

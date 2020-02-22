@@ -2,7 +2,7 @@ import ../wrapper/sk_types
 
 import times
 
-converter DateTimeToSKTimeDateTime*(datetime: DateTime): sk_time_datetime_t =
+converter DateTimeToSkTimeDateTime*(datetime: DateTime): sk_time_datetime_t =
   
   let zone = datetime.hour - datetime.utc.hour
   

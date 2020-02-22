@@ -7,13 +7,13 @@ import sk_path
 import internals/native
 
 type
-  SKPathEffect* = ref object of SKObject[sk_path_effect_t]
+  SkPathEffect* = ref object of SkObject[sk_path_effect_t]
 
-proc dispose*(this: SKPathEffect) =
+proc dispose*(this: SkPathEffect) =
   sk_patheffect_unref(this.native)
 
-proc newDash*(intervals: openArray[float], count: int, phase: float): SKPathEffect = 
-  SKPathEffect(
+proc newSkDash*(intervals: openArray[float], count: int, phase: float): SkPathEffect = 
+  SkPathEffect(
     native: sk_patheffect_create_dash(
       cast[ptr cfloat](intervals[0].unsafeAddr), 
       count.cint, 
@@ -21,8 +21,8 @@ proc newDash*(intervals: openArray[float], count: int, phase: float): SKPathEffe
     ) 
   )
 
-proc newDash*(intervals: openArray[float], phase: float): SKPathEffect = 
-  SKPathEffect(
+proc newSkDash*(intervals: openArray[float], phase: float): SkPathEffect = 
+  SkPathEffect(
     native: sk_patheffect_create_dash(
       cast[ptr cfloat](intervals[0].unsafeAddr), 
       len(intervals).cint, 
@@ -30,8 +30,8 @@ proc newDash*(intervals: openArray[float], phase: float): SKPathEffect =
     ) 
   )
 
-proc newDescretePathEffect*(segmentLen: float, deviation: float, seed: uint): SKPathEffect =
-  SKPathEffect(
+proc newSkDescretePathEffect*(segmentLen: float, deviation: float, seed: uint): SkPathEffect =
+  SkPathEffect(
     native: sk_path_effect_create_discrete(
       segmentLen.cfloat, 
       deviation.cfloat, 
@@ -39,12 +39,12 @@ proc newDescretePathEffect*(segmentLen: float, deviation: float, seed: uint): SK
     )
   )
 
-proc new1DPathEffect*(
-  path: SKPath, 
+proc newSk1DPathEffect*(
+  path: SkPath, 
   advance: float, phase: 
   float, style: 
-  SKPathEffect1DStyle): SKPathEffect = 
-  SKPathEffect(
+  SkPathEffect1DStyle): SkPathEffect = 
+  SkPathEffect(
     native: sk_path_effect_create_1d_path(
       path.native,
       advance.cfloat,
@@ -53,8 +53,8 @@ proc new1DPathEffect*(
     )
   )
 
-proc sum*(first: SKPathEffect, second: SKPathEffect): SKPathEffect =
-  SKPathEffect(native: sk_path_effect_create_sum(first.native, second.native))
+proc sum*(first: SkPathEffect, second: SkPathEffect): SkPathEffect =
+  SkPathEffect(native: sk_path_effect_create_sum(first.native, second.native))
 
-proc `+`* (first: SKPathEffect, second: SKPathEffect): SKPathEffect = sum(first, second)
+proc `+`* (first: SkPathEffect, second: SkPathEffect): SkPathEffect = sum(first, second)
   

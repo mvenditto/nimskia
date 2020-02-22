@@ -6,34 +6,34 @@ import sk_colorspace
 import internals/native
 
 type
-  SKImageInfo* = ref object
+  SkImageInfo* = ref object
       native*: sk_imageinfo_t
 
-template width*(this: SKImageInfo): int32 = this.native.width
+template width*(this: SkImageInfo): int32 = this.native.width
 
-template height*(this: SKImageInfo): int32 = this.native.height
+template height*(this: SkImageInfo): int32 = this.native.height
 
-template colorType*(this: SKImageInfo): SKColorType = this.native.colorType.SKColorType
+template colorType*(this: SkImageInfo): SkColorType = this.native.colorType.SkColorType
 
-template alphaType*(this: SKImageInfo): SKAlphaType = this.native.alphaType.SKAlphaType
+template alphaType*(this: SkImageInfo): SkAlphaType = this.native.alphaType.SkAlphaType
 
-template colorspace*(this: SKImageInfo): SKColorSpace = 
-  SKColorSpace(native: this.native.colorspace)
+template colorspace*(this: SkImageInfo): SkColorSpace = 
+  SkColorSpace(native: this.native.colorspace)
 
-template platformColorType*: SKColorType =
-  sk_colortype_get_default_8888().SKColorType
+template platformColorType*: SkColorType =
+  sk_colortype_get_default_8888().SkColorType
 
-proc `alphaType=`*(this: SKImageInfo, alphaType: SKAlphaType) =
+proc `alphaType=`*(this: SkImageInfo, alphaType: SkAlphaType) =
 
   this.native.alphaType = alphaType.sk_alphatype_t
 
-proc `colorType=`*(this: SKImageInfo, colorType: SKColorType) =
+proc `colorType=`*(this: SkImageInfo, colorType: SkColorType) =
   this.native.colorType = colorType.sk_colortype_t
 
-proc `colorspace=`*(this: SKImageInfo, colorSpace: SKColorSpace) =
+proc `colorspace=`*(this: SkImageInfo, colorSpace: SkColorSpace) =
   this.native.colorspace = colorSpace.nativeSafe
 
-proc bytesPerPixel*(this: SKImageInfo): int =
+proc bytesPerPixel*(this: SkImageInfo): int =
   let colorType = this.colorType
   case colorType:
     of UnknownColorType:
@@ -42,39 +42,39 @@ proc bytesPerPixel*(this: SKImageInfo): int =
       return 1
     of Rgb565, Argb4444:
       return 2
-    of SKColorType.Bgra8888,
-      SKColorType.Rgba8888,
-      SKColorType.Rgb888x,
-      SKColorType.Rgba1010102,
-      SKColorType.Rgb101010x:
+    of SkColorType.Bgra8888,
+      SkColorType.Rgba8888,
+      SkColorType.Rgb888x,
+      SkColorType.Rgba1010102,
+      SkColorType.Rgb101010x:
       return 4;
-    of SKColorType.RgbaF16:
+    of SkColorType.RgbaF16:
       return 8;
   assert(false, "out of range: " & $colorType)
 
-proc rowBytes*(this: SKImageInfo): int =
+proc rowBytes*(this: SkImageInfo): int =
   this.bytesPerPixel() * this.width
 
-proc newImageInfo*(width: int, height: int, colorType: SKColorType , alphaType: SKAlphaType, colorspace: SKColorSpace): SKImageInfo =
+proc newSkImageInfo*(width: int, height: int, colorType: SkColorType , alphaType: SkAlphaType, colorspace: SkColorSpace): SkImageInfo =
   var imageInfo: sk_imageinfo_t
   imageInfo.colorspace = if not isNil colorspace: colorspace.native else: nil
   imageInfo.width = width.cint
   imageInfo.height = height.cint
   imageInfo.colorType = colorType.sk_colortype_t
   imageInfo.alphaType = alphaType.sk_alphatype_t
-  SKImageInfo(native: imageInfo)
+  SkImageInfo(native: imageInfo)
 
-proc newImageInfo*(width: int, height: int): SKImageInfo =
-  newImageInfo(width, height, platformColorType, Premul, nil)
+proc newSkImageInfo*(width: int, height: int): SkImageInfo =
+  newSkImageInfo(width, height, platformColorType, Premul, nil)
 
-proc withColorType*(this: SKImageInfo, colorType: SKColorType): SKImageInfo =
+proc withColorType*(this: SkImageInfo, colorType: SkColorType): SkImageInfo =
   result = deepCopy this
   result.colorType = colorType
 
-proc withAlphaType*(this: SKImageInfo, alphaType: SKAlphaType): SKImageInfo =
+proc withAlphaType*(this: SkImageInfo, alphaType: SkAlphaType): SkImageInfo =
   result = deepCopy this
   result.alphaType = alphaType
 
-proc withColorSpace*(this: SKImageInfo, colorspace: SKColorSpace): SKImageInfo =
+proc withColorSpace*(this: SkImageInfo, colorspace: SkColorSpace): SkImageInfo =
   result = deepCopy this
   result.colorspace = colorspace

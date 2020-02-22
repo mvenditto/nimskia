@@ -34,13 +34,13 @@ proc main() =
   var grContext = createGL()
   assert not isNil grContext
 
-  var info = newFrameBufferInfo(0, GL_RGBA8.uint32)
+  var info = newSkFrameBufferInfo(0, GL_RGBA8.uint32)
   assert not isNil info
 
   var target = createBackendRenderTarget(640, 480, 0, 0, info)
   assert not isNil target
  
-  var surface = newSurface(
+  var surface = newSkSurface(
     grContext,
     target,
     TopLeft,
@@ -53,7 +53,7 @@ proc main() =
   var canvas = surface.canvas
   assert not isNil canvas
 
-  var fill = newPaint(BlueViolet)
+  var fill = newSkPaint(BlueViolet)
   assert not isNil fill
   canvas.drawPaint(fill)
  

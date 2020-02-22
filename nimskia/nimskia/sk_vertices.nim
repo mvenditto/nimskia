@@ -9,26 +9,26 @@ import sequtils
 import sugar
 
 const
-  NoColors = newSeq[SKColor]()
+  NoColors = newSeq[SkColor]()
   NoIndices = newSeq[uint16]()
 let 
-  NoTextures = newSeq[SKPoint]()
+  NoTextures = newSeq[SkPoint]()
 
 type
-  SKVertices* = ref object of SKObject[sk_vertices_t]
+  SkVertices* = ref object of SkObject[sk_vertices_t]
 
-proc refNative*(this: SKVertices) = 
+proc refNative*(this: SkVertices) = 
   sk_vertices_ref(this.native)
 
-proc unrefNative*(this: SKVertices) = 
+proc unrefNative*(this: SkVertices) = 
   sk_vertices_ref(this.native)
 
 proc copy*(
-  vmode: SKVertexMode, 
-  positions: openArray[SKPoint],
-  texs: openArray[SKPoint],
-  colors: openArray[SKColor],
-  indices: openArray[uint16]): SKVertices =
+  vmode: SkVertexMode, 
+  positions: openArray[SkPoint],
+  texs: openArray[SkPoint],
+  colors: openArray[SkColor],
+  indices: openArray[uint16]): SkVertices =
 
   if len(positions) <= 0:
     raise newException(ValueError, "num vertices must be > 0")
@@ -44,7 +44,7 @@ proc copy*(
   let t: seq[sk_point_t] = texs.map(x => cast[sk_point_t](x[]))
   let c: seq[sk_color_t] = colors.map(x => x.sk_color_t)
   
-  SKVertices(
+  SkVertices(
     native: sk_vertices_make_copy(
         vmode.sk_vertices_vertex_mode_t,
         vertextCount.cint,
@@ -57,31 +57,31 @@ proc copy*(
   )
 
 template copy*(
-  vmode: SKVertexMode, 
-  positions: openArray[SKPoint],
-  texs: openArray[SKPoint],
-  colors: openArray[SKColor]
-): SKVertices =
+  vmode: SkVertexMode, 
+  positions: openArray[SkPoint],
+  texs: openArray[SkPoint],
+  colors: openArray[SkColor]
+): SkVertices =
   copy(vmode, positions, texs, colors, NoIndices)
 
 template copy*(
-  vmode: SKVertexMode, 
-  positions: openArray[SKPoint],
-  colors: openArray[SKColor]
-): SKVertices =
-  copy(vmode, positions, newSeq[SKPoint](), colors, NoIndices)
+  vmode: SkVertexMode, 
+  positions: openArray[SkPoint],
+  colors: openArray[SkColor]
+): SkVertices =
+  copy(vmode, positions, newSeq[SkPoint](), colors, NoIndices)
 
 template copy*(
-  vmode: SKVertexMode, 
-  positions: openArray[SKPoint],
-  texs: openArray[SKPoint]
-): SKVertices =
+  vmode: SkVertexMode, 
+  positions: openArray[SkPoint],
+  texs: openArray[SkPoint]
+): SkVertices =
   copy(vmode, positions, texs, NoColors, NoIndices)
 
 template copy*(
-  vmode: SKVertexMode, 
-  positions: openArray[SKPoint],
-  colors: openArray[SKColor],
+  vmode: SkVertexMode, 
+  positions: openArray[SkPoint],
+  colors: openArray[SkColor],
   indices: openArray[uint16]
-): SKVertices =
+): SkVertices =
   copy(vmode, positions, NoTextures, colors, indices)

@@ -45,7 +45,7 @@ type
     BottomLeft
 
 
-proc newFrameBufferInfo*(fFBOID: uint32, format: uint32): GRGlFramebufferInfo =
+proc newSkFrameBufferInfo*(fFBOID: uint32, format: uint32): GRGlFramebufferInfo =
   var info = cast[ptr gr_gl_framebufferinfo_t](alloc(sizeof(gr_gl_framebufferinfo_t)))
   info.fFBOID = fFBOID
   info.fFormat = format

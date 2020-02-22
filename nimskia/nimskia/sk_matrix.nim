@@ -4,64 +4,64 @@ import ../wrapper/sk_types
 import math
 
 type
-  SKMatrix* = ref object
+  SkMatrix* = ref object
     native*: ptr sk_matrix_t
 
-template scaleX*(m: SKMatrix): float = 
+template scaleX*(m: SkMatrix): float = 
   m.native[].scaleX.float
 
-template scaleY*(m: SKMatrix): float = 
+template scaleY*(m: SkMatrix): float = 
   m.native[].scaleY.float
 
-template skewX*(m: SKMatrix): float = 
+template skewX*(m: SkMatrix): float = 
   m.native[].skewX.float
 
-template skewY*(m: SKMatrix): float = 
+template skewY*(m: SkMatrix): float = 
   m.native[].skewY.float
 
-template transX*(m: SKMatrix): float = 
+template transX*(m: SkMatrix): float = 
   m.native[].transX.float
 
-template transY*(m: SKMatrix): float = 
+template transY*(m: SkMatrix): float = 
   m.native[].transY.float
 
-template persp0*(m: SKMatrix): float = 
+template persp0*(m: SkMatrix): float = 
   m.native[].persp0.float
 
-template persp1*(m: SKMatrix): float = 
+template persp1*(m: SkMatrix): float = 
   m.native[].persp1.float
 
-template persp2*(m: SKMatrix): float = 
+template persp2*(m: SkMatrix): float = 
   m.native[].persp2.float
 
-proc `scaleX=`(m: SKMatrix, value: float) =
+proc `scaleX=`(m: SkMatrix, value: float) =
   m.native[].scaleX = value
 
-proc `scaleY=`(m: SKMatrix, value: float) =
+proc `scaleY=`(m: SkMatrix, value: float) =
   m.native[].scaleY = value
 
-proc `skewX=`(m: SKMatrix, value: float) =
+proc `skewX=`(m: SkMatrix, value: float) =
   m.native[].skewX = value
 
-proc `skewY=`(m: SKMatrix, value: float) =
+proc `skewY=`(m: SkMatrix, value: float) =
   m.native[].skewY = value
 
-proc `transX=`(m: SKMatrix, value: float) =
+proc `transX=`(m: SkMatrix, value: float) =
   m.native[].transX = value
 
-proc `transY=`(m: SKMatrix, value: float) =
+proc `transY=`(m: SkMatrix, value: float) =
   m.native[].transY = value
 
-proc `persp0=`(m: SKMatrix, value: float) =
+proc `persp0=`(m: SkMatrix, value: float) =
   m.native[].persp0 = value
 
-proc `persp1=`(m: SKMatrix, value: float) =
+proc `persp1=`(m: SkMatrix, value: float) =
   m.native[].persp1 = value
 
-proc `persp2=`(m: SKMatrix, value: float) =
+proc `persp2=`(m: SkMatrix, value: float) =
   m.native[].persp2 = value
 
-proc setSinCos(matrix: var SKMatrix, sin, cos: float) =
+proc setSinCos(matrix: var SkMatrix, sin, cos: float) =
   matrix.scaleX = cos
   matrix.skewX = -sin
   matrix.transX = 0
@@ -72,10 +72,10 @@ proc setSinCos(matrix: var SKMatrix, sin, cos: float) =
   matrix.persp1 = 0
   matrix.persp2 = 1
 
-proc newMatrix*(
+proc newSkMatrix*(
     scaleX, skewX, transX,
     skewY, scaleY, transY,
-    persp0, persp1, persp2: float): SKMatrix = 
+    persp0, persp1, persp2: float): SkMatrix = 
   
   var matrix: sk_matrix_t
   # X
@@ -91,32 +91,32 @@ proc newMatrix*(
   matrix.persp1 = persp1
   matrix.persp2 = persp2
 
-  SKMatrix(native: matrix.addr)
+  SkMatrix(native: matrix.addr)
 
-proc newMatrix*(): SKMatrix = 
-  newMatrix(
+proc newSkMatrix*(): SkMatrix = 
+  newSkMatrix(
     0, 0, 0,
     0, 0, 0,
     0, 0, 0
   )
 
-proc getIdentityMatrix*(): SKMatrix =
-  newMatrix(
+proc getIdentityMatrix*(): SkMatrix =
+  newSkMatrix(
     1, 0, 0,
     0, 1, 0,
     0, 0, 1
   )
 
-proc newRotationMatrix*(radians: float): SKMatrix =
-  result = newMatrix()
+proc newSkRotationMatrix*(radians: float): SkMatrix =
+  result = newSkMatrix()
   setSinCos(
     result, 
     sin(radians), 
     cos(radians)
   )
 
-proc newSkewMatrix*(sx, sy: float): SKMatrix =
-  result = newMatrix()
+proc newSkewMatrix*(sx, sy: float): SkMatrix =
+  result = newSkMatrix()
   result.scaleX = 1
   result.skewX = sx
   result.transX = 0
@@ -131,11 +131,11 @@ converter tupleToMatrix*(
   t: (float,float,float,
       float,float,float,
       float,float,float,)
-  ): SKMatrix = 
+  ): SkMatrix = 
   let(scaleX, skewX, transX,
     skewY, scaleY, transY,
     persp0, persp1, persp2) = t
-  result = newMatrix(
+  result = newSkMatrix(
     scaleX, skewX, transX,
     skewY, scaleY, transY,
     persp0, persp1, persp2)
@@ -144,11 +144,11 @@ converter tupleToMatrix*(
   t: (int,int,int,
       int,int,int,
       int,int,int,)
-  ): SKMatrix = 
+  ): SkMatrix = 
   let(scaleX, skewX, transX,
     skewY, scaleY, transY,
     persp0, persp1, persp2) = t
-  result = newMatrix(
+  result = newSkMatrix(
     scaleX.float, skewX.float, transX.float,
     skewY.float, scaleY.float, transY.float,
     persp0.float, persp1.float, persp2.float)
