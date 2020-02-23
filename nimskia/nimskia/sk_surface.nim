@@ -1,5 +1,6 @@
 import ../wrapper/sk_types
 import ../wrapper/sk_surface
+import internals/native
 
 import sk_enums
 import sk_canvas
@@ -10,13 +11,11 @@ import gr_context
 
 
 type
-  SkSurface* = ref object
-    native*: ptr sk_surface_t
+  SkSurface* = ref object of SkObject[sk_surface_t]
     canvas*: SkCanvas
     props*: SkSurfaceProps
 
-  SkSurfaceProps* = ref object
-    native*: ptr sk_surfaceprops_t
+  SkSurfaceProps* = ref object of SkObject[sk_surfaceprops_t]
     pixelGeometry*: SkPixelGeometry
 
 ### SkSurfaceProps

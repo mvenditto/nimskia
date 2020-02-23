@@ -7,9 +7,10 @@ import sk_shader
 import sk_rect
 import sk_patheffect
 
+import internals/native
+
 type
-  SkPaint* = ref object
-    native*: ptr sk_paint_t
+  SkPaint* = ref object of SkObject[sk_paint_t]
 
 proc dispose*(this: SkPaint) = sk_paint_delete(this.native)
 

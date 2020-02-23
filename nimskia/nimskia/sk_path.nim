@@ -3,10 +3,10 @@ import ../wrapper/sk_types
 import sk_enums
 import sk_rect
 import sk_matrix
+import internals/native
 
 type 
-  SkPath* = ref object
-    native*: ptr sk_path_t
+  SkPath* = ref object of SkObject[sk_path_t]
 
 proc newSkPath*(): SkPath =
   SkPath(native: sk_path_new())

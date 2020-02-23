@@ -5,9 +5,10 @@ import sk_data
 import sk_enums
 import sk_imageinfo
 
+import internals/native
+
 type
-  SkImage* = ref object 
-    native*: ptr sk_image_t
+  SkImage* = ref object of SkObject[sk_image_t]
 
 proc dispose*(this: SkImage) = sk_image_unref(this.native)
 

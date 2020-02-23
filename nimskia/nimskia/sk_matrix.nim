@@ -1,11 +1,12 @@
 import ../wrapper/sk_matrix
 import ../wrapper/sk_types
 
+import internals/native
+
 import math
 
 type
-  SkMatrix* = ref object
-    native*: ptr sk_matrix_t
+  SkMatrix* = ref object of SkObject[sk_matrix_t]
 
 template scaleX*(m: SkMatrix): float = 
   m.native[].scaleX.float

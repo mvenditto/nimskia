@@ -13,9 +13,10 @@ import sk_data
 import sk_point
 import sk_vertices
 
+import internals/native
+
 type
-  SkCanvas* = ref object
-    native*: ptr sk_canvas_t
+  SkCanvas* = ref object of SkObject[sk_canvas_t]
 
 proc newSkCanvas*(bitmap: SkBitmap): SkCanvas =
   SkCanvas(native: sk_canvas_new_from_bitmap(bitmap.native))

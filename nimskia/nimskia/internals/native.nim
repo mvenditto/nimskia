@@ -1,5 +1,5 @@
 type
-  SkObject*[H] {.inheritable.} = object of RootObj
+  SkObject*[H] = object of RootObj
     native*: ptr H
 
 template nativeRaw*[H](skObj: ref SkObject[H]): pointer =

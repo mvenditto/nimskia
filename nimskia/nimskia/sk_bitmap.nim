@@ -11,9 +11,10 @@ import sk_enums
 import sk_pixmap
 import sk_image
 
+import internals/native
+
 type 
-  SkBitmap* = ref object
-    native*: ptr sk_bitmap_t
+  SkBitmap* = ref object of SkObject[sk_bitmap_t]
 
 proc newSkBitmap*(): SkBitmap =
   SkBitmap(native: sk_bitmap_new())
