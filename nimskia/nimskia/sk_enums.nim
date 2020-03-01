@@ -145,6 +145,48 @@ type
     TriangleStrip = TRIANGLE_STRIP_SK_VERTICES_VERTEX_MODE,
     TriangleFan = TRIANGLE_FAN_SK_VERTICES_VERTEX_MODE
 
+  SkLatticeRectType* {.pure.} = enum
+    Default = DEFAULT_SK_LATTICE_RECT_TYPE
+    Transparent = TRANSPARENT_SK_LATTICE_RECT_TYPE
+    FixedColor = FIXED_COLOR_SK_LATTICE_RECT_TYPE
+
+  SkTypefaceFlag* {.pure.} = enum
+    Normal = 0,
+    Bold = 0x01,  
+    Italic = 0x02,
+    BoldItalic = 0x03
+  
+  SkTypeFaceStyle* = set[SkTypefaceFlag]
+
+  SkFontStyleSlant* {.pure.} = enum
+    Upright = UPRIGHT_SK_FONT_STYLE_SLANT,
+    Italic = ITALIC_SK_FONT_STYLE_SLANT,
+    Oblique = OBLIQUE_SK_FONT_STYLE_SLANT
+
+  SkFontStyleWeight* {.pure.} = enum
+    Invisible = 0,
+    Thin = 100,
+    ExtraLight = 200,
+    Light = 300,
+    Normal = 400,
+    Medium = 500,
+    SemiBold = 600,
+    Bold = 700,
+    ExtraBold = 800,
+    Black = 900,
+    ExtraBlack = 1000
+
+  SkFontStyleWidth* {.pure.} = enum
+    UltraCondensed = 1,
+    ExtraCondensed = 2,
+    Condensed = 3,
+    SemiCondensed = 4,
+    Normal = 5,
+    SemiExpanded = 6,
+    Expanded = 7,
+    ExtraExpanded = 8,
+    UltraExpanded = 9
+
 const
   LastSeparableMode* = Multiply
   LastCoeffMode* = Screen
