@@ -127,11 +127,9 @@ proc move*(s: SkStreamSeekable, offset:int): bool =
   sk_stream_move(
     cast[ptr sk_stream_t](s.native), offset)
 
-discard """
-proc memoryBase*(s: SkStream): pointer =
+template memoryBase*(s: SkStream): pointer =
   sk_stream_get_memory_base(
     cast[ptr sk_stream_t](s.native))
-"""
 
 proc fork*(s: SkStreamSeekable): SkStreamSeekable =
   new(result) 

@@ -9,7 +9,8 @@ import ../nimskia/[
   sk_surface,
   sk_image,
   sk_data,
-  sk_path
+  sk_path,
+  sk_bitmap
 ]
 
 import math
@@ -21,10 +22,7 @@ proc star*(r: float, c: float): SkPath =
     let a = 2.6927937 * i.float
     discard result.lineTo(c + r * cos(a), c + r * sin(a))
 
-proc emitPng*(path: string; surface: SkSurface) =
-  var image = surface.snapshot()
-  defer: image.dispose()
-  
+proc imageToPng(image: SkImage, path: string) =
   var data = image.encode()
   defer: data.dispose()
 
@@ -33,6 +31,15 @@ proc emitPng*(path: string; surface: SkSurface) =
   var dataLen = len(data)
   discard f.writeBuffer(dataBuff, dataLen)
   f.close()
+
+proc emitPng*(path: string; surface: SkSurface) =
+  var image = surface.snapshot()
+  imageToPng(image, path)
+  image.dispose()
+  
+
+proc emitPng*(path: string, bmp: SkBitmap) = 
+  imageToPng(newSkImageFromBitmap(bmp), path)
 
 # assumes a 640x480 surface
 proc testDraw*(canvas: SkCanvas) =

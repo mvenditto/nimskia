@@ -1,3 +1,6 @@
 [submodule "skia"]
 	path = skia
 	url = https://github.com/mono/skia/
+[submodule "nimskia/extra/harfbuzz"]
+	path = nimskia/extra/harfbuzz
+	url = https://github.com/mvenditto/harfbuzz-nim.git

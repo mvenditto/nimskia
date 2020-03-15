@@ -2,6 +2,7 @@
 import ../wrapper/sk_types
 import ../wrapper/sk_bitmap
 import ../wrapper/sk_general
+import ../wrapper/sk_image as sk_image_native
 
 import sk_color
 import sk_imageinfo
@@ -200,6 +201,9 @@ proc bitmapFrom*(img: SkImage): SkBitmap =
   if not img.readPixels(info, result.pixels(lenght)):
     result.dispose()
     result = nil
+
+proc newSkImageFromBitmap*(bmp: SkBitmap): SkImage =
+  SkImage(native: sk_image_new_from_bitmap(bmp.native))
 
 
 

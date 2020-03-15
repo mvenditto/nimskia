@@ -1,5 +1,7 @@
 import ../wrapper/sk_types
 
+import strformat
+
 type
   SkPoint* = ref sk_point_t
   SkPointI* = ref sk_ipoint_t
@@ -29,6 +31,8 @@ proc `-`*(a: SkPoint, b: SkPoint): SkPoint =
   new(result)
   result.x = a.x - b.x
   result.y = a.y - b.y
+
+proc `$`*(p: SkPoint): string = &"({p.x},{p.y})"
 
 converter tupleToSkPoint*(p: (int,int)): SkPointI =
   let(x,y) = p

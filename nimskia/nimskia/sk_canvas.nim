@@ -12,6 +12,10 @@ import sk_matrix
 import sk_data
 import sk_point
 import sk_vertices
+import sk_lattice
+
+import sequtils
+import sugar
 
 import internals/native
 
@@ -46,7 +50,8 @@ proc drawRect*(this: SkCanvas, rect: SkRect, paint: SkPaint) =
 
 proc drawRect*(this: SkCanvas, rect: SkRectI, paint: SkPaint) =
   # TODO: fixme
-  sk_canvas_draw_rect(this.native, cast[ptr sk_rect_t](rect.native.addr), paint.native)
+  var r: SkRect = (rect.top.float, rect.left.float, rect.bottom.float, rect.right.float)
+  sk_canvas_draw_rect(this.native, r.native.addr, paint.native)
 
 proc drawRoundRect*(this: SkCanvas, rect: SkRect, rx: float, ry: float, paint: SkPaint) =
   sk_canvas_draw_round_rect(this.native, cast[ptr sk_rect_t](rect.native.addr), rx, ry, paint.native)
@@ -90,6 +95,25 @@ proc drawBitmap*(this: SkCanvas, bitmap: SkBitmap) =
 
 proc drawText*(this: SkCanvas, text: string, x: float, y: float, paint: SkPaint) =
   sk_canvas_draw_text(this.native, text.cstring, len(text), x, y, paint.native)
+
+proc drawPositionedText*(this: SkCanvas, text: string, points: seq[SkPoint], paint: SkPaint) =
+  sk_canvas_draw_pos_text(this.native, text.cstring, points.len, cast[ptr sk_point_t](points[0].unsafeAddr), paint.native)
+
+proc drawPositionedText*(this: SkCanvas, text: seq[byte], points: seq[SkPoint], paint: SkPaint) =
+  
+  let str = newString(text.len)
+  copyMem(str.cstring, text[0].unsafeAddr, text.len)
+
+  let pointsNative = points.map(p => p[])
+  let pointsPtr = cast[ptr sk_point_t](pointsNative[0].unsafeAddr)
+ 
+  sk_canvas_draw_pos_text(
+    this.native, 
+    str, 
+    text.len, 
+    pointsPtr, 
+    paint.native)
+
 
 proc dispose*(this: SkCanvas) =
   sk_canvas_destroy(this.native)
@@ -174,4 +198,13 @@ proc drawVertices*(
   let verts = copy(vmode, vertices, colors)
   this.drawVertices(verts, Modulate, paint)
   
+
+proc drawBitmapLattice*(this: SkCanvas, bitmap: SkBitmap, lattice: SkLattice, dst: SkRect, paint: SkPaint = nil) = 
+  sk_canvas_draw_bitmap_lattice(
+    this.native, 
+    bitmap.native, 
+    lattice.native.addr, 
+    dst.native.addr,
+    if isNil paint: nil else: paint.native
+  )
 

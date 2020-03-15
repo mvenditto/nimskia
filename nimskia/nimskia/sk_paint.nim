@@ -6,6 +6,7 @@ import sk_enums
 import sk_shader
 import sk_rect
 import sk_patheffect
+import sk_typeface
 
 import internals/native
 
@@ -72,6 +73,21 @@ template joinCap*(this: SkPaint): SkStrokeJoin =
 
 proc `joinCap=`*(this: SkPaint, jointType: SkStrokeJoin) =
   sk_paint_set_stroke_join(this.native, jointType.sk_stroke_join_t) 
+
+template textScaleX*(this: SkPaint): float = 
+  sk_paint_get_text_scale_x(this.native)
+
+template textEncoding*(this: SkPaint): SkTextEncoding =
+  sk_paint_get_text_encoding(this.native).SkTextEncoding
+
+proc `textEncoding=`*(this:SkPaint, encoding: SkTextEncoding) =
+  sk_paint_set_text_encoding(this.native, encoding.sk_text_encoding_t)
+
+template `typeface=`*(this: SkPaint, newTypeface: SkTypeface) =
+  sk_paint_set_typeface(this.native, newTypeface.native)
+
+proc clone*(this: SkPaint): SkPaint =
+  SkPaint(native: sk_paint_clone(this.native))
 
 proc measureText*(this: SkPaint, text: pointer, length: int, cbounds: SkRect): float =
   return sk_paint_measure_text(

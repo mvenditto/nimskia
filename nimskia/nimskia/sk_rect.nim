@@ -63,6 +63,8 @@ proc newSkRect*(topLeft: (float, float), bottomRight: (float, float)): SkRect =
 proc newSkRect*(topLeft: (float, float), width, height: float): SkRect =
   newSkRect(topLeft[0], topLeft[1], topLeft[0] + width, topLeft[1] + height)
 
+proc newSkRectLTWH*(left, top, width, height: float): SkRect =
+  newSkRect(left, top, left + width, top + height)
 ### SkRectI
 
 proc newSkRect*(left, top, right, bottom: int32): SkRectI =
@@ -131,3 +133,7 @@ proc standardized*(r: SkRect): SkRect =
 converter tupleToRectF*(rect: (float,float,float,float)): SkRect =
   let(left,top,right,bottom) = rect
   result = newSkRect(left, top, right, bottom)
+
+converter tupleToRectI*(rect: (int,int,int,int)): SkRectI =
+  let(left,top,right,bottom) = rect
+  result = newSkRect(left.int32, top.int32, right.int32, bottom.int32)
