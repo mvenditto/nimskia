@@ -938,6 +938,33 @@ function main() {
   Triangles = TRIANGLES_SK_VERTICES_VERTEX_MODE,
   TriangleStrip = TRIANGLE_STRIP_SK_VERTICES_VERTEX_MODE,
   TriangleFan = TRIANGLE_FAN_SK_VERTICES_VERTEX_MODE"><wbr />Sk<wbr />Vertex<wbr />Mode<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#SkLatticeRectType"
+    title="SkLatticeRectType {.pure.} = enum
+  Default = DEFAULT_SK_LATTICE_RECT_TYPE,
+  Transparent = TRANSPARENT_SK_LATTICE_RECT_TYPE,
+  FixedColor = FIXED_COLOR_SK_LATTICE_RECT_TYPE"><wbr />Sk<wbr />Lattice<wbr />Rect<wbr />Type<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#SkTypefaceFlag"
+    title="SkTypefaceFlag {.pure.} = enum
+  Normal = 0, Bold = 0x00000001, Italic = 0x00000002, BoldItalic = 0x00000003"><wbr />Sk<wbr />Typeface<wbr />Flag<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#SkTypeFaceStyle"
+    title="SkTypeFaceStyle = set[SkTypefaceFlag]"><wbr />Sk<wbr />Type<wbr />Face<wbr />Style<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#SkFontStyleSlant"
+    title="SkFontStyleSlant {.pure.} = enum
+  Upright = UPRIGHT_SK_FONT_STYLE_SLANT, Italic = ITALIC_SK_FONT_STYLE_SLANT,
+  Oblique = OBLIQUE_SK_FONT_STYLE_SLANT"><wbr />Sk<wbr />Font<wbr />Style<wbr />Slant<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#SkFontStyleWeight"
+    title="SkFontStyleWeight {.pure.} = enum
+  Invisible = 0, Thin = 100, ExtraLight = 200, Light = 300, Normal = 400, Medium = 500,
+  SemiBold = 600, Bold = 700, ExtraBold = 800, Black = 900, ExtraBlack = 1000"><wbr />Sk<wbr />Font<wbr />Style<wbr />Weight<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#SkFontStyleWidth"
+    title="SkFontStyleWidth {.pure.} = enum
+  UltraCondensed = 1, ExtraCondensed = 2, Condensed = 3, SemiCondensed = 4, Normal = 5,
+  SemiExpanded = 6, Expanded = 7, ExtraExpanded = 8, UltraExpanded = 9"><wbr />Sk<wbr />Font<wbr />Style<wbr />Width<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#SkPaintHinting"
+    title="SkPaintHinting = enum
+  NoHinting = NO_HINTING_SK_PAINT_HINTING,
+  Slight = SLIGHT_HINTING_SK_PAINT_HINTING,
+  Normal = NORMAL_HINTING_SK_PAINT_HINTING, Full = FULL_HINTING_SK_PAINT_HINTING"><wbr />Sk<wbr />Paint<wbr />Hinting<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -1263,6 +1290,96 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L143" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+<a id="SkLatticeRectType"></a>
+<dt><pre><a href="sk_enums.html#SkLatticeRectType"><span class="Identifier">SkLatticeRectType</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">pure</span></span><span class="Other">.}</span></span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">Default</span> <span class="Other">=</span> <span class="Identifier">DEFAULT_SK_LATTICE_RECT_TYPE</span><span class="Other">,</span>
+  <span class="Identifier">Transparent</span> <span class="Other">=</span> <span class="Identifier">TRANSPARENT_SK_LATTICE_RECT_TYPE</span><span class="Other">,</span>
+  <span class="Identifier">FixedColor</span> <span class="Other">=</span> <span class="Identifier">FIXED_COLOR_SK_LATTICE_RECT_TYPE</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L148"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L148" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="SkTypefaceFlag"></a>
+<dt><pre><a href="sk_enums.html#SkTypefaceFlag"><span class="Identifier">SkTypefaceFlag</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">pure</span></span><span class="Other">.}</span></span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">Normal</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">Bold</span> <span class="Other">=</span> <span class="DecNumber">0x00000001</span><span class="Other">,</span> <span class="Identifier">Italic</span> <span class="Other">=</span> <span class="DecNumber">0x00000002</span><span class="Other">,</span> <span class="Identifier">BoldItalic</span> <span class="Other">=</span> <span class="DecNumber">0x00000003</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L153"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L153" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="SkTypeFaceStyle"></a>
+<dt><pre><a href="sk_enums.html#SkTypeFaceStyle"><span class="Identifier">SkTypeFaceStyle</span></a> <span class="Other">=</span> <span class="Identifier">set</span><span class="Other">[</span><a href="sk_enums.html#SkTypefaceFlag"><span class="Identifier">SkTypefaceFlag</span></a><span class="Other">]</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L159"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L159" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="SkFontStyleSlant"></a>
+<dt><pre><a href="sk_enums.html#SkFontStyleSlant"><span class="Identifier">SkFontStyleSlant</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">pure</span></span><span class="Other">.}</span></span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">Upright</span> <span class="Other">=</span> <span class="Identifier">UPRIGHT_SK_FONT_STYLE_SLANT</span><span class="Other">,</span> <span class="Identifier">Italic</span> <span class="Other">=</span> <span class="Identifier">ITALIC_SK_FONT_STYLE_SLANT</span><span class="Other">,</span>
+  <span class="Identifier">Oblique</span> <span class="Other">=</span> <span class="Identifier">OBLIQUE_SK_FONT_STYLE_SLANT</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L161"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L161" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="SkFontStyleWeight"></a>
+<dt><pre><a href="sk_enums.html#SkFontStyleWeight"><span class="Identifier">SkFontStyleWeight</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">pure</span></span><span class="Other">.}</span></span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">Invisible</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">Thin</span> <span class="Other">=</span> <span class="DecNumber">100</span><span class="Other">,</span> <span class="Identifier">ExtraLight</span> <span class="Other">=</span> <span class="DecNumber">200</span><span class="Other">,</span> <span class="Identifier">Light</span> <span class="Other">=</span> <span class="DecNumber">300</span><span class="Other">,</span> <span class="Identifier">Normal</span> <span class="Other">=</span> <span class="DecNumber">400</span><span class="Other">,</span> <span class="Identifier">Medium</span> <span class="Other">=</span> <span class="DecNumber">500</span><span class="Other">,</span>
+  <span class="Identifier">SemiBold</span> <span class="Other">=</span> <span class="DecNumber">600</span><span class="Other">,</span> <span class="Identifier">Bold</span> <span class="Other">=</span> <span class="DecNumber">700</span><span class="Other">,</span> <span class="Identifier">ExtraBold</span> <span class="Other">=</span> <span class="DecNumber">800</span><span class="Other">,</span> <span class="Identifier">Black</span> <span class="Other">=</span> <span class="DecNumber">900</span><span class="Other">,</span> <span class="Identifier">ExtraBlack</span> <span class="Other">=</span> <span class="DecNumber">1000</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L166"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L166" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="SkFontStyleWidth"></a>
+<dt><pre><a href="sk_enums.html#SkFontStyleWidth"><span class="Identifier">SkFontStyleWidth</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">pure</span></span><span class="Other">.}</span></span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">UltraCondensed</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">ExtraCondensed</span> <span class="Other">=</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">Condensed</span> <span class="Other">=</span> <span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">SemiCondensed</span> <span class="Other">=</span> <span class="DecNumber">4</span><span class="Other">,</span> <span class="Identifier">Normal</span> <span class="Other">=</span> <span class="DecNumber">5</span><span class="Other">,</span>
+  <span class="Identifier">SemiExpanded</span> <span class="Other">=</span> <span class="DecNumber">6</span><span class="Other">,</span> <span class="Identifier">Expanded</span> <span class="Other">=</span> <span class="DecNumber">7</span><span class="Other">,</span> <span class="Identifier">ExtraExpanded</span> <span class="Other">=</span> <span class="DecNumber">8</span><span class="Other">,</span> <span class="Identifier">UltraExpanded</span> <span class="Other">=</span> <span class="DecNumber">9</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L179"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L179" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="SkPaintHinting"></a>
+<dt><pre><a href="sk_enums.html#SkPaintHinting"><span class="Identifier">SkPaintHinting</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">NoHinting</span> <span class="Other">=</span> <span class="Identifier">NO_HINTING_SK_PAINT_HINTING</span><span class="Other">,</span>
+  <span class="Identifier">Slight</span> <span class="Other">=</span> <span class="Identifier">SLIGHT_HINTING_SK_PAINT_HINTING</span><span class="Other">,</span>
+  <span class="Identifier">Normal</span> <span class="Other">=</span> <span class="Identifier">NORMAL_HINTING_SK_PAINT_HINTING</span><span class="Other">,</span> <span class="Identifier">Full</span> <span class="Other">=</span> <span class="Identifier">FULL_HINTING_SK_PAINT_HINTING</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L190"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L190" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
 
 </dl></div>
 <div class="section" id="10">
@@ -1274,9 +1391,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L149"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L197"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L149" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L197" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="LastCoeffMode"></a>
@@ -1285,9 +1402,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L150"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L198"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L150" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L198" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="LastMode"></a>
@@ -1296,9 +1413,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L151"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_enums.nim#L199"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L151" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_enums.nim#L199" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1311,7 +1428,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2020-02-22 14:03:30 UTC</small>
+        <small>Made with Nim. Generated: 2020-03-16 19:11:01 UTC</small>
       </div>
     </div>
   </div>

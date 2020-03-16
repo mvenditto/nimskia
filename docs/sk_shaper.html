@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>sk_managedstream</title>
+<title>sk_shaper</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -805,7 +805,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">sk_managedstream</h1>
+    <h1 class="title">sk_shaper</h1>
     <div class="row">
   <div class="three columns">
   <div id="global-links">
@@ -833,40 +833,35 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#SkManagedStreamObj"
-    title="SkManagedStreamObj = object of SkStreamAsset
-  onReadImpl*: proc (s: SkManagedStream; buff: pointer; size: int): int
-  onPeekImpl*: proc (s: SkManagedStream; buff: pointer; size: int): int
-  onIsAtEndImpl*: proc (s: SkManagedStream): bool
-  onHasPositionImpl*: proc (s: SkManagedStream): bool
-  onHasLengthImpl*: proc (s: SkManagedStream): bool
-  onRewindImpl*: proc (s: SkManagedStream): bool
-  onGetPositionImpl*: proc (s: SkManagedStream): int
-  onGetLengthImpl*: proc (s: SkManagedStream): int
-  onSeekImpl*: proc (s: SkManagedStream; position: int): bool
-  onMoveImpl*: proc (s: SkManagedStream; offset: int): bool
-  onCreateNewImpl*: proc (s: SkManagedStream): SkManagedStream
-  onDuplicateImpl*: proc (s: SkManagedStream): SkManagedStream
-  onForkImpl*: proc (s: SkManagedStream): SkManagedStream"><wbr />Sk<wbr />Managed<wbr />Stream<wbr />Obj<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#SkManagedStream"
-    title="SkManagedStream = ref object of SkManagedStreamObj
-  parent: SkManagedStream
-  child: SkManagedStream
-  wasCopied*: bool
-  disposeUnderlyingStream: bool
-  stream: Stream"><wbr />Sk<wbr />Managed<wbr />Stream<span class="attachedType"></span></a></li>
+      <li><a class="reference" href="#SkShaper"
+    title="SkShaper = ref object
+  font: Font
+  buffer: Buffer
+  typeface*: SkTypeface"><wbr />Sk<wbr />Shaper<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#dispose%2CSkManagedStream"
-    title="dispose(s: SkManagedStream)"><wbr />dispose<span class="attachedType">SkManagedStream</span></a></li>
-  <li><a class="reference" href="#newSkManagedStreamInternal"
-    title="newSkManagedStreamInternal(): SkManagedStream"><wbr />new<wbr />Sk<wbr />Managed<wbr />Stream<wbr />Internal<span class="attachedType">SkManagedStream</span></a></li>
-  <li><a class="reference" href="#newSkManagedStream%2CStream%2Cbool"
-    title="newSkManagedStream(stream: Stream; disposeUnderlyingStream: bool = false): SkManagedStream"><wbr />new<wbr />Sk<wbr />Managed<wbr />Stream<span class="attachedType">SkManagedStream</span></a></li>
+      <li><a class="reference" href="#toHarfBuffBlob%2CSkStreamAsset"
+    title="toHarfBuffBlob(stream: SkStreamAsset): Blob"><wbr />to<wbr />Harf<wbr />Buff<wbr />Blob<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#newSkShaper%2CSkTypeface"
+    title="newSkShaper(typeface: SkTypeface): SkShaper"><wbr />new<wbr />Sk<wbr />Shaper<span class="attachedType">SkShaper</span></a></li>
+  <li><a class="reference" href="#shape%2CSkShaper%2CBuffer%2Cfloat%2Cfloat%2CSkPaint"
+    title="shape(shaper: SkShaper; buffer: Buffer; xOffset, yOffset: float; paint: SkPaint): (
+    seq[uint], seq[uint], seq[SkPoint])"><wbr />shape<span class="attachedType">SkShaper</span></a></li>
+  <li><a class="reference" href="#shape%2CSkShaper%2CBuffer%2CSkPaint"
+    title="shape(shaper: SkShaper; buffer: Buffer; paint: SkPaint): (seq[uint], seq[uint],
+    seq[SkPoint])"><wbr />shape<span class="attachedType">SkShaper</span></a></li>
+  <li><a class="reference" href="#shape%2CSkShaper%2Cstring%2Cfloat%2Cfloat%2CSkPaint"
+    title="shape(shaper: SkShaper; text: string; xOffset, yOffset: float; paint: SkPaint): (
+    seq[uint], seq[uint], seq[SkPoint])"><wbr />shape<span class="attachedType">SkShaper</span></a></li>
+  <li><a class="reference" href="#shape%2CSkShaper%2Cstring%2CSkPaint"
+    title="shape(shaper: SkShaper; text: string; paint: SkPaint): (seq[uint], seq[uint],
+    seq[SkPoint])"><wbr />shape<span class="attachedType">SkShaper</span></a></li>
+  <li><a class="reference" href="#dispose%2CSkShaper"
+    title="dispose(shaper: SkShaper)"><wbr />dispose<span class="attachedType">SkShaper</span></a></li>
 
   </ul>
 </li>
@@ -881,51 +876,24 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="sk_stream.html">sk_stream</a>, <a class="reference external" href="sk_types.html">sk_types</a>, <a class="reference external" href="exceptions.html">exceptions</a>
+<a class="reference external" href="buffer.html">buffer</a>, <a class="reference external" href="face.html">face</a>, <a class="reference external" href="font.html">font</a>, <a class="reference external" href="blob.html">blob</a>, <a class="reference external" href="sk_typeface.html">sk_typeface</a>, <a class="reference external" href="sk_stream.html">sk_stream</a>, <a class="reference external" href="sk_paint.html">sk_paint</a>, <a class="reference external" href="sk_point.html">sk_point</a>, <a class="reference external" href="sk_enums.html">sk_enums</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<a id="SkManagedStreamObj"></a>
-<dt><pre><a href="sk_managedstream.html#SkManagedStreamObj"><span class="Identifier">SkManagedStreamObj</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">SkStreamAsset</span>
-  <span class="Identifier">onReadImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">;</span> <span class="Identifier">buff</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">onPeekImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">;</span> <span class="Identifier">buff</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">onIsAtEndImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">onHasPositionImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">onHasLengthImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">onRewindImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">onGetPositionImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">onGetLengthImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">onSeekImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">;</span> <span class="Identifier">position</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">onMoveImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">;</span> <span class="Identifier">offset</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">onCreateNewImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a>
-  <span class="Identifier">onDuplicateImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a>
-  <span class="Identifier">onForkImpl</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a>
+<a id="SkShaper"></a>
+<dt><pre><a href="sk_shaper.html#SkShaper"><span class="Identifier">SkShaper</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">font</span><span class="Other">:</span> <a href="font.html#Font"><span class="Identifier">Font</span></a>
+  <span class="Identifier">buffer</span><span class="Other">:</span> <a href="buffer.html#Buffer"><span class="Identifier">Buffer</span></a>
+  <span class="Identifier">typeface</span><span class="Operator">*</span><span class="Other">:</span> <a href="sk_typeface.html#SkTypeface"><span class="Identifier">SkTypeface</span></a>
 </pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_managedstream.nim#L14"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_managedstream.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="SkManagedStream"></a>
-<dt><pre><a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="sk_managedstream.html#SkManagedStreamObj"><span class="Identifier">SkManagedStreamObj</span></a>
-  <span class="Identifier">parent</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a>
-  <span class="Identifier">child</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a>
-  <span class="Identifier">wasCopied</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">disposeUnderlyingStream</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">stream</span><span class="Other">:</span> <span class="Identifier">Stream</span>
-</pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_managedstream.nim#L29"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_managedstream.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -933,38 +901,85 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<a id="dispose,SkManagedStream"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#dispose%2CSkManagedStream"><span class="Identifier">dispose</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="toHarfBuffBlob,SkStreamAsset"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#toHarfBuffBlob%2CSkStreamAsset"><span class="Identifier">toHarfBuffBlob</span></a><span class="Other">(</span><span class="Identifier">stream</span><span class="Other">:</span> <a href="sk_stream.html#SkStreamAsset"><span class="Identifier">SkStreamAsset</span></a><span class="Other">)</span><span class="Other">:</span> <a href="blob.html#Blob"><span class="Identifier">Blob</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_managedstream.nim#L66"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L28"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_managedstream.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="newSkManagedStreamInternal"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#newSkManagedStreamInternal"><span class="Identifier">newSkManagedStreamInternal</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="newSkShaper,SkTypeface"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#newSkShaper%2CSkTypeface"><span class="Identifier">newSkShaper</span></a><span class="Other">(</span><span class="Identifier">typeface</span><span class="Other">:</span> <a href="sk_typeface.html#SkTypeface"><span class="Identifier">SkTypeface</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_shaper.html#SkShaper"><span class="Identifier">SkShaper</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_managedstream.nim#L144"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L58"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_managedstream.nim#L144" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="newSkManagedStream,Stream,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#newSkManagedStream%2CStream%2Cbool"><span class="Identifier">newSkManagedStream</span></a><span class="Other">(</span><span class="Identifier">stream</span><span class="Other">:</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">disposeUnderlyingStream</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <a href="sk_managedstream.html#SkManagedStream"><span class="Identifier">SkManagedStream</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="shape,SkShaper,Buffer,float,float,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#shape%2CSkShaper%2CBuffer%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">shape</span></a><span class="Other">(</span><span class="Identifier">shaper</span><span class="Other">:</span> <a href="sk_shaper.html#SkShaper"><span class="Identifier">SkShaper</span></a><span class="Other">;</span> <span class="Identifier">buffer</span><span class="Other">:</span> <a href="buffer.html#Buffer"><span class="Identifier">Buffer</span></a><span class="Other">;</span> <span class="Identifier">xOffset</span><span class="Other">,</span> <span class="Identifier">yOffset</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span>
+    <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="sk_point.html#SkPoint"><span class="Identifier">SkPoint</span></a><span class="Other">]</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_managedstream.nim#L204"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L84"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_managedstream.nim#L204" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L84" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="shape,SkShaper,Buffer,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#shape%2CSkShaper%2CBuffer%2CSkPaint"><span class="Identifier">shape</span></a><span class="Other">(</span><span class="Identifier">shaper</span><span class="Other">:</span> <a href="sk_shaper.html#SkShaper"><span class="Identifier">SkShaper</span></a><span class="Other">;</span> <span class="Identifier">buffer</span><span class="Other">:</span> <a href="buffer.html#Buffer"><span class="Identifier">Buffer</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">seq</span><span class="Other">[</span><a href="sk_point.html#SkPoint"><span class="Identifier">SkPoint</span></a><span class="Other">]</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L116"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L116" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="shape,SkShaper,string,float,float,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#shape%2CSkShaper%2Cstring%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">shape</span></a><span class="Other">(</span><span class="Identifier">shaper</span><span class="Other">:</span> <a href="sk_shaper.html#SkShaper"><span class="Identifier">SkShaper</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">xOffset</span><span class="Other">,</span> <span class="Identifier">yOffset</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span>
+    <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="sk_point.html#SkPoint"><span class="Identifier">SkPoint</span></a><span class="Other">]</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">AssertionError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L119"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L119" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="shape,SkShaper,string,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#shape%2CSkShaper%2Cstring%2CSkPaint"><span class="Identifier">shape</span></a><span class="Other">(</span><span class="Identifier">shaper</span><span class="Other">:</span> <a href="sk_shaper.html#SkShaper"><span class="Identifier">SkShaper</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">seq</span><span class="Other">[</span><a href="sk_point.html#SkPoint"><span class="Identifier">SkPoint</span></a><span class="Other">]</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">AssertionError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L132"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L132" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="dispose,SkShaper"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#dispose%2CSkShaper"><span class="Identifier">dispose</span></a><span class="Other">(</span><span class="Identifier">shaper</span><span class="Other">:</span> <a href="sk_shaper.html#SkShaper"><span class="Identifier">SkShaper</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_shaper.nim#L135"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_shaper.nim#L135" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -977,7 +992,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2020-03-16 19:11:02 UTC</small>
+        <small>Made with Nim. Generated: 2020-03-16 19:11:08 UTC</small>
       </div>
     </div>
   </div>

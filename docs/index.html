@@ -806,9 +806,11 @@ function main() {
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
-    Modules: <a href="gr_context.html">gr_context</a>, <a href="sk_bitmap.html">sk_bitmap</a>, <a href="sk_canvas.html">sk_canvas</a>, <a href="sk_codec.html">sk_codec</a>, <a href="sk_color.html">sk_color</a>, <a href="sk_colors.html">sk_colors</a>, <a href="sk_colorspace.html">sk_colorspace</a>, <a href="sk_converters.html">sk_converters</a>, <a href="sk_data.html">sk_data</a>, <a href="sk_document.html">sk_document</a>, <a href="sk_enums.html">sk_enums</a>, <a href="sk_image.html">sk_image</a>, <a href="sk_imageinfo.html">sk_imageinfo</a>, <a href="sk_managedstream.html">sk_managedstream</a>, <a href="sk_matrix.html">sk_matrix</a>, <a href="sk_paint.html">sk_paint</a>, <a href="sk_path.html">sk_path</a>, <a href="sk_patheffect.html">sk_patheffect</a>, <a href="sk_pixmap.html">sk_pixmap</a>, <a href="sk_point.html">sk_point</a>, <a href="sk_rect.html">sk_rect</a>, <a href="sk_shader.html">sk_shader</a>, <a href="sk_size.html">sk_size</a>, <a href="sk_stream.html">sk_stream</a>, <a href="sk_string.html">sk_string</a>, <a href="sk_surface.html">sk_surface</a>, <a href="sk_vertices.html">sk_vertices</a>.<br/><p /><h2>API symbols</h2>
+    Modules: <a href="gr_context.html">gr_context</a>, <a href="sk_bitmap.html">sk_bitmap</a>, <a href="sk_canvas.html">sk_canvas</a>, <a href="sk_canvas_ext.html">sk_canvas_ext</a>, <a href="sk_codec.html">sk_codec</a>, <a href="sk_color.html">sk_color</a>, <a href="sk_colors.html">sk_colors</a>, <a href="sk_colorspace.html">sk_colorspace</a>, <a href="sk_converters.html">sk_converters</a>, <a href="sk_data.html">sk_data</a>, <a href="sk_document.html">sk_document</a>, <a href="sk_enums.html">sk_enums</a>, <a href="sk_image.html">sk_image</a>, <a href="sk_imageinfo.html">sk_imageinfo</a>, <a href="sk_managedstream.html">sk_managedstream</a>, <a href="sk_matrix.html">sk_matrix</a>, <a href="sk_paint.html">sk_paint</a>, <a href="sk_path.html">sk_path</a>, <a href="sk_patheffect.html">sk_patheffect</a>, <a href="sk_pixmap.html">sk_pixmap</a>, <a href="sk_point.html">sk_point</a>, <a href="sk_rect.html">sk_rect</a>, <a href="sk_shader.html">sk_shader</a>, <a href="sk_shaper.html">sk_shaper</a>, <a href="sk_size.html">sk_size</a>, <a href="sk_stream.html">sk_stream</a>, <a href="sk_string.html">sk_string</a>, <a href="sk_surface.html">sk_surface</a>, <a href="sk_vertices.html">sk_vertices</a>.<br/><p /><h2>API symbols</h2>
 <dl><dt><a name="%60%24%60" href="#%60%24%60"><span>`$`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
+          data-doc-search-tag="sk_point: `$`(p: SkPoint): string" href="sk_point.html#%24%2CSkPoint">sk_point: `$`(p: SkPoint): string</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="sk_rect: `$`(f: SkRect): string" href="sk_rect.html#%24%2CSkRect">sk_rect: `$`(f: SkRect): string</a></li>
           <li><a class="reference external"
           data-doc-search-tag="sk_string: `$`(this: SkString): string" href="sk_string.html#%24%2CSkString">sk_string: `$`(this: SkString): string</a></li>
@@ -883,7 +885,7 @@ function main() {
           </ul></dd>
 <dt><a name="antialias%3D" href="#antialias%3D"><span>antialias=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: antialias=(this: SkPaint; enabled: bool)" href="sk_paint.html#antialias%3D%2CSkPaint%2Cbool">sk_paint: antialias=(this: SkPaint; enabled: bool)</a></li>
+          data-doc-search-tag="sk_paint: antialias=(this: SkPaint; enabled: bool)" href="sk_paint.html#antialias%3D.t%2CSkPaint%2Cbool">sk_paint: antialias=(this: SkPaint; enabled: bool)</a></li>
           </ul></dd>
 <dt><a name="AntiqueWhite" href="#AntiqueWhite"><span>AntiqueWhite:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1045,6 +1047,10 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="SkPathDirection.Clockwise" href="sk_enums.html#Clockwise">SkPathDirection.Clockwise</a></li>
           </ul></dd>
+<dt><a name="clone" href="#clone"><span>clone:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: clone(this: SkPaint): SkPaint" href="sk_paint.html#clone%2CSkPaint">sk_paint: clone(this: SkPaint): SkPaint</a></li>
+          </ul></dd>
 <dt><a name="close" href="#close"><span>close:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_document: close(doc: SkDocument)" href="sk_document.html#close%2CSkDocument">sk_document: close(doc: SkDocument)</a></li>
@@ -1061,9 +1067,9 @@ function main() {
           </ul></dd>
 <dt><a name="color%3D" href="#color%3D"><span>color=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: color=(this: SkPaint; argb: (int, int, int, int))" href="sk_paint.html#color%3D%2CSkPaint%2C">sk_paint: color=(this: SkPaint; argb: (int, int, int, int))</a></li>
+          data-doc-search-tag="sk_paint: color=(this: SkPaint; argb: (int, int, int, int))" href="sk_paint.html#color%3D.t%2CSkPaint%2C">sk_paint: color=(this: SkPaint; argb: (int, int, int, int))</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="sk_paint: color=(this: SkPaint; color: SkColor)" href="sk_paint.html#color%3D%2CSkPaint%2CSkColor">sk_paint: color=(this: SkPaint; color: SkColor)</a></li>
+          data-doc-search-tag="sk_paint: color=(this: SkPaint; color: SkColor)" href="sk_paint.html#color%3D.t%2CSkPaint%2CSkColor">sk_paint: color=(this: SkPaint; color: SkColor)</a></li>
           </ul></dd>
 <dt><a name="ColorBurn" href="#ColorBurn"><span>ColorBurn:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1345,6 +1351,8 @@ function main() {
           <li><a class="reference external"
           data-doc-search-tag="sk_shader: dispose(s: SkShader)" href="sk_shader.html#dispose%2CSkShader">sk_shader: dispose(s: SkShader)</a></li>
           <li><a class="reference external"
+          data-doc-search-tag="sk_shaper: dispose(shaper: SkShaper)" href="sk_shaper.html#dispose%2CSkShaper">sk_shaper: dispose(shaper: SkShaper)</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="sk_stream: dispose(s: SkFileStream)" href="sk_stream.html#dispose%2CSkFileStream">sk_stream: dispose(s: SkFileStream)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="sk_stream: dispose(s: SkFileWStream)" href="sk_stream.html#dispose%2CSkFileWStream">sk_stream: dispose(s: SkFileWStream)</a></li>
@@ -1368,6 +1376,12 @@ function main() {
           data-doc-search-tag="sk_canvas: drawBitmap(this: SkCanvas; bitmap: SkBitmap; left: float; top: float)" href="sk_canvas.html#drawBitmap%2CSkCanvas%2CSkBitmap%2Cfloat%2Cfloat">sk_canvas: drawBitmap(this: SkCanvas; bitmap: SkBitmap; left: float; top: float)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="sk_canvas: drawBitmap(this: SkCanvas; bitmap: SkBitmap; left: float; top: float; paint: SkPaint)" href="sk_canvas.html#drawBitmap%2CSkCanvas%2CSkBitmap%2Cfloat%2Cfloat%2CSkPaint">sk_canvas: drawBitmap(this: SkCanvas; bitmap: SkBitmap; left: float; top: float; paint: SkPaint)</a></li>
+          </ul></dd>
+<dt><a name="drawBitmapLattice" href="#drawBitmapLattice"><span>drawBitmapLattice:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_canvas: drawBitmapLattice(this: SkCanvas; bitmap: SkBitmap; lattice: SkLattice; dst: SkRect;
+                  paint: SkPaint = nil)" href="sk_canvas.html#drawBitmapLattice%2CSkCanvas%2CSkBitmap%2CSkLattice%2CSkRect%2CSkPaint">sk_canvas: drawBitmapLattice(this: SkCanvas; bitmap: SkBitmap; lattice: SkLattice; dst: SkRect;
+                  paint: SkPaint = nil)</a></li>
           </ul></dd>
 <dt><a name="drawCircle" href="#drawCircle"><span>drawCircle:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1409,6 +1423,14 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_canvas: drawPath(this: SkCanvas; path: SkPath; paint: SkPaint)" href="sk_canvas.html#drawPath%2CSkCanvas%2CSkPath%2CSkPaint">sk_canvas: drawPath(this: SkCanvas; path: SkPath; paint: SkPaint)</a></li>
           </ul></dd>
+<dt><a name="drawPositionedText" href="#drawPositionedText"><span>drawPositionedText:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_canvas: drawPositionedText(this: SkCanvas; text: seq[byte]; points: seq[SkPoint];
+                   paint: SkPaint)" href="sk_canvas.html#drawPositionedText%2CSkCanvas%2Cseq%5BT%5D%5Bbyte%5D%2Cseq%5BT%5D%5BSkPoint%5D%2CSkPaint">sk_canvas: drawPositionedText(this: SkCanvas; text: seq[byte]; points: seq[SkPoint];
+                   paint: SkPaint)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="sk_canvas: drawPositionedText(this: SkCanvas; text: string; points: seq[SkPoint]; paint: SkPaint)" href="sk_canvas.html#drawPositionedText%2CSkCanvas%2Cstring%2Cseq%5BT%5D%5BSkPoint%5D%2CSkPaint">sk_canvas: drawPositionedText(this: SkCanvas; text: string; points: seq[SkPoint]; paint: SkPaint)</a></li>
+          </ul></dd>
 <dt><a name="drawRect" href="#drawRect"><span>drawRect:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_canvas: drawRect(this: SkCanvas; rect: SkRect; paint: SkPaint)" href="sk_canvas.html#drawRect%2CSkCanvas%2CSkRect%2CSkPaint">sk_canvas: drawRect(this: SkCanvas; rect: SkRect; paint: SkPaint)</a></li>
@@ -1418,6 +1440,12 @@ function main() {
 <dt><a name="drawRoundRect" href="#drawRoundRect"><span>drawRoundRect:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_canvas: drawRoundRect(this: SkCanvas; rect: SkRect; rx: float; ry: float; paint: SkPaint)" href="sk_canvas.html#drawRoundRect%2CSkCanvas%2CSkRect%2Cfloat%2Cfloat%2CSkPaint">sk_canvas: drawRoundRect(this: SkCanvas; rect: SkRect; rx: float; ry: float; paint: SkPaint)</a></li>
+          </ul></dd>
+<dt><a name="drawShapedText" href="#drawShapedText"><span>drawShapedText:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_canvas_ext: drawShapedText(canvas: SkCanvas; shaper: SkShaper; text: string; x, y: float;
+               paint: SkPaint)" href="sk_canvas_ext.html#drawShapedText%2CSkCanvas%2CSkShaper%2Cstring%2Cfloat%2Cfloat%2CSkPaint">sk_canvas_ext: drawShapedText(canvas: SkCanvas; shaper: SkShaper; text: string; x, y: float;
+               paint: SkPaint)</a></li>
           </ul></dd>
 <dt><a name="drawText" href="#drawText"><span>drawText:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1520,6 +1548,10 @@ function main() {
 <dt><a name="Fuchsia" href="#Fuchsia"><span>Fuchsia:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_colors: Fuchsia" href="sk_colors.html#Fuchsia">sk_colors: Fuchsia</a></li>
+          </ul></dd>
+<dt><a name="Full" href="#Full"><span>Full:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="SkPaintHinting.Full" href="sk_enums.html#Full">SkPaintHinting.Full</a></li>
           </ul></dd>
 <dt><a name="g" href="#g"><span>g:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1633,6 +1665,14 @@ function main() {
           <li><a class="reference external"
           data-doc-search-tag="sk_size: height(this: SkSizeI): int32" href="sk_size.html#height.t%2CSkSizeI">sk_size: height(this: SkSizeI): int32</a></li>
           </ul></dd>
+<dt><a name="hinting" href="#hinting"><span>hinting:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: hinting(this: SkPaint): SkPaintHinting" href="sk_paint.html#hinting.t%2CSkPaint">sk_paint: hinting(this: SkPaint): SkPaintHinting</a></li>
+          </ul></dd>
+<dt><a name="hinting%3D" href="#hinting%3D"><span>hinting=:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: hinting=(this: SkPaint; hinting: SkPaintHinting)" href="sk_paint.html#hinting%3D.t%2CSkPaint%2CSkPaintHinting">sk_paint: hinting=(this: SkPaint; hinting: SkPaintHinting)</a></li>
+          </ul></dd>
 <dt><a name="Honeydew" href="#Honeydew"><span>Honeydew:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_colors: Honeydew" href="sk_colors.html#Honeydew">sk_colors: Honeydew</a></li>
@@ -1719,7 +1759,7 @@ function main() {
           </ul></dd>
 <dt><a name="isStroke" href="#isStroke"><span>isStroke:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: isStroke(this: SkPaint): bool" href="sk_paint.html#isStroke%2CSkPaint">sk_paint: isStroke(this: SkPaint): bool</a></li>
+          data-doc-search-tag="sk_paint: isStroke(this: SkPaint): bool" href="sk_paint.html#isStroke.t%2CSkPaint">sk_paint: isStroke(this: SkPaint): bool</a></li>
           </ul></dd>
 <dt><a name="isValid" href="#isValid"><span>isValid:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1737,7 +1777,7 @@ function main() {
           </ul></dd>
 <dt><a name="joinCap%3D" href="#joinCap%3D"><span>joinCap=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: joinCap=(this: SkPaint; jointType: SkStrokeJoin)" href="sk_paint.html#joinCap%3D%2CSkPaint%2CSkStrokeJoin">sk_paint: joinCap=(this: SkPaint; jointType: SkStrokeJoin)</a></li>
+          data-doc-search-tag="sk_paint: joinCap=(this: SkPaint; jointType: SkStrokeJoin)" href="sk_paint.html#joinCap%3D.t%2CSkPaint%2CSkStrokeJoin">sk_paint: joinCap=(this: SkPaint; jointType: SkStrokeJoin)</a></li>
           </ul></dd>
 <dt><a name="Khaki" href="#Khaki"><span>Khaki:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1933,6 +1973,10 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_colors: MediumVioletRed" href="sk_colors.html#MediumVioletRed">sk_colors: MediumVioletRed</a></li>
           </ul></dd>
+<dt><a name="memoryBase" href="#memoryBase"><span>memoryBase:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_stream: memoryBase(s: SkStream): pointer" href="sk_stream.html#memoryBase.t%2CSkStream">sk_stream: memoryBase(s: SkStream): pointer</a></li>
+          </ul></dd>
 <dt><a name="Metal" href="#Metal"><span>Metal:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="GRBackend.Metal" href="gr_context.html#Metal">GRBackend.Metal</a></li>
@@ -1975,7 +2019,7 @@ function main() {
           </ul></dd>
 <dt><a name="miterWidth%3D" href="#miterWidth%3D"><span>miterWidth=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: miterWidth=(this: SkPaint; miterWidth: float)" href="sk_paint.html#miterWidth%3D%2CSkPaint%2Cfloat">sk_paint: miterWidth=(this: SkPaint; miterWidth: float)</a></li>
+          data-doc-search-tag="sk_paint: miterWidth=(this: SkPaint; miterWidth: float)" href="sk_paint.html#miterWidth%3D.t%2CSkPaint%2Cfloat">sk_paint: miterWidth=(this: SkPaint; miterWidth: float)</a></li>
           </ul></dd>
 <dt><a name="Moccasin" href="#Moccasin"><span>Moccasin:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2090,6 +2134,10 @@ function main() {
 <dt><a name="newSkFrameBufferInfo" href="#newSkFrameBufferInfo"><span>newSkFrameBufferInfo:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="gr_context: newSkFrameBufferInfo(fFBOID: uint32; format: uint32): GRGlFramebufferInfo" href="gr_context.html#newSkFrameBufferInfo%2Cuint32%2Cuint32">gr_context: newSkFrameBufferInfo(fFBOID: uint32; format: uint32): GRGlFramebufferInfo</a></li>
+          </ul></dd>
+<dt><a name="newSkImageFromBitmap" href="#newSkImageFromBitmap"><span>newSkImageFromBitmap:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_bitmap: newSkImageFromBitmap(bmp: SkBitmap): SkImage" href="sk_bitmap.html#newSkImageFromBitmap%2CSkBitmap">sk_bitmap: newSkImageFromBitmap(bmp: SkBitmap): SkImage</a></li>
           </ul></dd>
 <dt><a name="newSkImageInfo" href="#newSkImageInfo"><span>newSkImageInfo:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2217,9 +2265,17 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_rect: newSkRectF(left, top, right, bottom: int): SkRect" href="sk_rect.html#newSkRectF%2Cint%2Cint%2Cint%2Cint">sk_rect: newSkRectF(left, top, right, bottom: int): SkRect</a></li>
           </ul></dd>
+<dt><a name="newSkRectLTWH" href="#newSkRectLTWH"><span>newSkRectLTWH:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_rect: newSkRectLTWH(left, top, width, height: float): SkRect" href="sk_rect.html#newSkRectLTWH%2Cfloat%2Cfloat%2Cfloat%2Cfloat">sk_rect: newSkRectLTWH(left, top, width, height: float): SkRect</a></li>
+          </ul></dd>
 <dt><a name="newSkRotationMatrix" href="#newSkRotationMatrix"><span>newSkRotationMatrix:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_matrix: newSkRotationMatrix(radians: float): SkMatrix" href="sk_matrix.html#newSkRotationMatrix%2Cfloat">sk_matrix: newSkRotationMatrix(radians: float): SkMatrix</a></li>
+          </ul></dd>
+<dt><a name="newSkShaper" href="#newSkShaper"><span>newSkShaper:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_shaper: newSkShaper(typeface: SkTypeface): SkShaper" href="sk_shaper.html#newSkShaper%2CSkTypeface">sk_shaper: newSkShaper(typeface: SkTypeface): SkShaper</a></li>
           </ul></dd>
 <dt><a name="newSkSize" href="#newSkSize"><span>newSkSize:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2291,9 +2347,17 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="SkZeroInitialized.No" href="sk_enums.html#No">SkZeroInitialized.No</a></li>
           </ul></dd>
+<dt><a name="NoHinting" href="#NoHinting"><span>NoHinting:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="SkPaintHinting.NoHinting" href="sk_enums.html#NoHinting">SkPaintHinting.NoHinting</a></li>
+          </ul></dd>
 <dt><a name="None" href="#None"><span>None:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="GRGlBackendState.None" href="gr_context.html#None">GRGlBackendState.None</a></li>
+          </ul></dd>
+<dt><a name="Normal" href="#Normal"><span>Normal:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="SkPaintHinting.Normal" href="sk_enums.html#Normal">SkPaintHinting.Normal</a></li>
           </ul></dd>
 <dt><a name="offset" href="#offset"><span>offset:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2369,7 +2433,7 @@ function main() {
           </ul></dd>
 <dt><a name="pathEffect%3D" href="#pathEffect%3D"><span>pathEffect=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: pathEffect=(this: SkPaint; pathEffect: SkPathEffect)" href="sk_paint.html#pathEffect%3D%2CSkPaint%2CSkPathEffect">sk_paint: pathEffect=(this: SkPaint; pathEffect: SkPathEffect)</a></li>
+          data-doc-search-tag="sk_paint: pathEffect=(this: SkPaint; pathEffect: SkPathEffect)" href="sk_paint.html#pathEffect%3D.t%2CSkPaint%2CSkPathEffect">sk_paint: pathEffect=(this: SkPaint; pathEffect: SkPathEffect)</a></li>
           </ul></dd>
 <dt><a name="PathRendering" href="#PathRendering"><span>PathRendering:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2735,11 +2799,29 @@ function main() {
           </ul></dd>
 <dt><a name="shader" href="#shader"><span>shader:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: shader(this: SkPaint): SkShader" href="sk_paint.html#shader%2CSkPaint">sk_paint: shader(this: SkPaint): SkShader</a></li>
+          data-doc-search-tag="sk_paint: shader(this: SkPaint): SkShader" href="sk_paint.html#shader.t%2CSkPaint">sk_paint: shader(this: SkPaint): SkShader</a></li>
           </ul></dd>
 <dt><a name="shader%3D" href="#shader%3D"><span>shader=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: shader=(this: SkPaint; shader: SkShader)" href="sk_paint.html#shader%3D%2CSkPaint%2CSkShader">sk_paint: shader=(this: SkPaint; shader: SkShader)</a></li>
+          data-doc-search-tag="sk_paint: shader=(this: SkPaint; shader: SkShader)" href="sk_paint.html#shader%3D.t%2CSkPaint%2CSkShader">sk_paint: shader=(this: SkPaint; shader: SkShader)</a></li>
+          </ul></dd>
+<dt><a name="shape" href="#shape"><span>shape:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_shaper: shape(shaper: SkShaper; buffer: Buffer; xOffset, yOffset: float; paint: SkPaint): (
+    seq[uint], seq[uint], seq[SkPoint])" href="sk_shaper.html#shape%2CSkShaper%2CBuffer%2Cfloat%2Cfloat%2CSkPaint">sk_shaper: shape(shaper: SkShaper; buffer: Buffer; xOffset, yOffset: float; paint: SkPaint): (
+    seq[uint], seq[uint], seq[SkPoint])</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="sk_shaper: shape(shaper: SkShaper; buffer: Buffer; paint: SkPaint): (seq[uint], seq[uint],
+    seq[SkPoint])" href="sk_shaper.html#shape%2CSkShaper%2CBuffer%2CSkPaint">sk_shaper: shape(shaper: SkShaper; buffer: Buffer; paint: SkPaint): (seq[uint], seq[uint],
+    seq[SkPoint])</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="sk_shaper: shape(shaper: SkShaper; text: string; xOffset, yOffset: float; paint: SkPaint): (
+    seq[uint], seq[uint], seq[SkPoint])" href="sk_shaper.html#shape%2CSkShaper%2Cstring%2Cfloat%2Cfloat%2CSkPaint">sk_shaper: shape(shaper: SkShaper; text: string; xOffset, yOffset: float; paint: SkPaint): (
+    seq[uint], seq[uint], seq[SkPoint])</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="sk_shaper: shape(shaper: SkShaper; text: string; paint: SkPaint): (seq[uint], seq[uint],
+    seq[SkPoint])" href="sk_shaper.html#shape%2CSkShaper%2Cstring%2CSkPaint">sk_shaper: shape(shaper: SkShaper; text: string; paint: SkPaint): (seq[uint], seq[uint],
+    seq[SkPoint])</a></li>
           </ul></dd>
 <dt><a name="Sienna" href="#Sienna"><span>Sienna:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2839,6 +2921,18 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_stream: SkFileWStream" href="sk_stream.html#SkFileWStream">sk_stream: SkFileWStream</a></li>
           </ul></dd>
+<dt><a name="SkFontStyleSlant" href="#SkFontStyleSlant"><span>SkFontStyleSlant:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_enums: SkFontStyleSlant" href="sk_enums.html#SkFontStyleSlant">sk_enums: SkFontStyleSlant</a></li>
+          </ul></dd>
+<dt><a name="SkFontStyleWeight" href="#SkFontStyleWeight"><span>SkFontStyleWeight:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_enums: SkFontStyleWeight" href="sk_enums.html#SkFontStyleWeight">sk_enums: SkFontStyleWeight</a></li>
+          </ul></dd>
+<dt><a name="SkFontStyleWidth" href="#SkFontStyleWidth"><span>SkFontStyleWidth:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_enums: SkFontStyleWidth" href="sk_enums.html#SkFontStyleWidth">sk_enums: SkFontStyleWidth</a></li>
+          </ul></dd>
 <dt><a name="SkImage" href="#SkImage"><span>SkImage:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_image: SkImage" href="sk_image.html#SkImage">sk_image: SkImage</a></li>
@@ -2854,6 +2948,10 @@ function main() {
 <dt><a name="skip" href="#skip"><span>skip:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_stream: skip(s: SkStream; size: int): int" href="sk_stream.html#skip%2CSkStream%2Cint">sk_stream: skip(s: SkStream; size: int): int</a></li>
+          </ul></dd>
+<dt><a name="SkLatticeRectType" href="#SkLatticeRectType"><span>SkLatticeRectType:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_enums: SkLatticeRectType" href="sk_enums.html#SkLatticeRectType">sk_enums: SkLatticeRectType</a></li>
           </ul></dd>
 <dt><a name="SkManagedStream" href="#SkManagedStream"><span>SkManagedStream:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2874,6 +2972,10 @@ function main() {
 <dt><a name="SkPaint" href="#SkPaint"><span>SkPaint:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_paint: SkPaint" href="sk_paint.html#SkPaint">sk_paint: SkPaint</a></li>
+          </ul></dd>
+<dt><a name="SkPaintHinting" href="#SkPaintHinting"><span>SkPaintHinting:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_enums: SkPaintHinting" href="sk_enums.html#SkPaintHinting">sk_enums: SkPaintHinting</a></li>
           </ul></dd>
 <dt><a name="SkPaintStyle" href="#SkPaintStyle"><span>SkPaintStyle:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2935,6 +3037,10 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_enums: SkShaderTileMode" href="sk_enums.html#SkShaderTileMode">sk_enums: SkShaderTileMode</a></li>
           </ul></dd>
+<dt><a name="SkShaper" href="#SkShaper"><span>SkShaper:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_shaper: SkShaper" href="sk_shaper.html#SkShaper">sk_shaper: SkShaper</a></li>
+          </ul></dd>
 <dt><a name="SkSize" href="#SkSize"><span>SkSize:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_size: SkSize" href="sk_size.html#SkSize">sk_size: SkSize</a></li>
@@ -2991,6 +3097,14 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_enums: SkTransferFunctionBehavior" href="sk_enums.html#SkTransferFunctionBehavior">sk_enums: SkTransferFunctionBehavior</a></li>
           </ul></dd>
+<dt><a name="SkTypefaceFlag" href="#SkTypefaceFlag"><span>SkTypefaceFlag:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_enums: SkTypefaceFlag" href="sk_enums.html#SkTypefaceFlag">sk_enums: SkTypefaceFlag</a></li>
+          </ul></dd>
+<dt><a name="SkTypeFaceStyle" href="#SkTypeFaceStyle"><span>SkTypeFaceStyle:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_enums: SkTypeFaceStyle" href="sk_enums.html#SkTypeFaceStyle">sk_enums: SkTypeFaceStyle</a></li>
+          </ul></dd>
 <dt><a name="SkVertexMode" href="#SkVertexMode"><span>SkVertexMode:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_enums: SkVertexMode" href="sk_enums.html#SkVertexMode">sk_enums: SkVertexMode</a></li>
@@ -3018,6 +3132,10 @@ function main() {
 <dt><a name="SlateGray" href="#SlateGray"><span>SlateGray:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_colors: SlateGray" href="sk_colors.html#SlateGray">sk_colors: SlateGray</a></li>
+          </ul></dd>
+<dt><a name="Slight" href="#Slight"><span>Slight:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="SkPaintHinting.Slight" href="sk_enums.html#Slight">SkPaintHinting.Slight</a></li>
           </ul></dd>
 <dt><a name="snapshot" href="#snapshot"><span>snapshot:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -3089,7 +3207,7 @@ function main() {
           </ul></dd>
 <dt><a name="strokeCap%3D" href="#strokeCap%3D"><span>strokeCap=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: strokeCap=(this: SkPaint; capType: SkStrokeCap)" href="sk_paint.html#strokeCap%3D%2CSkPaint%2CSkStrokeCap">sk_paint: strokeCap=(this: SkPaint; capType: SkStrokeCap)</a></li>
+          data-doc-search-tag="sk_paint: strokeCap=(this: SkPaint; capType: SkStrokeCap)" href="sk_paint.html#strokeCap%3D.t%2CSkPaint%2CSkStrokeCap">sk_paint: strokeCap=(this: SkPaint; capType: SkStrokeCap)</a></li>
           </ul></dd>
 <dt><a name="strokeWidth" href="#strokeWidth"><span>strokeWidth:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -3097,7 +3215,7 @@ function main() {
           </ul></dd>
 <dt><a name="strokeWidth%3D" href="#strokeWidth%3D"><span>strokeWidth=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: strokeWidth=(this: SkPaint; strokeWidth: float)" href="sk_paint.html#strokeWidth%3D%2CSkPaint%2Cfloat">sk_paint: strokeWidth=(this: SkPaint; strokeWidth: float)</a></li>
+          data-doc-search-tag="sk_paint: strokeWidth=(this: SkPaint; strokeWidth: float)" href="sk_paint.html#strokeWidth%3D.t%2CSkPaint%2Cfloat">sk_paint: strokeWidth=(this: SkPaint; strokeWidth: float)</a></li>
           </ul></dd>
 <dt><a name="style" href="#style"><span>style:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -3105,7 +3223,15 @@ function main() {
           </ul></dd>
 <dt><a name="style%3D" href="#style%3D"><span>style=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="sk_paint: style=(this: SkPaint; style: SkPaintStyle)" href="sk_paint.html#style%3D%2CSkPaint%2CSkPaintStyle">sk_paint: style=(this: SkPaint; style: SkPaintStyle)</a></li>
+          data-doc-search-tag="sk_paint: style=(this: SkPaint; style: SkPaintStyle)" href="sk_paint.html#style%3D.t%2CSkPaint%2CSkPaintStyle">sk_paint: style=(this: SkPaint; style: SkPaintStyle)</a></li>
+          </ul></dd>
+<dt><a name="subpixelText" href="#subpixelText"><span>subpixelText:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: subpixelText(this: SkPaint): bool" href="sk_paint.html#subpixelText.t%2CSkPaint">sk_paint: subpixelText(this: SkPaint): bool</a></li>
+          </ul></dd>
+<dt><a name="subpixelText%3D" href="#subpixelText%3D"><span>subpixelText=:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: subpixelText=(this: SkPaint; subpixelText: bool)" href="sk_paint.html#subpixelText%3D.t%2CSkPaint%2Cbool">sk_paint: subpixelText=(this: SkPaint; subpixelText: bool)</a></li>
           </ul></dd>
 <dt><a name="Success" href="#Success"><span>Success:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -3131,6 +3257,18 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_paint: textAlign=(this: SkPaint; align: SkTextAlign)" href="sk_paint.html#textAlign%3D%2CSkPaint%2CSkTextAlign">sk_paint: textAlign=(this: SkPaint; align: SkTextAlign)</a></li>
           </ul></dd>
+<dt><a name="textEncoding" href="#textEncoding"><span>textEncoding:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: textEncoding(this: SkPaint): SkTextEncoding" href="sk_paint.html#textEncoding.t%2CSkPaint">sk_paint: textEncoding(this: SkPaint): SkTextEncoding</a></li>
+          </ul></dd>
+<dt><a name="textEncoding%3D" href="#textEncoding%3D"><span>textEncoding=:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: textEncoding=(this: SkPaint; encoding: SkTextEncoding)" href="sk_paint.html#textEncoding%3D.t%2CSkPaint%2CSkTextEncoding">sk_paint: textEncoding=(this: SkPaint; encoding: SkTextEncoding)</a></li>
+          </ul></dd>
+<dt><a name="textScaleX" href="#textScaleX"><span>textScaleX:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: textScaleX(this: SkPaint): float" href="sk_paint.html#textScaleX.t%2CSkPaint">sk_paint: textScaleX(this: SkPaint): float</a></li>
+          </ul></dd>
 <dt><a name="textSize" href="#textSize"><span>textSize:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_paint: textSize(this: SkPaint): float" href="sk_paint.html#textSize.t%2CSkPaint">sk_paint: textSize(this: SkPaint): float</a></li>
@@ -3150,6 +3288,10 @@ function main() {
 <dt><a name="tightBounds" href="#tightBounds"><span>tightBounds:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_path: tightBounds(this: SkPath): SkRect" href="sk_path.html#tightBounds%2CSkPath">sk_path: tightBounds(this: SkPath): SkRect</a></li>
+          </ul></dd>
+<dt><a name="toHarfBuffBlob" href="#toHarfBuffBlob"><span>toHarfBuffBlob:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_shaper: toHarfBuffBlob(stream: SkStreamAsset): Blob" href="sk_shaper.html#toHarfBuffBlob%2CSkStreamAsset">sk_shaper: toHarfBuffBlob(stream: SkStreamAsset): Blob</a></li>
           </ul></dd>
 <dt><a name="Tomato" href="#Tomato"><span>Tomato:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -3221,6 +3363,10 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="sk_rect: tupleToRectF(rect: (float, float, float, float)): SkRect" href="sk_rect.html#tupleToRectF.c">sk_rect: tupleToRectF(rect: (float, float, float, float)): SkRect</a></li>
           </ul></dd>
+<dt><a name="tupleToRectI" href="#tupleToRectI"><span>tupleToRectI:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_rect: tupleToRectI(rect: (int, int, int, int)): SkRectI" href="sk_rect.html#tupleToRectI.c">sk_rect: tupleToRectI(rect: (int, int, int, int)): SkRectI</a></li>
+          </ul></dd>
 <dt><a name="tupleToSkPoint" href="#tupleToSkPoint"><span>tupleToSkPoint:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_point: tupleToSkPoint(p: (float, float)): SkPoint" href="sk_point.html#tupleToSkPoint.c">sk_point: tupleToSkPoint(p: (float, float)): SkPoint</a></li>
@@ -3230,6 +3376,10 @@ function main() {
 <dt><a name="Turquoise" href="#Turquoise"><span>Turquoise:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="sk_colors: Turquoise" href="sk_colors.html#Turquoise">sk_colors: Turquoise</a></li>
+          </ul></dd>
+<dt><a name="typeface%3D" href="#typeface%3D"><span>typeface=:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="sk_paint: typeface=(this: SkPaint; newTypeface: SkTypeface)" href="sk_paint.html#typeface%3D.t%2CSkPaint%2CSkTypeface">sk_paint: typeface=(this: SkPaint; newTypeface: SkTypeface)</a></li>
           </ul></dd>
 <dt><a name="Unimplemented" href="#Unimplemented"><span>Unimplemented:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -3390,7 +3540,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2020-02-22 14:05:01 UTC</small>
+        <small>Made with Nim. Generated: 2020-03-16 19:11:09 UTC</small>
       </div>
     </div>
   </div>

@@ -834,8 +834,7 @@ function main() {
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#SkPaint"
-    title="SkPaint = ref object
-  native*: ptr sk_paint_t"><wbr />Sk<wbr />Paint<span class="attachedType"></span></a></li>
+    title="SkPaint = ref object of SkObject[sk_paint_t]"><wbr />Sk<wbr />Paint<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -844,30 +843,8 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#dispose%2CSkPaint"
     title="dispose(this: SkPaint)"><wbr />dispose<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#antialias%3D%2CSkPaint%2Cbool"
-    title="antialias=(this: SkPaint; enabled: bool)"><wbr />antialias=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#color%3D%2CSkPaint%2CSkColor"
-    title="color=(this: SkPaint; color: SkColor)"><wbr />color=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#color%3D%2CSkPaint%2C"
-    title="color=(this: SkPaint; argb: (int, int, int, int))"><wbr />color=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#style%3D%2CSkPaint%2CSkPaintStyle"
-    title="style=(this: SkPaint; style: SkPaintStyle)"><wbr />style=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#isStroke%2CSkPaint"
-    title="isStroke(this: SkPaint): bool"><wbr />is<wbr />Stroke<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#shader%3D%2CSkPaint%2CSkShader"
-    title="shader=(this: SkPaint; shader: SkShader)"><wbr />shader=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#shader%2CSkPaint"
-    title="shader(this: SkPaint): SkShader"><wbr />shader<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#pathEffect%3D%2CSkPaint%2CSkPathEffect"
-    title="pathEffect=(this: SkPaint; pathEffect: SkPathEffect)"><wbr />path<wbr />Effect=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#strokeWidth%3D%2CSkPaint%2Cfloat"
-    title="strokeWidth=(this: SkPaint; strokeWidth: float)"><wbr />stroke<wbr />Width=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#miterWidth%3D%2CSkPaint%2Cfloat"
-    title="miterWidth=(this: SkPaint; miterWidth: float)"><wbr />miter<wbr />Width=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#strokeCap%3D%2CSkPaint%2CSkStrokeCap"
-    title="strokeCap=(this: SkPaint; capType: SkStrokeCap)"><wbr />stroke<wbr />Cap=<span class="attachedType">SkPaint</span></a></li>
-  <li><a class="reference" href="#joinCap%3D%2CSkPaint%2CSkStrokeJoin"
-    title="joinCap=(this: SkPaint; jointType: SkStrokeJoin)"><wbr />join<wbr />Cap=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#clone%2CSkPaint"
+    title="clone(this: SkPaint): SkPaint"><wbr />clone<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#measureText%2CSkPaint%2Cpointer%2Cint%2CSkRect"
     title="measureText(this: SkPaint; text: pointer; length: int; cbounds: SkRect): float"><wbr />measure<wbr />Text<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#measureText%2CSkPaint%2Cstring%2Cint%2CSkRect"
@@ -896,18 +873,58 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#isAntialias.t%2CSkPaint"
     title="isAntialias(this: SkPaint): bool"><wbr />is<wbr />Antialias<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#antialias%3D.t%2CSkPaint%2Cbool"
+    title="antialias=(this: SkPaint; enabled: bool)"><wbr />antialias=<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#color.t%2CSkPaint"
     title="color(this: SkPaint): SkColor"><wbr />color<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#color%3D.t%2CSkPaint%2CSkColor"
+    title="color=(this: SkPaint; color: SkColor)"><wbr />color=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#color%3D.t%2CSkPaint%2C"
+    title="color=(this: SkPaint; argb: (int, int, int, int))"><wbr />color=<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#style.t%2CSkPaint"
     title="style(this: SkPaint): SkPaintStyle"><wbr />style<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#style%3D.t%2CSkPaint%2CSkPaintStyle"
+    title="style=(this: SkPaint; style: SkPaintStyle)"><wbr />style=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#isStroke.t%2CSkPaint"
+    title="isStroke(this: SkPaint): bool"><wbr />is<wbr />Stroke<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#shader%3D.t%2CSkPaint%2CSkShader"
+    title="shader=(this: SkPaint; shader: SkShader)"><wbr />shader=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#shader.t%2CSkPaint"
+    title="shader(this: SkPaint): SkShader"><wbr />shader<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#pathEffect%3D.t%2CSkPaint%2CSkPathEffect"
+    title="pathEffect=(this: SkPaint; pathEffect: SkPathEffect)"><wbr />path<wbr />Effect=<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#strokeWidth.t%2CSkPaint"
     title="strokeWidth(this: SkPaint): float"><wbr />stroke<wbr />Width<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#strokeWidth%3D.t%2CSkPaint%2Cfloat"
+    title="strokeWidth=(this: SkPaint; strokeWidth: float)"><wbr />stroke<wbr />Width=<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#miterWidth.t%2CSkPaint"
     title="miterWidth(this: SkPaint): float"><wbr />miter<wbr />Width<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#miterWidth%3D.t%2CSkPaint%2Cfloat"
+    title="miterWidth=(this: SkPaint; miterWidth: float)"><wbr />miter<wbr />Width=<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#strokeCap.t%2CSkPaint"
     title="strokeCap(this: SkPaint): SkStrokeCap"><wbr />stroke<wbr />Cap<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#strokeCap%3D.t%2CSkPaint%2CSkStrokeCap"
+    title="strokeCap=(this: SkPaint; capType: SkStrokeCap)"><wbr />stroke<wbr />Cap=<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#joinCap.t%2CSkPaint"
     title="joinCap(this: SkPaint): SkStrokeJoin"><wbr />join<wbr />Cap<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#joinCap%3D.t%2CSkPaint%2CSkStrokeJoin"
+    title="joinCap=(this: SkPaint; jointType: SkStrokeJoin)"><wbr />join<wbr />Cap=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#textScaleX.t%2CSkPaint"
+    title="textScaleX(this: SkPaint): float"><wbr />text<wbr />Scale<wbr />X<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#textEncoding.t%2CSkPaint"
+    title="textEncoding(this: SkPaint): SkTextEncoding"><wbr />text<wbr />Encoding<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#textEncoding%3D.t%2CSkPaint%2CSkTextEncoding"
+    title="textEncoding=(this: SkPaint; encoding: SkTextEncoding)"><wbr />text<wbr />Encoding=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#typeface%3D.t%2CSkPaint%2CSkTypeface"
+    title="typeface=(this: SkPaint; newTypeface: SkTypeface)"><wbr />typeface=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#subpixelText.t%2CSkPaint"
+    title="subpixelText(this: SkPaint): bool"><wbr />subpixel<wbr />Text<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#subpixelText%3D.t%2CSkPaint%2Cbool"
+    title="subpixelText=(this: SkPaint; subpixelText: bool)"><wbr />subpixel<wbr />Text=<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#hinting.t%2CSkPaint"
+    title="hinting(this: SkPaint): SkPaintHinting"><wbr />hinting<span class="attachedType">SkPaint</span></a></li>
+  <li><a class="reference" href="#hinting%3D.t%2CSkPaint%2CSkPaintHinting"
+    title="hinting=(this: SkPaint; hinting: SkPaintHinting)"><wbr />hinting=<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#textSize.t%2CSkPaint"
     title="textSize(this: SkPaint): float"><wbr />text<wbr />Size<span class="attachedType">SkPaint</span></a></li>
   <li><a class="reference" href="#fontSpacing.t%2CSkPaint"
@@ -926,22 +943,20 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="sk_types.html">sk_types</a>, <a class="reference external" href="sk_color.html">sk_color</a>, <a class="reference external" href="sk_enums.html">sk_enums</a>, <a class="reference external" href="sk_shader.html">sk_shader</a>, <a class="reference external" href="sk_rect.html">sk_rect</a>, <a class="reference external" href="sk_patheffect.html">sk_patheffect</a>
+<a class="reference external" href="sk_types.html">sk_types</a>, <a class="reference external" href="sk_color.html">sk_color</a>, <a class="reference external" href="sk_enums.html">sk_enums</a>, <a class="reference external" href="sk_shader.html">sk_shader</a>, <a class="reference external" href="sk_rect.html">sk_rect</a>, <a class="reference external" href="sk_patheffect.html">sk_patheffect</a>, <a class="reference external" href="sk_typeface.html">sk_typeface</a>, <a class="reference external" href="native.html">native</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
 <a id="SkPaint"></a>
-<dt><pre><a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">native</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="sk_types.html#sk_paint_t"><span class="Identifier">sk_paint_t</span></a>
-</pre></dt>
+<dt><pre><a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="native.html#SkObject"><span class="Identifier">SkObject</span></a><span class="Other">[</span><a href="sk_types.html#sk_paint_t"><span class="Identifier">sk_paint_t</span></a><span class="Other">]</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L11"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -955,141 +970,20 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L14"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="antialias=,SkPaint,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#antialias%3D%2CSkPaint%2Cbool"><span class="Identifier">antialias=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">enabled</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="clone,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#clone%2CSkPaint"><span class="Identifier">clone</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L18"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L102"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="color=,SkPaint,SkColor"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#color%3D%2CSkPaint%2CSkColor"><span class="Identifier">color=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <a href="sk_color.html#SkColor"><span class="Identifier">SkColor</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L24"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="color=,SkPaint,"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#color%3D%2CSkPaint%2C"><span class="Identifier">color=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">argb</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L27"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="style=,SkPaint,SkPaintStyle"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#style%3D%2CSkPaint%2CSkPaintStyle"><span class="Identifier">style=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">style</span><span class="Other">:</span> <a href="sk_enums.html#SkPaintStyle"><span class="Identifier">SkPaintStyle</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L34"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="isStroke,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#isStroke%2CSkPaint"><span class="Identifier">isStroke</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L37"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="shader=,SkPaint,SkShader"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#shader%3D%2CSkPaint%2CSkShader"><span class="Identifier">shader=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">shader</span><span class="Other">:</span> <a href="sk_shader.html#SkShader"><span class="Identifier">SkShader</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L40"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="shader,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#shader%2CSkPaint"><span class="Identifier">shader</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_shader.html#SkShader"><span class="Identifier">SkShader</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L46"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="pathEffect=,SkPaint,SkPathEffect"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#pathEffect%3D%2CSkPaint%2CSkPathEffect"><span class="Identifier">pathEffect=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">pathEffect</span><span class="Other">:</span> <a href="sk_patheffect.html#SkPathEffect"><span class="Identifier">SkPathEffect</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L49"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="strokeWidth=,SkPaint,float"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#strokeWidth%3D%2CSkPaint%2Cfloat"><span class="Identifier">strokeWidth=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">strokeWidth</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L55"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="miterWidth=,SkPaint,float"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#miterWidth%3D%2CSkPaint%2Cfloat"><span class="Identifier">miterWidth=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">miterWidth</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L60"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="strokeCap=,SkPaint,SkStrokeCap"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#strokeCap%3D%2CSkPaint%2CSkStrokeCap"><span class="Identifier">strokeCap=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">capType</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeCap"><span class="Identifier">SkStrokeCap</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L66"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="joinCap=,SkPaint,SkStrokeJoin"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#joinCap%3D%2CSkPaint%2CSkStrokeJoin"><span class="Identifier">joinCap=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">jointType</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeJoin"><span class="Identifier">SkStrokeJoin</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L72"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L102" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="measureText,SkPaint,pointer,int,SkRect"></a>
@@ -1099,9 +993,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L75"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L105"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L75" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L105" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="measureText,SkPaint,string,int,SkRect"></a>
@@ -1111,9 +1005,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L83"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L113"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L83" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L113" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="measureText,SkPaint,string"></a>
@@ -1122,9 +1016,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L91"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L121"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L91" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L121" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="measureText,SkPaint,string,SkRect"></a>
@@ -1133,9 +1027,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L99"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L129"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L99" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L129" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="measureTextBounds,SkPaint,string"></a>
@@ -1144,9 +1038,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L107"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L137"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L107" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L137" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="textSize=,SkPaint,float"></a>
@@ -1155,9 +1049,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L116"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L146"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L116" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L146" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="textAlign=,SkPaint,SkTextAlign"></a>
@@ -1166,9 +1060,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L125"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L155"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L125" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L155" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="newSkPaint"></a>
@@ -1177,9 +1071,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L128"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L158"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L128" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L158" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="newSkPaint,SkColor"></a>
@@ -1188,9 +1082,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L130"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L160"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L130" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L160" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="newSkPaint,int,int,int,int"></a>
@@ -1199,9 +1093,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L134"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L164"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L134" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L164" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1215,9 +1109,20 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L16"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="antialias=.t,SkPaint,bool"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#antialias%3D.t%2CSkPaint%2Cbool"><span class="Identifier">antialias=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">enabled</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L20"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="color.t,SkPaint"></a>
@@ -1226,9 +1131,31 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L21"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="color=.t,SkPaint,SkColor"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#color%3D.t%2CSkPaint%2CSkColor"><span class="Identifier">color=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <a href="sk_color.html#SkColor"><span class="Identifier">SkColor</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L26"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="color=.t,SkPaint,"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#color%3D.t%2CSkPaint%2C"><span class="Identifier">color=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">argb</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L29"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="style.t,SkPaint"></a>
@@ -1237,9 +1164,64 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L31"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L33"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="style=.t,SkPaint,SkPaintStyle"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#style%3D.t%2CSkPaint%2CSkPaintStyle"><span class="Identifier">style=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">style</span><span class="Other">:</span> <a href="sk_enums.html#SkPaintStyle"><span class="Identifier">SkPaintStyle</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L36"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="isStroke.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#isStroke.t%2CSkPaint"><span class="Identifier">isStroke</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="shader=.t,SkPaint,SkShader"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#shader%3D.t%2CSkPaint%2CSkShader"><span class="Identifier">shader=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">shader</span><span class="Other">:</span> <a href="sk_shader.html#SkShader"><span class="Identifier">SkShader</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L42"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="shader.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#shader.t%2CSkPaint"><span class="Identifier">shader</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_shader.html#SkShader"><span class="Identifier">SkShader</span></a></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="pathEffect=.t,SkPaint,SkPathEffect"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#pathEffect%3D.t%2CSkPaint%2CSkPathEffect"><span class="Identifier">pathEffect=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">pathEffect</span><span class="Other">:</span> <a href="sk_patheffect.html#SkPathEffect"><span class="Identifier">SkPathEffect</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L51"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="strokeWidth.t,SkPaint"></a>
@@ -1248,9 +1230,20 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L52"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L54"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="strokeWidth=.t,SkPaint,float"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#strokeWidth%3D.t%2CSkPaint%2Cfloat"><span class="Identifier">strokeWidth=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">strokeWidth</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L57"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="miterWidth.t,SkPaint"></a>
@@ -1259,13 +1252,13 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L58"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L60"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="strokeCap.t,SkPaint"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#strokeCap.t%2CSkPaint"><span class="Identifier">strokeCap</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeCap"><span class="Identifier">SkStrokeCap</span></a></pre></dt>
+<a id="miterWidth=.t,SkPaint,float"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#miterWidth%3D.t%2CSkPaint%2Cfloat"><span class="Identifier">miterWidth=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">miterWidth</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span></pre></dt>
 <dd>
 
 
@@ -1275,8 +1268,19 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="joinCap.t,SkPaint"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#joinCap.t%2CSkPaint"><span class="Identifier">joinCap</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeJoin"><span class="Identifier">SkStrokeJoin</span></a></pre></dt>
+<a id="strokeCap.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#strokeCap.t%2CSkPaint"><span class="Identifier">strokeCap</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeCap"><span class="Identifier">SkStrokeCap</span></a></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L66"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="strokeCap=.t,SkPaint,SkStrokeCap"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#strokeCap%3D.t%2CSkPaint%2CSkStrokeCap"><span class="Identifier">strokeCap=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">capType</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeCap"><span class="Identifier">SkStrokeCap</span></a><span class="Other">)</span></pre></dt>
 <dd>
 
 
@@ -1286,15 +1290,125 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+<a id="joinCap.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#joinCap.t%2CSkPaint"><span class="Identifier">joinCap</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeJoin"><span class="Identifier">SkStrokeJoin</span></a></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L72"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="joinCap=.t,SkPaint,SkStrokeJoin"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#joinCap%3D.t%2CSkPaint%2CSkStrokeJoin"><span class="Identifier">joinCap=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">jointType</span><span class="Other">:</span> <a href="sk_enums.html#SkStrokeJoin"><span class="Identifier">SkStrokeJoin</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L75"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L75" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="textScaleX.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#textScaleX.t%2CSkPaint"><span class="Identifier">textScaleX</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L78"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L78" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="textEncoding.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#textEncoding.t%2CSkPaint"><span class="Identifier">textEncoding</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_enums.html#SkTextEncoding"><span class="Identifier">SkTextEncoding</span></a></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L81"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="textEncoding=.t,SkPaint,SkTextEncoding"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#textEncoding%3D.t%2CSkPaint%2CSkTextEncoding"><span class="Identifier">textEncoding=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">encoding</span><span class="Other">:</span> <a href="sk_enums.html#SkTextEncoding"><span class="Identifier">SkTextEncoding</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L84"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L84" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="typeface=.t,SkPaint,SkTypeface"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#typeface%3D.t%2CSkPaint%2CSkTypeface"><span class="Identifier">typeface=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">newTypeface</span><span class="Other">:</span> <a href="sk_typeface.html#SkTypeface"><span class="Identifier">SkTypeface</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L87"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L87" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="subpixelText.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#subpixelText.t%2CSkPaint"><span class="Identifier">subpixelText</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L90"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L90" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="subpixelText=.t,SkPaint,bool"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#subpixelText%3D.t%2CSkPaint%2Cbool"><span class="Identifier">subpixelText=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">subpixelText</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L93"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L93" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="hinting.t,SkPaint"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#hinting.t%2CSkPaint"><span class="Identifier">hinting</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <a href="sk_enums.html#SkPaintHinting"><span class="Identifier">SkPaintHinting</span></a></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L96"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L96" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="hinting=.t,SkPaint,SkPaintHinting"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#hinting%3D.t%2CSkPaint%2CSkPaintHinting"><span class="Identifier">hinting=</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">;</span> <span class="Identifier">hinting</span><span class="Other">:</span> <a href="sk_enums.html#SkPaintHinting"><span class="Identifier">SkPaintHinting</span></a><span class="Other">)</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L99"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L99" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
 <a id="textSize.t,SkPaint"></a>
 <dt><pre><span class="Keyword">template</span> <a href="#textSize.t%2CSkPaint"><span class="Identifier">textSize</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L119"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L149"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L119" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L149" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="fontSpacing.t,SkPaint"></a>
@@ -1303,9 +1417,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L122"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_paint.nim#L152"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L122" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_paint.nim#L152" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1318,7 +1432,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2020-02-22 14:03:33 UTC</small>
+        <small>Made with Nim. Generated: 2020-03-16 19:11:03 UTC</small>
       </div>
     </div>
   </div>

@@ -868,6 +868,8 @@ function main() {
     title="newSkRect(topLeft: (float, float); bottomRight: (float, float)): SkRect"><wbr />new<wbr />Sk<wbr />Rect<span class="attachedType">SkRect</span></a></li>
   <li><a class="reference" href="#newSkRect%2C%2Cfloat%2Cfloat"
     title="newSkRect(topLeft: (float, float); width, height: float): SkRect"><wbr />new<wbr />Sk<wbr />Rect<span class="attachedType">SkRect</span></a></li>
+  <li><a class="reference" href="#newSkRectLTWH%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
+    title="newSkRectLTWH(left, top, width, height: float): SkRect"><wbr />new<wbr />Sk<wbr />Rect<wbr />LTWH<span class="attachedType">SkRect</span></a></li>
   <li><a class="reference" href="#newSkRect%2Cint32%2Cint32%2Cint32%2Cint32"
     title="newSkRect(left, top, right, bottom: int32): SkRectI"><wbr />new<wbr />Sk<wbr />Rect<span class="attachedType">SkRectI</span></a></li>
   <li><a class="reference" href="#%3D%3D%2CSkRect%2CSkRect"
@@ -898,6 +900,8 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#tupleToRectF.c"
     title="tupleToRectF(rect: (float, float, float, float)): SkRect"><wbr />tuple<wbr />To<wbr />Rect<wbr />F<span class="attachedType">SkRect</span></a></li>
+  <li><a class="reference" href="#tupleToRectI.c"
+    title="tupleToRectI(rect: (int, int, int, int)): SkRectI"><wbr />tuple<wbr />To<wbr />Rect<wbr />I<span class="attachedType">SkRectI</span></a></li>
 
   </ul>
 </li>
@@ -1096,15 +1100,26 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+<a id="newSkRectLTWH,float,float,float,float"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#newSkRectLTWH%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">newSkRectLTWH</span></a><span class="Other">(</span><span class="Identifier">left</span><span class="Other">,</span> <span class="Identifier">top</span><span class="Other">,</span> <span class="Identifier">width</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span><span class="Other">:</span> <a href="sk_rect.html#SkRect"><span class="Identifier">SkRect</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L66"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
 <a id="newSkRect,int32,int32,int32,int32"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#newSkRect%2Cint32%2Cint32%2Cint32%2Cint32"><span class="Identifier">newSkRect</span></a><span class="Other">(</span><span class="Identifier">left</span><span class="Other">,</span> <span class="Identifier">top</span><span class="Other">,</span> <span class="Identifier">right</span><span class="Other">,</span> <span class="Identifier">bottom</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <a href="sk_rect.html#SkRectI"><span class="Identifier">SkRectI</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L68"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L70"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="==,SkRect,SkRect"></a>
@@ -1113,9 +1128,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L76"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L78"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L76" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L78" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="newSkRect,,_2"></a>
@@ -1125,9 +1140,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L79"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L81"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L79" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="newSkRect,,int32,int32"></a>
@@ -1137,9 +1152,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L82"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L84"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L82" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L84" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="size,SkRect"></a>
@@ -1148,9 +1163,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L85"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L87"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L87" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="size=,SkRect,SkSize"></a>
@@ -1159,9 +1174,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L88"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L90"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L88" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L90" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="location=,SkRect,SkPoint"></a>
@@ -1170,9 +1185,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L95"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L97"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L95" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L97" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="offset,SkRect,float,float"></a>
@@ -1181,9 +1196,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L103"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L105"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L103" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L105" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="inflate,SkRect,float,float"></a>
@@ -1192,9 +1207,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L109"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L111"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L109" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L111" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="inflated,SkRect,float,float"></a>
@@ -1203,9 +1218,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L115"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L117"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L115" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L117" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="standardized,SkRect"></a>
@@ -1214,9 +1229,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L119"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L121"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L119" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L121" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1230,9 +1245,20 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L131"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L133"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L131" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L133" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="tupleToRectI.c"></a>
+<dt><pre><span class="Keyword">converter</span> <a href="#tupleToRectI.c"><span class="Identifier">tupleToRectI</span></a><span class="Other">(</span><span class="Identifier">rect</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">)</span><span class="Other">:</span> <a href="sk_rect.html#SkRectI"><span class="Identifier">SkRectI</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L137"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L137" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1334,9 +1360,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L92"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_rect.nim#L94"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L92" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_rect.nim#L94" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1349,7 +1375,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2020-02-22 14:03:37 UTC</small>
+        <small>Made with Nim. Generated: 2020-03-16 19:11:05 UTC</small>
       </div>
     </div>
   </div>

@@ -834,8 +834,7 @@ function main() {
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#SkCanvas"
-    title="SkCanvas = ref object
-  native*: ptr sk_canvas_t"><wbr />Sk<wbr />Canvas<span class="attachedType"></span></a></li>
+    title="SkCanvas = ref object of SkObject[sk_canvas_t]"><wbr />Sk<wbr />Canvas<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -882,6 +881,11 @@ function main() {
     title="drawBitmap(this: SkCanvas; bitmap: SkBitmap)"><wbr />draw<wbr />Bitmap<span class="attachedType">SkCanvas</span></a></li>
   <li><a class="reference" href="#drawText%2CSkCanvas%2Cstring%2Cfloat%2Cfloat%2CSkPaint"
     title="drawText(this: SkCanvas; text: string; x: float; y: float; paint: SkPaint)"><wbr />draw<wbr />Text<span class="attachedType">SkCanvas</span></a></li>
+  <li><a class="reference" href="#drawPositionedText%2CSkCanvas%2Cstring%2Cseq%5BT%5D%5BSkPoint%5D%2CSkPaint"
+    title="drawPositionedText(this: SkCanvas; text: string; points: seq[SkPoint]; paint: SkPaint)"><wbr />draw<wbr />Positioned<wbr />Text<span class="attachedType">SkCanvas</span></a></li>
+  <li><a class="reference" href="#drawPositionedText%2CSkCanvas%2Cseq%5BT%5D%5Bbyte%5D%2Cseq%5BT%5D%5BSkPoint%5D%2CSkPaint"
+    title="drawPositionedText(this: SkCanvas; text: seq[byte]; points: seq[SkPoint];
+                   paint: SkPaint)"><wbr />draw<wbr />Positioned<wbr />Text<span class="attachedType">SkCanvas</span></a></li>
   <li><a class="reference" href="#dispose%2CSkCanvas"
     title="dispose(this: SkCanvas)"><wbr />dispose<span class="attachedType">SkCanvas</span></a></li>
   <li><a class="reference" href="#save%2CSkCanvas"
@@ -917,6 +921,9 @@ function main() {
   <li><a class="reference" href="#drawVertices%2CSkCanvas%2CSkVertexMode%2CopenArray%5BSkPoint%5D%2CopenArray%5BSkColor%5D%2CSkPaint"
     title="drawVertices(this: SkCanvas; vmode: SkVertexMode; vertices: openArray[SkPoint];
              colors: openArray[SkColor]; paint: SkPaint)"><wbr />draw<wbr />Vertices<span class="attachedType">SkCanvas</span></a></li>
+  <li><a class="reference" href="#drawBitmapLattice%2CSkCanvas%2CSkBitmap%2CSkLattice%2CSkRect%2CSkPaint"
+    title="drawBitmapLattice(this: SkCanvas; bitmap: SkBitmap; lattice: SkLattice; dst: SkRect;
+                  paint: SkPaint = nil)"><wbr />draw<wbr />Bitmap<wbr />Lattice<span class="attachedType">SkCanvas</span></a></li>
 
   </ul>
 </li>
@@ -939,22 +946,20 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="sk_types.html">sk_types</a>, <a class="reference external" href="sk_paint.html">sk_paint</a>, <a class="reference external" href="sk_rect.html">sk_rect</a>, <a class="reference external" href="sk_image.html">sk_image</a>, <a class="reference external" href="sk_color.html">sk_color</a>, <a class="reference external" href="sk_enums.html">sk_enums</a>, <a class="reference external" href="sk_path.html">sk_path</a>, <a class="reference external" href="sk_bitmap.html">sk_bitmap</a>, <a class="reference external" href="sk_matrix.html">sk_matrix</a>, <a class="reference external" href="sk_data.html">sk_data</a>, <a class="reference external" href="sk_point.html">sk_point</a>, <a class="reference external" href="sk_vertices.html">sk_vertices</a>
+<a class="reference external" href="sk_types.html">sk_types</a>, <a class="reference external" href="sk_paint.html">sk_paint</a>, <a class="reference external" href="sk_rect.html">sk_rect</a>, <a class="reference external" href="sk_color.html">sk_color</a>, <a class="reference external" href="sk_enums.html">sk_enums</a>, <a class="reference external" href="sk_path.html">sk_path</a>, <a class="reference external" href="sk_bitmap.html">sk_bitmap</a>, <a class="reference external" href="sk_matrix.html">sk_matrix</a>, <a class="reference external" href="sk_data.html">sk_data</a>, <a class="reference external" href="sk_point.html">sk_point</a>, <a class="reference external" href="sk_vertices.html">sk_vertices</a>, <a class="reference external" href="sk_lattice.html">sk_lattice</a>, <a class="reference external" href="native.html">native</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
 <a id="SkCanvas"></a>
-<dt><pre><a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">native</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="sk_types.html#sk_canvas_t"><span class="Identifier">sk_canvas_t</span></a>
-</pre></dt>
+<dt><pre><a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="native.html#SkObject"><span class="Identifier">SkObject</span></a><span class="Other">[</span><a href="sk_types.html#sk_canvas_t"><span class="Identifier">sk_canvas_t</span></a><span class="Other">]</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L17"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -968,9 +973,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L20"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L25"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="translate,SkCanvas,float,float"></a>
@@ -979,9 +984,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L23"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L28"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="scale,SkCanvas,float,float"></a>
@@ -990,24 +995,13 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L26"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="scale,SkCanvas,float,float,float,float"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#scale%2CSkCanvas%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">scale</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">sx</span><span class="Other">,</span> <span class="Identifier">sy</span><span class="Other">,</span> <span class="Identifier">px</span><span class="Other">,</span> <span class="Identifier">py</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L29"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="rotateDegrees,SkCanvas,float"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#rotateDegrees%2CSkCanvas%2Cfloat"><span class="Identifier">rotateDegrees</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">degrees</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
@@ -1017,15 +1011,26 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+<a id="rotateDegrees,SkCanvas,float"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#rotateDegrees%2CSkCanvas%2Cfloat"><span class="Identifier">rotateDegrees</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">degrees</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L39"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
 <a id="rotateRadians,SkCanvas,float"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#rotateRadians%2CSkCanvas%2Cfloat"><span class="Identifier">rotateRadians</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">radians</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L37"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L42"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawPaint,SkCanvas,SkPaint"></a>
@@ -1034,9 +1039,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L40"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L45"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawRect,SkCanvas,SkRect,SkPaint"></a>
@@ -1045,9 +1050,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L43"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L48"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawRect,SkCanvas,SkRectI,SkPaint"></a>
@@ -1056,9 +1061,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L46"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L51"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawRoundRect,SkCanvas,SkRect,float,float,SkPaint"></a>
@@ -1068,9 +1073,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L50"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L56"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L50" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawCircle,SkCanvas,float,float,float,SkPaint"></a>
@@ -1080,36 +1085,13 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L53"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="drawOval,SkCanvas,SkRect,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#drawOval%2CSkCanvas%2CSkRect%2CSkPaint"><span class="Identifier">drawOval</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bounds</span><span class="Other">:</span> <a href="sk_rect.html#SkRect"><span class="Identifier">SkRect</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L56"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="drawImage,SkCanvas,SkImage,float,float,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#drawImage%2CSkCanvas%2CSkImage%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">drawImage</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">image</span><span class="Other">:</span> <a href="sk_image.html#SkImage"><span class="Identifier">SkImage</span></a><span class="Other">;</span> <span class="Identifier">cx</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">cy</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
 href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L59"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L59" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="drawColor,SkCanvas,SkColor,SkBlendMode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#drawColor%2CSkCanvas%2CSkColor%2CSkBlendMode"><span class="Identifier">drawColor</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <a href="sk_color.html#SkColor"><span class="Identifier">SkColor</span></a><span class="Other">;</span> <span class="Identifier">mode</span><span class="Other">:</span> <a href="sk_enums.html#SkBlendMode"><span class="Identifier">SkBlendMode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="drawOval,SkCanvas,SkRect,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawOval%2CSkCanvas%2CSkRect%2CSkPaint"><span class="Identifier">drawOval</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bounds</span><span class="Other">:</span> <a href="sk_rect.html#SkRect"><span class="Identifier">SkRect</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
@@ -1119,8 +1101,9 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L62" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="drawPath,SkCanvas,SkPath,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#drawPath%2CSkCanvas%2CSkPath%2CSkPaint"><span class="Identifier">drawPath</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <a href="sk_path.html#SkPath"><span class="Identifier">SkPath</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="drawImage,SkCanvas,SkImage,float,float,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawImage%2CSkCanvas%2CSkImage%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">drawImage</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">image</span><span class="Other">:</span> <span class="Identifier">SkImage</span><span class="Other">;</span> <span class="Identifier">cx</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">cy</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
@@ -1130,9 +1113,8 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L65" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="drawLine,SkCanvas,float,float,float,float,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#drawLine%2CSkCanvas%2Cfloat%2Cfloat%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">drawLine</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">x1</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">y1</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">x2</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">y2</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="drawColor,SkCanvas,SkColor,SkBlendMode"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawColor%2CSkCanvas%2CSkColor%2CSkBlendMode"><span class="Identifier">drawColor</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <a href="sk_color.html#SkColor"><span class="Identifier">SkColor</span></a><span class="Other">;</span> <span class="Identifier">mode</span><span class="Other">:</span> <a href="sk_enums.html#SkBlendMode"><span class="Identifier">SkBlendMode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
@@ -1142,9 +1124,8 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="drawBitmap,SkCanvas,SkBitmap,float,float,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#drawBitmap%2CSkCanvas%2CSkBitmap%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">drawBitmap</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bitmap</span><span class="Other">:</span> <a href="sk_bitmap.html#SkBitmap"><span class="Identifier">SkBitmap</span></a><span class="Other">;</span> <span class="Identifier">left</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">top</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="drawPath,SkCanvas,SkPath,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawPath%2CSkCanvas%2CSkPath%2CSkPaint"><span class="Identifier">drawPath</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <a href="sk_path.html#SkPath"><span class="Identifier">SkPath</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
@@ -1154,6 +1135,30 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L71" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+<a id="drawLine,SkCanvas,float,float,float,float,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawLine%2CSkCanvas%2Cfloat%2Cfloat%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">drawLine</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">x1</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">y1</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">x2</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">y2</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L74"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L74" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="drawBitmap,SkCanvas,SkBitmap,float,float,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawBitmap%2CSkCanvas%2CSkBitmap%2Cfloat%2Cfloat%2CSkPaint"><span class="Identifier">drawBitmap</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bitmap</span><span class="Other">:</span> <a href="sk_bitmap.html#SkBitmap"><span class="Identifier">SkBitmap</span></a><span class="Other">;</span> <span class="Identifier">left</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">top</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L77"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L77" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
 <a id="drawBitmap,SkCanvas,SkBitmap,float,float"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#drawBitmap%2CSkCanvas%2CSkBitmap%2Cfloat%2Cfloat"><span class="Identifier">drawBitmap</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bitmap</span><span class="Other">:</span> <a href="sk_bitmap.html#SkBitmap"><span class="Identifier">SkBitmap</span></a><span class="Other">;</span> <span class="Identifier">left</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">top</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
@@ -1161,9 +1166,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L80"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L86"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L80" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L86" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawBitmap,SkCanvas,SkBitmap"></a>
@@ -1172,9 +1177,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L85"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L91"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L91" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawText,SkCanvas,string,float,float,SkPaint"></a>
@@ -1184,36 +1189,14 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L90"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L90" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="dispose,SkCanvas"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#dispose%2CSkCanvas"><span class="Identifier">dispose</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L93"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L93" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="save,SkCanvas"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#save%2CSkCanvas"><span class="Identifier">save</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
 href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L96"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L96" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="save_layer,SkCanvas,SkRect,SkPaint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#save_layer%2CSkCanvas%2CSkRect%2CSkPaint"><span class="Identifier">save_layer</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bounds</span><span class="Other">:</span> <a href="sk_rect.html#SkRect"><span class="Identifier">SkRect</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="drawPositionedText,SkCanvas,string,seq[T][SkPoint],SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawPositionedText%2CSkCanvas%2Cstring%2Cseq%5BT%5D%5BSkPoint%5D%2CSkPaint"><span class="Identifier">drawPositionedText</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">points</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="sk_point.html#SkPoint"><span class="Identifier">SkPoint</span></a><span class="Other">]</span><span class="Other">;</span>
+                       <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
@@ -1223,8 +1206,9 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L99" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="restore,SkCanvas"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#restore%2CSkCanvas"><span class="Identifier">restore</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="drawPositionedText,SkCanvas,seq[T][byte],seq[T][SkPoint],SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawPositionedText%2CSkCanvas%2Cseq%5BT%5D%5Bbyte%5D%2Cseq%5BT%5D%5BSkPoint%5D%2CSkPaint"><span class="Identifier">drawPositionedText</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">points</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="sk_point.html#SkPoint"><span class="Identifier">SkPoint</span></a><span class="Other">]</span><span class="Other">;</span>
+                       <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
@@ -1234,15 +1218,60 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L102" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+<a id="dispose,SkCanvas"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#dispose%2CSkCanvas"><span class="Identifier">dispose</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L118"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L118" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="save,SkCanvas"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#save%2CSkCanvas"><span class="Identifier">save</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L121"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L121" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="save_layer,SkCanvas,SkRect,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#save_layer%2CSkCanvas%2CSkRect%2CSkPaint"><span class="Identifier">save_layer</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bounds</span><span class="Other">:</span> <a href="sk_rect.html#SkRect"><span class="Identifier">SkRect</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L124"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L124" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="restore,SkCanvas"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#restore%2CSkCanvas"><span class="Identifier">restore</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L127"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L127" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
 <a id="clear,SkCanvas,SkColor"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#clear%2CSkCanvas%2CSkColor"><span class="Identifier">clear</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">color</span><span class="Other">:</span> <a href="sk_color.html#SkColor"><span class="Identifier">SkColor</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L105"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L130"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L105" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L130" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="clip,SkCanvas,SkRect,SkClipOp,bool"></a>
@@ -1252,9 +1281,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L108"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L133"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L108" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L133" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="flush,SkCanvas"></a>
@@ -1263,9 +1292,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L111"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L136"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L111" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L136" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="resetMatrix,SkCanvas"></a>
@@ -1274,9 +1303,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L114"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L139"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L139" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="setMatrix,SkCanvas,SkMatrix"></a>
@@ -1285,9 +1314,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L117"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L142"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L117" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L142" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="concatMatrix,SkCanvas,SkMatrix"></a>
@@ -1296,9 +1325,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L120"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L145"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L120" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L145" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="skew,SkCanvas,float,float"></a>
@@ -1307,9 +1336,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L123"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L148"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L123" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L148" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawLinkDestinationAnnotation,SkCanvas,SkRect,SkData"></a>
@@ -1319,9 +1348,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L131"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L156"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L131" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L156" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawLinkDestinationAnnotation,SkCanvas,SkRect,string"></a>
@@ -1331,9 +1360,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L138"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L163"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L138" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L163" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawNamedDestinationAnnotation,SkCanvas,SkPoint,SkData"></a>
@@ -1343,9 +1372,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L146"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L171"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L146" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L171" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawNamedDestinationAnnotation,SkCanvas,SkPoint,string"></a>
@@ -1355,9 +1384,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L153"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L178"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L153" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L178" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawVertices,SkCanvas,SkVertices,SkBlendMode,SkPaint"></a>
@@ -1367,9 +1396,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L161"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L186"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L161" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L186" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="drawVertices,SkCanvas,SkVertexMode,openArray[SkPoint],openArray[SkColor],SkPaint"></a>
@@ -1380,9 +1409,21 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L166"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L191"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L166" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L191" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="drawBitmapLattice,SkCanvas,SkBitmap,SkLattice,SkRect,SkPaint"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#drawBitmapLattice%2CSkCanvas%2CSkBitmap%2CSkLattice%2CSkRect%2CSkPaint"><span class="Identifier">drawBitmapLattice</span></a><span class="Other">(</span><span class="Identifier">this</span><span class="Other">:</span> <a href="sk_canvas.html#SkCanvas"><span class="Identifier">SkCanvas</span></a><span class="Other">;</span> <span class="Identifier">bitmap</span><span class="Other">:</span> <a href="sk_bitmap.html#SkBitmap"><span class="Identifier">SkBitmap</span></a><span class="Other">;</span> <span class="Identifier">lattice</span><span class="Other">:</span> <a href="sk_lattice.html#SkLattice"><span class="Identifier">SkLattice</span></a><span class="Other">;</span>
+                      <span class="Identifier">dst</span><span class="Other">:</span> <a href="sk_rect.html#SkRect"><span class="Identifier">SkRect</span></a><span class="Other">;</span> <span class="Identifier">paint</span><span class="Other">:</span> <a href="sk_paint.html#SkPaint"><span class="Identifier">SkPaint</span></a> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L202"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L202" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1396,9 +1437,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L126"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_canvas.nim#L151"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L126" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_canvas.nim#L151" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1411,7 +1452,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2020-02-22 14:03:26 UTC</small>
+        <small>Made with Nim. Generated: 2020-03-16 19:10:58 UTC</small>
       </div>
     </div>
   </div>

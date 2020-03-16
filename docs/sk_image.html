@@ -834,8 +834,7 @@ function main() {
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#SkImage"
-    title="SkImage = ref object
-  native*: ptr sk_image_t"><wbr />Sk<wbr />Image<span class="attachedType"></span></a></li>
+    title="SkImage = ref object of SkObject[sk_image_t]"><wbr />Sk<wbr />Image<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -879,22 +878,20 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="sk_types.html">sk_types</a>, <a class="reference external" href="sk_data.html">sk_data</a>, <a class="reference external" href="sk_enums.html">sk_enums</a>, <a class="reference external" href="sk_imageinfo.html">sk_imageinfo</a>
+<a class="reference external" href="sk_types.html">sk_types</a>, <a class="reference external" href="sk_data.html">sk_data</a>, <a class="reference external" href="sk_enums.html">sk_enums</a>, <a class="reference external" href="sk_imageinfo.html">sk_imageinfo</a>, <a class="reference external" href="native.html">native</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
 <a id="SkImage"></a>
-<dt><pre><a href="sk_image.html#SkImage"><span class="Identifier">SkImage</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">native</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="sk_types.html#sk_image_t"><span class="Identifier">sk_image_t</span></a>
-</pre></dt>
+<dt><pre><a href="sk_image.html#SkImage"><span class="Identifier">SkImage</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="native.html#SkObject"><span class="Identifier">SkObject</span></a><span class="Other">[</span><a href="sk_types.html#sk_image_t"><span class="Identifier">sk_image_t</span></a><span class="Other">]</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L9"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L11"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -908,9 +905,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L12"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L13"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="encode,SkImage"></a>
@@ -919,9 +916,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L22"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="readPixels,SkImage,SkImageInfo,pointer,int,int,int,SkImageCachingHint"></a>
@@ -932,9 +929,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L25"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L26"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="readPixels,SkImage,SkImageInfo,pointer"></a>
@@ -944,9 +941,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L43"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L44"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -960,9 +957,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L14"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L15"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="height.t,SkImage"></a>
@@ -971,9 +968,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L16"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L17"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="alphaType.t,SkImage"></a>
@@ -982,9 +979,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L18"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L19"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="uniqueID.t,SkImage"></a>
@@ -993,9 +990,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L20"
+href="https://github.com/mvenditto/nimskia/tree/master/nimskia/nimskia/sk_image.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/mvenditto/nimskia/edit/devel/nimskia/nimskia/sk_image.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1008,7 +1005,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2020-02-22 14:03:31 UTC</small>
+        <small>Made with Nim. Generated: 2020-03-16 19:11:01 UTC</small>
       </div>
     </div>
   </div>
