@@ -17,61 +17,62 @@ proc dispose*(this: SkPaint) = sk_paint_delete(this.native)
 
 template isAntialias*(this: SkPaint): bool = sk_paint_is_antialias(this.native)
 
-proc `antialias=`*(this: SkPaint, enabled: bool) = 
+template `antialias=`*(this: SkPaint, enabled: bool) = 
   sk_paint_set_antialias(this.native, enabled)
 
 template color*(this: SkPaint): SkColor = 
   sk_paint_get_color(this.native).SkColor
 
-proc `color=`*(this: SkPaint, color: SkColor) =
-  sk_paint_set_color(this.native, color.sk_color_t)
+template `color=`*(this: SkPaint, color: SkColor) =
+  sk_paint_set_color(this.native, cast[sk_color_t](color))
 
-proc `color=`*(this: SkPaint, argb: (int,int,int,int)) =
+template `color=`*(this: SkPaint, argb: (int,int,int,int)) =
   var(a,r,g,b) = argb
   sk_paint_set_color(this.native, newSkColorARGB(a,r,g,b)) 
 
 template style*(this: SkPaint): SkPaintStyle = 
   sk_paint_get_style(this.native).SkPaintStyle
 
-proc `style=`*(this: SkPaint, style: SkPaintStyle) = 
+template `style=`*(this: SkPaint, style: SkPaintStyle) = 
   sk_paint_set_style(this.native, cast[sk_paint_style_t](style))
 
-proc isStroke*(this: SkPaint): bool = 
+template isStroke*(this: SkPaint): bool = 
   this.style == Stroke
 
-proc `shader=`*(this: SkPaint, shader: SkShader) =
+template `shader=`*(this: SkPaint, shader: SkShader) =
   sk_paint_set_shader(
     this.native, 
     if not isNil shader: shader.native else: nil
   )
 
-proc shader*(this: SkPaint): SkShader = 
+template shader*(this: SkPaint): SkShader = 
   SkShader(native: sk_paint_get_shader(this.native))
 
-proc `pathEffect=`*(this: SkPaint, pathEffect: SkPathEffect) =
+template `pathEffect=`*(this: SkPaint, pathEffect: SkPathEffect) =
   sk_paint_set_path_effect(this.native, pathEffect.native) 
 
 template strokeWidth*(this: SkPaint): float = 
   sk_paint_get_stroke_width(this.native).float
 
-proc `strokeWidth=`*(this: SkPaint, strokeWidth: float) =
+template `strokeWidth=`*(this: SkPaint, strokeWidth: float) =
   sk_paint_set_stroke_width(this.native, strokeWidth) 
 
-template miterWidth*(this: SkPaint): float = sk_paint_get_stroke_miter(this.native)
+template miterWidth*(this: SkPaint): float = 
+  sk_paint_get_stroke_miter(this.native)
 
-proc `miterWidth=`*(this: SkPaint, miterWidth: float) =
+template `miterWidth=`*(this: SkPaint, miterWidth: float) =
   sk_paint_set_stroke_miter(this.native, miterWidth) 
 
 template strokeCap*(this: SkPaint): SkStrokeCap = 
   sk_paint_get_stroke_cap(this.native).SkStrokeCap
 
-proc `strokeCap=`*(this: SkPaint, capType: SkStrokeCap) =
+template `strokeCap=`*(this: SkPaint, capType: SkStrokeCap) =
   sk_paint_set_stroke_cap(this.native, capType.sk_stroke_cap_t) 
 
 template joinCap*(this: SkPaint): SkStrokeJoin = 
   sk_paint_get_stroke_join(this.native).SkStrokeJoin
 
-proc `joinCap=`*(this: SkPaint, jointType: SkStrokeJoin) =
+template `joinCap=`*(this: SkPaint, jointType: SkStrokeJoin) =
   sk_paint_set_stroke_join(this.native, jointType.sk_stroke_join_t) 
 
 template textScaleX*(this: SkPaint): float = 
@@ -80,11 +81,17 @@ template textScaleX*(this: SkPaint): float =
 template textEncoding*(this: SkPaint): SkTextEncoding =
   sk_paint_get_text_encoding(this.native).SkTextEncoding
 
-proc `textEncoding=`*(this:SkPaint, encoding: SkTextEncoding) =
-  sk_paint_set_text_encoding(this.native, encoding.sk_text_encoding_t)
+template `textEncoding=`*(this:SkPaint, encoding: SkTextEncoding) =
+  sk_paint_set_text_encoding(this.native, cast[sk_text_encoding_t](encoding))
 
 template `typeface=`*(this: SkPaint, newTypeface: SkTypeface) =
   sk_paint_set_typeface(this.native, newTypeface.native)
+
+template subpixelText*(this: SkPaint): bool =
+  sk_paint_is_subpixel_text(this.native)
+
+template `subpixelText=`*(this: SkPaint, subpixelText: bool) =
+  sk_paint_set_subpixel_text(this.native, subpixelText)
 
 proc clone*(this: SkPaint): SkPaint =
   SkPaint(native: sk_paint_clone(this.native))

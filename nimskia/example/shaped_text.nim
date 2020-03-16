@@ -5,6 +5,9 @@ import ../nimskia/[
   sk_imageinfo,
   sk_typeface,
   sk_shaper,
+  sk_enums,
+  sk_colorspace,
+  sk_surface,
   sk_paint,
   sk_colors,
   sk_point,
@@ -12,6 +15,9 @@ import ../nimskia/[
 ]
 
 import common_api
+
+const
+  lorem = "Lorem ipsum dolor sit amet == =>"
 
 proc test() =
   var 
@@ -26,6 +32,44 @@ proc test() =
   let(a,b,c) = shaper.shape("متن", paint)
   
   echo (a, b, c)
+
+proc testLigatures() =
+
+  let
+    cs = newSkSrgbColorSpace()
+    info = newSkImageInfo(512, 512, Rgba_8888, Unpremul, cs)
+    surface = newSkSurface(info)
+    tf = newSkTypeface("Fira Code")
+    shaper = newSkShaper(tf)
+  
+  var paint = newSkPaint()
+
+  paint.antialias = true
+  paint.textSize = 24
+  paint.typeface = tf
+  paint.color = Black
+
+  surface.canvas.clear(White)
+  surface.canvas.drawShapedText(
+    shaper,
+    lorem,
+    32,
+    200,
+    paint
+  )
+  surface.canvas.flush()
+
+  paint.subpixelText = true
+
+  surface.canvas.drawShapedText(
+    shaper,
+    lorem,
+    32,
+    300,
+    paint
+  )
+
+  emitPng("snapshots/shapedText.png", surface)
 
 proc test2() =
   let 
@@ -66,4 +110,4 @@ proc test2() =
 
 
 # test()
-test2()
+testLigatures()
