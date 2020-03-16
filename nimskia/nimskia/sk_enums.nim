@@ -187,6 +187,12 @@ type
     ExtraExpanded = 8,
     UltraExpanded = 9
 
+  SkPaintHinting* = enum
+    NoHinting = NO_HINTING_SK_PAINT_HINTING
+    Slight = SLIGHT_HINTING_SK_PAINT_HINTING
+    Normal = NORMAL_HINTING_SK_PAINT_HINTING 
+    Full = FULL_HINTING_SK_PAINT_HINTING
+
 const
   LastSeparableMode* = Multiply
   LastCoeffMode* = Screen

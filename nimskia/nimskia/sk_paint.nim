@@ -93,6 +93,12 @@ template subpixelText*(this: SkPaint): bool =
 template `subpixelText=`*(this: SkPaint, subpixelText: bool) =
   sk_paint_set_subpixel_text(this.native, subpixelText)
 
+template hinting*(this: SkPaint): SkPaintHinting =
+  sk_paint_get_hinting(this.native).SkPaintHinting
+
+template `hinting=`*(this: SkPaint, hinting: SkPaintHinting) =
+  sk_paint_set_hinting(this.native, hinting.sk_paint_hinting_t)
+
 proc clone*(this: SkPaint): SkPaint =
   SkPaint(native: sk_paint_clone(this.native))
 
